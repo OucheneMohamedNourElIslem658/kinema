@@ -30,7 +30,20 @@ class BirthDayScreen extends StatelessWidget {
               const Spacer(flex: 2),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
-                child: CustomCupertinoDatePicker()
+                child: SizedBox(
+                  height: 130,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: -1000,
+                        left: 0,
+                        right: 0,
+                        bottom: -1000,
+                        child: CustomCupertinoDatePicker()
+                      ),
+                    ],
+                  )
+                )
               ),
               const Spacer(flex: 3),
               Center(

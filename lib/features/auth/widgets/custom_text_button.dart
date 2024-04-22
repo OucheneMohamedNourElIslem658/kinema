@@ -7,11 +7,13 @@ class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
     super.key,
     required this.onPressed,
-    required this.text,
+    required this.text, 
+    this.textStyle,
   });
 
   final VoidCallback onPressed;
   final String text;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class CustomTextButton extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: TextStyles.style6.copyWith(
+        style: textStyle ?? TextStyles.style6.copyWith(
           decoration: TextDecoration.underline,
           decorationColor: CustomColors.primaryBej,
         ),

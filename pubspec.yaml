@@ -98,6 +98,9 @@ flutter:
     - family: interExtraBold
       fonts:
         - asset: assets/fonts/Inter-ExtraBold.ttf
+    - family: interRegular
+      fonts:
+        - asset: assets\fonts\Inter-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

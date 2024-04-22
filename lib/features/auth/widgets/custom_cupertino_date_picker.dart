@@ -372,7 +372,7 @@ class _CustomCupertinoDatePickerState extends
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 110,
+      height: 200,
       child: CustomDatePicker(
         itemExtent: 55,
         minDate: _minDate,

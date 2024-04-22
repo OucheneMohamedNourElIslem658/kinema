@@ -5,6 +5,7 @@ class TextStyles {
   static const String _interBold = 'interBold';
   static const String _interMed = 'interMed';
   static const String _interExtraBold = 'interExtraBold';
+  static const String _interReg = 'interRegular';
   static TextStyle style1 = const TextStyle(
     fontSize: 48,
     fontFamily: _interBold,
@@ -54,5 +55,15 @@ class TextStyles {
     fontSize: 18,
     fontFamily: _interMed,
     color: CustomColors.primaryBej,
+  );
+  static TextStyle style11 = const TextStyle(
+    fontSize: 13,
+    fontFamily: _interReg,
+    color: CustomColors.primaryBej,
+  );
+  static TextStyle style12 = const TextStyle(
+    fontSize: 11,
+    fontFamily: _interBold,
+    color: CustomColors.black,
   );
 }
