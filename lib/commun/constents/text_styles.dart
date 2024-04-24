@@ -6,6 +6,9 @@ class TextStyles {
   static const String _interMed = 'interMed';
   static const String _interExtraBold = 'interExtraBold';
   static const String _interReg = 'interRegular';
+  static const String _interSemiBold = 'interSemiBold';
+  static const String _montserrat = 'montserrat';
+  static const String _montserratSemiBold = 'montserratSemiBold';
   static TextStyle style1 = const TextStyle(
     fontSize: 48,
     fontFamily: _interBold,
@@ -65,5 +68,90 @@ class TextStyles {
     fontSize: 11,
     fontFamily: _interBold,
     color: CustomColors.black,
+  );
+  static TextStyle style13 = const TextStyle(
+    fontSize: 30,
+    fontFamily: _interBold,
+    color: CustomColors.white,
+  );
+  static TextStyle style14 = const TextStyle(
+    fontSize: 18,
+    fontFamily: _interBold,
+    color: CustomColors.greyText2,
+  );
+  static TextStyle style15 = const TextStyle(
+    fontSize: 9,
+    fontFamily: _interBold,
+    color: CustomColors.greyText2,
+  );
+  static TextStyle style16 = const TextStyle(
+    fontSize: 11,
+    fontFamily: _interReg,
+    color: CustomColors.greyText2,
+  );
+  static TextStyle style17 = const TextStyle(
+    fontSize: 15,
+    fontFamily: _interReg,
+    color: CustomColors.greyText1,
+  );
+  static TextStyle style18 = const TextStyle(
+    fontSize: 13,
+    fontFamily: _interBold,
+    color: CustomColors.greyText1,
+  );
+  static TextStyle style19 = const TextStyle(
+    fontSize: 17,
+    fontFamily: _interBold,
+    color: CustomColors.white,
+  );
+  static TextStyle style20 = const TextStyle(
+    fontSize: 15,
+    fontFamily: _interBold,
+    color: CustomColors.white,
+  );
+  static TextStyle style21 = const TextStyle(
+    fontSize: 8.2,
+    fontFamily: _interMed,
+    color: CustomColors.greyText2,
+  );
+  static TextStyle style22 = const TextStyle(
+    fontSize: 16,
+    fontFamily: _interReg,
+    color: CustomColors.primaryBej,
+  );
+  static TextStyle style23 = const TextStyle(
+    fontSize: 10,
+    fontFamily: _montserrat,
+    color: CustomColors.white1,
+  );
+  static TextStyle style24 = const TextStyle(
+    fontSize: 18,
+    fontFamily: _interSemiBold,
+    color: CustomColors.primaryBej,
+  );
+  static TextStyle style25 = const TextStyle(
+    fontSize: 12,
+    fontFamily: _interMed,
+    color: CustomColors.greyText3,
+  );
+  static TextStyle style26 = const TextStyle(
+    fontSize: 14,
+    fontFamily: _montserratSemiBold,
+    color: CustomColors.primaryBej,
+  );
+  static TextStyle style27 = const TextStyle(
+    fontSize: 12,
+    fontFamily: _interSemiBold,
+    color: CustomColors.primaryBej,
+  );
+  static TextStyle style28 = const TextStyle(
+    fontSize: 14,
+    fontFamily: _interReg,
+    color: CustomColors.greyText1,
+  );
+  static TextStyle style29 = const TextStyle(
+    fontSize: 10,
+    fontFamily: _interSemiBold,
+    color: CustomColors.primaryBej,
   );
 }

@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kinema/commun/constents/text_styles.dart';
 
 import '../widgets/background.dart';
-import '../widgets/custom_elevated_button.dart';
+import '../../../commun/widgets/custom_elevated_button.dart';
 import '../widgets/cutom_outlined_button.dart';
 import '../widgets/signin_with_credential_description.dart';
 

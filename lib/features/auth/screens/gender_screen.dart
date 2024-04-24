@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:kinema/features/auth/widgets/custom_elevated_button.dart';
+import 'package:kinema/commun/widgets/custom_elevated_button.dart';
 import '../controllers/genders.dart';
 import '/features/auth/widgets/background.dart';
 

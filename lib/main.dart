@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:kinema/features/auth/screens/birth_day.dart';
-import 'package:kinema/features/my_reservations/screens/my_reservations.dart';
+
+import 'commun/utils/naviation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: MyReservations(),
+      routerConfig: CustomNavigation.router,
     );
   }
 }

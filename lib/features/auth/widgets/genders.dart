@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:kinema/features/auth/controllers/genders.dart';
 
 import '../../../commun/constents/text_styles.dart';
-import 'custom_elevated_button.dart';
+import '../../../commun/widgets/custom_elevated_button.dart';
 import 'cutom_outlined_button.dart';
 
 class Genders extends StatelessWidget {

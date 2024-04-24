@@ -3,9 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '/features/auth/widgets/background.dart';
-import '/features/auth/widgets/custom_elevated_button.dart';
+import '../../../commun/widgets/custom_elevated_button.dart';
 import '/features/auth/widgets/custom_text_field.dart';
-import '/features/auth/widgets/vertical_scroll_behaviour.dart';
+import '../../../commun/widgets/vertical_scroll_behaviour.dart';
 import '../../../commun/constents/text_styles.dart';
 import '../controllers/auth.dart';
 
