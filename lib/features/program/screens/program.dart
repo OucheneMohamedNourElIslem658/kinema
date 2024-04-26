@@ -15,7 +15,7 @@ class ProgramScreen extends StatelessWidget {
         showBackButton: false,
         showTitle: true,
         title: 'This Week’s Program',
-        space: 20
+        space: 20,
       ),
       body: const SingleChildScrollView(
         child: Column(

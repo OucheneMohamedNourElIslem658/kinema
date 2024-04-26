@@ -9,6 +9,8 @@ class TextStyles {
   static const String _interSemiBold = 'interSemiBold';
   static const String _montserrat = 'montserrat';
   static const String _montserratSemiBold = 'montserratSemiBold';
+  static const String _poppinsMed = 'poppinsMed';
+
   static TextStyle style1 = const TextStyle(
     fontSize: 48,
     fontFamily: _interBold,
@@ -153,5 +155,45 @@ class TextStyles {
     fontSize: 10,
     fontFamily: _interSemiBold,
     color: CustomColors.primaryBej,
+  );
+  static TextStyle style30 = const TextStyle(
+    fontSize: 14,
+    fontFamily: _interSemiBold,
+    color: CustomColors.greyText1,
+  );
+  static TextStyle style31 = const TextStyle(
+    fontSize: 18,
+    fontFamily: _poppinsMed,
+    color: CustomColors.black1,
+  );
+  static TextStyle style32 = const TextStyle(
+    fontSize: 16,
+    fontFamily: _poppinsMed,
+    color: CustomColors.black1,
+  );
+  static TextStyle style33 = const TextStyle(
+    fontSize: 14,
+    fontFamily: _interMed,
+    color: CustomColors.black,
+  );
+  static TextStyle style34 = const TextStyle(
+    fontSize: 16,
+    fontFamily: _montserratSemiBold,
+    color: CustomColors.white,
+  );
+  static TextStyle style35 = const TextStyle(
+    fontSize: 14,
+    fontFamily: _montserrat,
+    color: CustomColors.greyText3,
+  );
+  static TextStyle style36 = const TextStyle(
+    fontSize: 22,
+    fontFamily: _interSemiBold,
+    color: CustomColors.primaryBej,
+  );
+  static TextStyle style37 = const TextStyle(
+    fontSize: 18,
+    fontFamily: _montserratSemiBold,
+    color: CustomColors.white,
   );
 }

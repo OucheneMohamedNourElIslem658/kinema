@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
@@ -70,75 +71,78 @@ class MovieItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 163,
-      child: Column(
-        children: [
-          Container(
-            height: 230,
-            alignment: Alignment.topRight,
-            padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              image: DecorationImage(
-                image: NetworkImage(
-                  imageURL
-                ),
-                fit: BoxFit.cover
-              ),
-            ),
-            child: Container(
+    return GestureDetector(
+      onTap: () => GoRouter.of(context).go('/movie'),
+      child: SizedBox(
+        width: 163,
+        child: Column(
+          children: [
+            Container(
+              height: 230,
+              alignment: Alignment.topRight,
               padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                color: CustomColors.black7,
                 borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(
+                  image: NetworkImage(
+                    imageURL
+                  ),
+                  fit: BoxFit.cover
+                ),
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SvgPicture.asset('assets/icons/clock.svg'),
-                  const SizedBox(width: 5),
-                  Text(
-                    time,
-                    style: TextStyles.style29,
-                  )
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 5),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: CustomColors.black7,
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Expanded(
-                      child: Text(
-                        name,
-                        style: TextStyles.style6.copyWith(
-                          overflow: TextOverflow.ellipsis
-                        ),
-                      ),
-                    ),
-                    const IMDBRate(
-                      rate: 7.5,
-                      fontSize: 7,
-                      borderRadius: 6,
-                      paddingHor: 8,
-                      paddingVer: 5,
+                    SvgPicture.asset('assets/icons/clock.svg'),
+                    const SizedBox(width: 5),
+                    Text(
+                      time,
+                      style: TextStyles.style29,
                     )
                   ],
                 ),
               ),
-              Text(
-                type,
-                style: TextStyles.style28
-              )
-            ],
-          )
-        ],
+            ),
+            const SizedBox(height: 5),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          name,
+                          style: TextStyles.style6.copyWith(
+                            overflow: TextOverflow.ellipsis
+                          ),
+                        ),
+                      ),
+                      const IMDBRate(
+                        rate: 7.5,
+                        fontSize: 7,
+                        borderRadius: 6,
+                        paddingHor: 8,
+                        paddingVer: 5,
+                      )
+                    ],
+                  ),
+                ),
+                Text(
+                  type,
+                  style: TextStyles.style28
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

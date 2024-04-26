@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+import 'package:kinema/commun/widgets/vertical_scroll_behaviour.dart';
 
 import '../widgets/reservation_summery.dart';
 import '/commun/constents/colors.dart';
@@ -21,9 +23,10 @@ class SeatChoiceScreen extends StatelessWidget {
       backgroundColor: CustomColors.black2,
       appBar: customAppBar(
         title: 'AVATAR 2',
-        centertitle: true
+        centertitle: true,
+        onGoBack: () => GoRouter.of(context).go('/Movie'),
       ),
-      body: SingleChildScrollView(
+      body: VerticalScrollBehaviour(
         child: Column(
           children: [
             const SizedBox(height: 10),
@@ -53,12 +56,13 @@ class SeatChoiceScreen extends StatelessWidget {
                 const SeatsStatus()
               ],
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 30),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 50),
               child: ReservationSummery()
             ),
             const SizedBox(height: 20),
+            const Spacer(),
             CustomElevatedButton(
               onPressed: (){}, 
               padding: const EdgeInsets.symmetric(
@@ -69,6 +73,7 @@ class SeatChoiceScreen extends StatelessWidget {
                 style: TextStyles.style2
               ),
             ),
+            const Spacer(),
             const SizedBox(height: 20)
           ],
         ),

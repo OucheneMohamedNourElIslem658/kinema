@@ -115,6 +115,9 @@ flutter:
     - family: interSemiBold
       fonts:
         - asset: assets/fonts/Inter-SemiBold.ttf
+    - family: poppinsMed
+      fonts:
+        - asset: assets/fonts/Poppins-Medium.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

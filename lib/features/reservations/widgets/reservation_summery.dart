@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kinema/commun/constents/colors.dart';
 
 import '../../../commun/constents/text_styles.dart';
 import '../controllers/reservations_controller.dart';
@@ -14,7 +15,15 @@ class ReservationSummery extends StatelessWidget {
     return GetBuilder<ReservationsController>(
       builder: (_) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              'Reservation summary',
+              style: TextStyles.style29.copyWith(
+                color: CustomColors.greyText3
+              ),
+            ),
+            const SizedBox(height: 20),
             PriceItem(
               title: 'Single seat price',
               price: reservationsController.singleSeatPrice,

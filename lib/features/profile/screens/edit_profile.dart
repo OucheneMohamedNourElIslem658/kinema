@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '/commun/constents/colors.dart';
 import '/features/reservations/widgets/custom_appbar.dart';
-import '/features/settings/controllers/settings.dart';
+import '../controllers/settings.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});

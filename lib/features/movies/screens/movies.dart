@@ -128,25 +128,28 @@ class CategorieList extends StatelessWidget {
               Row(
                 children: List.generate(
                   5,
-                  (index) => Container(
-                    height: 184,
-                    width: 128,
-                    margin: const EdgeInsets.only(right: 10),
-                    padding: const EdgeInsets.all(5),
-                    alignment: Alignment.topLeft,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      image: const DecorationImage(
-                        image: NetworkImage('https://musicart.xboxlive.com/7/14815100-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080'),
-                        fit: BoxFit.cover
-                      )
-                    ),
-                    child: const IMDBRate(
-                      rate: 7.5,
-                      fontSize: 7,
-                      paddingHor: 12,
-                      paddingVer: 6,
-                      borderRadius: 6,
+                  (index) => GestureDetector(
+                    onTap: () => GoRouter.of(context).go('/Movie'),
+                    child: Container(
+                      height: 184,
+                      width: 128,
+                      margin: const EdgeInsets.only(right: 10),
+                      padding: const EdgeInsets.all(5),
+                      alignment: Alignment.topLeft,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        image: const DecorationImage(
+                          image: NetworkImage('https://musicart.xboxlive.com/7/14815100-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080'),
+                          fit: BoxFit.cover
+                        )
+                      ),
+                      child: const IMDBRate(
+                        rate: 7.5,
+                        fontSize: 7,
+                        paddingHor: 12,
+                        paddingVer: 6,
+                        borderRadius: 6,
+                      ),
                     ),
                   )
                 ),

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kinema/features/auth/screens/birth_day.dart';
+import 'package:kinema/features/fidelity/screens/card.dart';
+import 'package:kinema/features/fidelity/screens/fidelity_market.dart';
+import 'package:kinema/features/fidelity/screens/invoice.dart';
 import 'package:kinema/features/movies/screens/movie_selected.dart';
 import 'package:kinema/features/movies/screens/movies.dart';
+import 'package:kinema/features/profile/screens/profile_settings.dart';
 import 'package:kinema/features/program/screens/program.dart';
 import 'package:kinema/features/reservations/screens/seat_choice.dart';
+import 'package:kinema/features/reservations/screens/ticket.dart';
 import 'package:kinema/features/trailers/screens/trailers.dart';
 
 import '../screens/home.dart';
@@ -12,7 +17,7 @@ import '../screens/home.dart';
 class CustomNavigation {
   CustomNavigation._();
 
-  static String initialRoute = '/Movies';
+  static String initialRoute = '/Profile';
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   static final _rootNavigatorMovies = GlobalKey<NavigatorState>(
     debugLabel: 'shellMovie'
@@ -36,6 +41,14 @@ class CustomNavigation {
 
   static final _rootNavigatorMovie = GlobalKey<NavigatorState>(
     debugLabel: 'shellMovie'
+  );
+
+  static final _rootNavigatorCard = GlobalKey<NavigatorState>(
+    debugLabel: 'shellCard'
+  );
+
+  static final _rootNavigatorInvoice = GlobalKey<NavigatorState>(
+    debugLabel: 'shellInvoice'
   );
 
   static final GoRouter router = GoRouter(
@@ -98,7 +111,7 @@ class CustomNavigation {
                 path: '/fidelity',
                 name: 'Fidelity',
                 builder: (context, state) {
-                  return Scaffold(
+                  return FidelityMarketScreen(
                     key: state.pageKey,
                   );
                 },
@@ -112,7 +125,7 @@ class CustomNavigation {
                 path: '/profile',
                 name: 'Profile',
                 builder: (context, state) {
-                  return Scaffold(
+                  return ProfileSettingsScreen(
                     key: state.pageKey,
                   );
                 },
@@ -133,6 +146,34 @@ class CustomNavigation {
               )
             ]
           ),
+          StatefulShellBranch(
+            navigatorKey: _rootNavigatorCard,
+            routes: [
+              GoRoute(
+                path: '/card',
+                name: 'Card',
+                builder: (context, state) {
+                  return CardScreen(
+                    key: state.pageKey,
+                  );
+                },
+              )
+            ]
+          ),
+          StatefulShellBranch(
+            navigatorKey: _rootNavigatorInvoice,
+            routes: [
+              GoRoute(
+                path: '/invoice',
+                name: 'Invoice',
+                builder: (context, state) {
+                  return InvoiceScreen(
+                    key: state.pageKey,
+                  );
+                },
+              )
+            ]
+          ),
         ]
       ),
       GoRoute(
@@ -142,6 +183,10 @@ class CustomNavigation {
       GoRoute(
         path: '/seatChoice',
         builder: (context, state) => const SeatChoiceScreen(),
+      ),
+      GoRoute(
+        path: '/Ticket',
+        builder: (context, state) => const TicketScreen(),
       ),
     ] 
   );
