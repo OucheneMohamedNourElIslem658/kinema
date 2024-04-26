@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kinema/commun/widgets/vertical_scroll_behaviour.dart';
 
+import '/commun/widgets/vertical_scroll_behaviour.dart';
 import '../../../commun/constents/colors.dart';
 import '../../reservations/widgets/custom_appbar.dart';
 import 'buy_ticket_button.dart';
@@ -65,7 +65,7 @@ class ScreenWithShadow extends StatelessWidget {
         ),
         showPayButton
         ? ByTicketButton(
-            onPressed: onPayButtonPressed ?? (){},
+            onPressed: onPayButtonPressed ?? () {},
           )
         :const SizedBox(),
         showAppBar

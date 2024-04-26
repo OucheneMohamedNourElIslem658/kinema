@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
+import '/commun/utils/custom_snack_bar.dart';
+import '/commun/utils/navigation_methods.dart';
+import '/features/auth/screens/forgot_password.dart';
+import '/features/reservations/screens/my_reservations.dart';
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
 
@@ -34,25 +39,25 @@ class Settings extends StatelessWidget {
               SettingsItem(
                 title: 'My Reservations', 
                 iconPath: 'assets/icons/ticket3.svg', 
-                onPressed: (){}
+                onPressed: () => push(context, const MyReservationsScreen())
               ),
               devider(),
               SettingsItem(
                 title: 'Change Password', 
                 iconPath: 'assets/icons/lock.svg', 
-                onPressed: (){}
+                onPressed: () => push(context, const ForgotPasswordScreen())
               ),
               devider(),
               SettingsItem(
                 title: 'Feedback', 
                 iconPath: 'assets/icons/flag.svg', 
-                onPressed: (){}
+                onPressed: () => showSnackBar('Not supported yet', context)
               ),
               devider(),
               SettingsItem(
                 title: 'Log Out', 
                 iconPath: 'assets/icons/logout.svg', 
-                onPressed: (){}
+                onPressed: () => GoRouter.of(context).go('/Auth')
               ),
             ],
           )

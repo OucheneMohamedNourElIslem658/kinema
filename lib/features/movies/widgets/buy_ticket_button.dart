@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
@@ -42,7 +41,7 @@ class ByTicketButton extends StatelessWidget {
           )
         ),
         child: CustomElevatedButton(
-          onPressed: () => GoRouter.of(context).go('/seatChoice'), 
+          onPressed: onPressed, 
           padding:const EdgeInsets.symmetric(horizontal: 60,vertical: 12),
           child: Text(
             'Buy Ticket',

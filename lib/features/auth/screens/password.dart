@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kinema/commun/utils/navigation_methods.dart';
+import 'package:kinema/features/auth/screens/birth_day.dart';
 
 import '../controllers/auth.dart';
 import '/features/auth/widgets/background.dart';
@@ -23,7 +25,7 @@ class PasswordScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 40),
             GestureDetector(
-              onTap: (){},
+              onTap: () => pop(context),
               child:  SvgPicture.asset('assets/icons/back_arrow.svg'),
             ),
             const SizedBox(height: 20),
@@ -50,6 +52,7 @@ class PasswordScreen extends StatelessWidget {
               child: CustomElevatedButton(
                 onPressed: (){
                   if (authController.validatePassword()) {
+                    push(context, const BirthDayScreen());
                   }
                 }, 
                 width: null,

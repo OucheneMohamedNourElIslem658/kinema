@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '/commun/utils/navigation_methods.dart';
+import '/features/fidelity/screens/fidelity_market.dart';
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
 
@@ -51,7 +53,7 @@ class PointsTile extends StatelessWidget {
             Align(
               alignment: Alignment.topCenter,
               child: IconButton(
-                onPressed: (){}, 
+                onPressed: () => push(context, const FidelityMarketScreen()), 
                 icon: SvgPicture.asset(
                   'assets/icons/shop_bag.svg',
                   height: 25,

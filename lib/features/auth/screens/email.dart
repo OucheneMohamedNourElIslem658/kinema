@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kinema/commun/utils/navigation_methods.dart';
+import 'package:kinema/features/auth/screens/password.dart';
 import '../controllers/auth.dart';
 import '/features/auth/widgets/background.dart';
 import '../../../commun/widgets/custom_elevated_button.dart';
@@ -22,7 +24,7 @@ class EmailScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 40),
             GestureDetector(
-              onTap: (){},
+              onTap: () => pop(context),
               child:  SvgPicture.asset('assets/icons/back_arrow.svg'),
             ),
             const SizedBox(height: 20),
@@ -48,7 +50,7 @@ class EmailScreen extends StatelessWidget {
               child: CustomElevatedButton(
                 onPressed: (){
                   if (authController.validateEmail()) {
-                    
+                    push(context, const PasswordScreen());
                   }
                 }, 
                 width: null,

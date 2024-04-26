@@ -16,7 +16,8 @@ class TrailersScreen extends StatelessWidget {
     return Scaffold(
       appBar: customAppBar(
         showTitle: true,
-        title: 'Trailers'
+        title: 'Trailers',
+        showBackButton: false
       ),
       backgroundColor: CustomColors.black2,
       body: SingleChildScrollView(

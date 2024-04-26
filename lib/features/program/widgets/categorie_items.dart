@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
+import '/commun/utils/navigation_methods.dart';
+import '/features/movies/screens/movie_selected.dart';
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
 import '../../../commun/widgets/imdb_rate.dart';
@@ -72,7 +73,7 @@ class MovieItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => GoRouter.of(context).go('/movie'),
+      onTap: () => push(context,const MovieScreen()),
       child: SizedBox(
         width: 163,
         child: Column(

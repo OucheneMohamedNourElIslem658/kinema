@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kinema/commun/constents/colors.dart';
-import 'package:kinema/commun/constents/text_styles.dart';
-import 'package:kinema/features/movies/widgets/screen_with_shadow.dart';
 
+import '/commun/constents/colors.dart';
+import '/commun/constents/text_styles.dart';
+import '/commun/utils/navigation_methods.dart';
+import '/features/movies/screens/movie_selected.dart';
+import '/features/movies/widgets/screen_with_shadow.dart';
 import '../../../commun/widgets/custom_video_player.dart';
 import '../../../commun/widgets/imdb_rate.dart';
 
@@ -32,7 +33,7 @@ class MoviesScreen extends StatelessWidget {
                   children: [
                     const Description(),
                     GestureDetector(
-                      onTap: () => GoRouter.of(context).go('/Movie'),
+                      onTap: () => push(context, const MovieScreen()),
                       child: SvgPicture.asset(
                         'assets/icons/play.svg',
                         height: 42,
@@ -129,7 +130,7 @@ class CategorieList extends StatelessWidget {
                 children: List.generate(
                   5,
                   (index) => GestureDetector(
-                    onTap: () => GoRouter.of(context).go('/Movie'),
+                    onTap: () =>  push(context, const MovieScreen()),
                     child: Container(
                       height: 184,
                       width: 128,

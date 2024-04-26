@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
+import '/commun/utils/navigation_methods.dart';
+import '/features/auth/screens/forgot_password.dart';
 import '../controllers/auth.dart';
 import '/features/auth/widgets/background.dart';
 import '../../../commun/widgets/custom_elevated_button.dart';
@@ -28,7 +31,7 @@ class SignInScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 40),
                   GestureDetector(
-                    onTap: (){},
+                    onTap: () => pop(context),
                     child:  SvgPicture.asset('assets/icons/back_arrow.svg'),
                   ),
                   const SizedBox(height: 20),
@@ -59,6 +62,7 @@ class SignInScreen extends StatelessWidget {
                     child: CustomElevatedButton(
                       onPressed: () {
                         if(authController.validateLoginForm()){
+                          GoRouter.of(context).go('/Movies');
                         }
                       }, 
                       width: null,
@@ -72,7 +76,7 @@ class SignInScreen extends StatelessWidget {
                   const SizedBox(height: 25),
                   Center(
                     child: CustomTextButton(
-                      onPressed: (){}, 
+                      onPressed: () => push(context, const ForgotPasswordScreen()), 
                       text: 'You Forgot Your Password?'
                     ),
                   ),

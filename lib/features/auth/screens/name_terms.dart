@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
+import '/commun/utils/custom_snack_bar.dart';
 import '../controllers/auth.dart';
 import '../controllers/terms_agreement.dart';
 import '/commun/constents/colors.dart';
@@ -61,9 +63,9 @@ class NameTermsScreen extends StatelessWidget {
                       if (authController.validateName()) {
                         termsAgreementController.updateIsAllChecked();
                         if (termsAgreementController.isAllChecked) {
-                          
+                          GoRouter.of(context).go('/Movies');
                         } else {
-                          debugPrint('not checked All');
+                          showSnackBar('You need to check all terms', context);
                         }
                       }
                     }, 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
+
+import '/commun/utils/navigation_methods.dart';
+import '/features/auth/screens/name_terms.dart';
 import '../../../commun/widgets/custom_cupertino_date_picker.dart';
 import '/features/auth/widgets/background.dart';
 import '../../../commun/widgets/custom_elevated_button.dart';
@@ -20,7 +22,7 @@ class BirthDayScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 40),
               GestureDetector(
-                onTap: (){},
+                onTap: () => pop(context),
                 child:  SvgPicture.asset('assets/icons/back_arrow.svg'),
               ),
               const SizedBox(height: 20),
@@ -49,7 +51,7 @@ class BirthDayScreen extends StatelessWidget {
               const Spacer(flex: 3),
               Center(
                 child: CustomElevatedButton(
-                  onPressed: () => GoRouter.of(context).go('/movie'), 
+                  onPressed: () => push(context, const NameTermsScreen()), 
                   width: null,
                   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 16),
                   child: Text(

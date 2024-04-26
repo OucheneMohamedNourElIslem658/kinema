@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '/commun/utils/navigation_methods.dart';
 import '/commun/constents/colors.dart';
 import '/commun/constents/text_styles.dart';
 import '/commun/widgets/custom_icon_button.dart';
 import '/commun/widgets/download_button.dart';
 import '/features/reservations/widgets/custom_appbar.dart';
-
 import '../widgets/ticket_info.dart';
 
 class TicketScreen extends StatelessWidget {
@@ -19,6 +19,7 @@ class TicketScreen extends StatelessWidget {
       appBar: customAppBar(
         showTitle: true,
         title: 'Your Ticket!',
+        onGoBack: () => pop(context),
         actions: [
           CustomIconButton(
             child: SvgPicture.asset(
@@ -26,7 +27,10 @@ class TicketScreen extends StatelessWidget {
               // ignore: deprecated_member_use
               color: CustomColors.white,
             ), 
-            onPressed: (){}
+            onPressed: () {
+              pop(context);
+              pop(context);
+            }
           )
         ]
       ),
@@ -84,7 +88,7 @@ class TicketScreen extends StatelessWidget {
                   onPressed: (){}
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 70),
             ],
           ),
         ),

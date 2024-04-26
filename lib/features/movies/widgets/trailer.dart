@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '/commun/utils/navigation_methods.dart';
+import '/features/movies/screens/movie_selected.dart';
+import '/features/reservations/screens/seat_choice.dart';
+
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
 import '../../../commun/widgets/custom_elevated_button.dart';
@@ -47,13 +51,13 @@ class Trailer extends StatelessWidget {
               child: Info(
                 time: time, 
                 type: type,
-                onSeeMore: (){},
+                onSeeMore: () => push(context, const MovieScreen()),
               ),
             ),
           ),
           Center(
             child: BuyTicketButton(
-              onPressed: (){},
+              onPressed: () => push(context, const SeatChoiceScreen()),
             ),
           )
         ],

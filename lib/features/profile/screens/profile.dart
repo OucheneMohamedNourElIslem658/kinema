@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '/commun/utils/navigation_methods.dart';
 import '/features/profile/controllers/profile_form.dart';
 import '../widgets/edit_profile_form.dart';
 import '/commun/constents/colors.dart';
@@ -23,6 +24,7 @@ class ProfileScreen extends StatelessWidget {
           appBar: customAppBar(
             title: 'Profile',
             showTitle: true,
+            onGoBack: () => pop(context),
             actions: [
               formController.enableForm
               ? IconButton(

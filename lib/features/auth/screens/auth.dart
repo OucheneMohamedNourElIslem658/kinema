@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kinema/commun/constents/text_styles.dart';
+import 'package:kinema/features/auth/screens/sign_in.dart';
 
+import '/commun/constents/text_styles.dart';
+import '/commun/utils/custom_snack_bar.dart';
+import '/commun/utils/navigation_methods.dart';
+import '/features/auth/screens/email.dart';
 import '../widgets/background.dart';
 import '../../../commun/widgets/custom_elevated_button.dart';
 import '../widgets/cutom_outlined_button.dart';
@@ -28,7 +32,7 @@ class AuthScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: CustomElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => push(context, const EmailScreen()),
                   child: Text(
                     'Sign up',
                     style: TextStyles.style2,
@@ -37,7 +41,7 @@ class AuthScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               CustomOutlinedButton(
-                onPressed: () {},
+                onPressed: ()  => showSnackBar('Not supported yet', context),
                 child: const SignInWithCredentialDescription(
                   text: 'Continue with Google',
                   iconPath: 'assets/icons/google.svg',
@@ -45,7 +49,7 @@ class AuthScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               CustomOutlinedButton(
-                onPressed: () {},
+                onPressed: () => showSnackBar('Not supported yet', context),
                 child: const SignInWithCredentialDescription(
                   text: 'Continue with Facebook',
                   iconPath: 'assets/icons/fb.svg',
@@ -56,7 +60,7 @@ class AuthScreen extends StatelessWidget {
                 width: null,
                 showBorders: false,
                 padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-                onPressed: (){},
+                onPressed: () => push(context, const SignInScreen()),
                 child: Text(
                   'Sign in',
                   style: TextStyles.style2,

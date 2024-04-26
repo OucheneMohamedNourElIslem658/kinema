@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
+import 'package:kinema/commun/utils/navigation_methods.dart';
+import 'package:kinema/features/reservations/screens/seat_choice.dart';
 
 import '../controllers/show_hide_button.dart';
 import '../widgets/description.dart';
@@ -20,8 +21,9 @@ class MovieScreen extends StatelessWidget {
         builder: (_) {
           return ScreenWithShadow(
             backgroundImageURL: 'https://musicart.xboxlive.com/7/14815100-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080',
-            onGoBack: () => GoRouter.of(context).go('/Movies'),
+            onGoBack: () => pop(context),
             showAppBar: true,
+            onPayButtonPressed: () => push(context, const SeatChoiceScreen()),
             showPayButton: showHideButtonController.isScrollingUp,
             scrollController: showHideButtonController.scrollController,
             child: const SafeArea(

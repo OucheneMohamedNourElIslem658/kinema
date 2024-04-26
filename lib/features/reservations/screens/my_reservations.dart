@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kinema/commun/utils/navigation_methods.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../widgets/reservation_card.dart';
 import '../controllers/reservations_controller.dart';
 import '../widgets/custom_appbar.dart';
 
-class MyReservations extends StatelessWidget {
-  const MyReservations({super.key});
+class MyReservationsScreen extends StatelessWidget {
+  const MyReservationsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,10 @@ class MyReservations extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: CustomColors.black2,
-      appBar: customAppBar(),
+      appBar: customAppBar(
+        showTitle: true,
+        onGoBack: () => pop(context),
+      ),
 
       body: Padding(
         padding: const EdgeInsets.only(left: 15,right: 15,top: 20),

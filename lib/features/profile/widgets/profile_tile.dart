@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '/commun/utils/navigation_methods.dart';
+import '/features/profile/screens/profile.dart';
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
 
@@ -51,7 +53,7 @@ class ProfileTile extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: IconButton(
-                onPressed: (){},
+                onPressed: () => push(context, const ProfileScreen()),
                 icon: SvgPicture.asset('assets/icons/edit.svg'), 
               ),
             )
