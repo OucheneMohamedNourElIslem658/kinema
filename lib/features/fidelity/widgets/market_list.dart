@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kinema/commun/utils/navigation_methods.dart';
-import 'package:kinema/features/fidelity/screens/card.dart';
+
+import '/commun/utils/navigation_methods.dart';
+import '/features/fidelity/screens/card.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';

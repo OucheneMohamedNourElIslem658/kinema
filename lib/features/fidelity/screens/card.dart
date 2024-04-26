@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kinema/commun/utils/navigation_methods.dart';
-import 'package:kinema/features/fidelity/screens/invoice.dart';
 
+import '/commun/utils/navigation_methods.dart';
+import '/features/fidelity/screens/invoice.dart';
 import '/commun/constents/colors.dart';
 import '/commun/constents/text_styles.dart';
 import '/commun/widgets/custom_elevated_button.dart';
