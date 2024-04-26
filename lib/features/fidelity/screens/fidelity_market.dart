@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '/commun/utils/navigation_methods.dart';
 import '/commun/constents/colors.dart';
 import '/features/reservations/widgets/custom_appbar.dart';
 import '../widgets/bag_button.dart';
 import '../widgets/market_list.dart';
 
 class FidelityMarketScreen extends StatelessWidget {
-  const FidelityMarketScreen({super.key});
+  const FidelityMarketScreen({
+    super.key,
+    this.showBackButton = true
+  });
+
+  final bool showBackButton;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +21,8 @@ class FidelityMarketScreen extends StatelessWidget {
       appBar: customAppBar(
         title: 'Fidelty Market',
         showTitle: true,
-        showBackButton: false,
+        showBackButton: showBackButton,
+        onGoBack: () => pop(context),
         actions: [const BagButton()]
       ),
       body: const SingleChildScrollView(

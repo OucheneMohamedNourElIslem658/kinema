@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kinema/commun/utils/navigation_methods.dart';
 
+import '/commun/utils/navigation_methods.dart';
+import '/features/reservations/screens/ticket.dart';
 import '../../../commun/constents/colors.dart';
 import '../widgets/reservation_card.dart';
 import '../controllers/reservations_controller.dart';
@@ -33,13 +34,16 @@ class MyReservationsScreen extends StatelessWidget {
             final startsAfter = reservation['startsAfter'] as String;
             final rate = reservation['rate'] as double;
             final imageURL = reservation['imageURL'] as String;
-            return ReservationCard(
-              imageURL: imageURL, 
-              movie: movie, 
-              date: date, 
-              type: type, 
-              startsAfter: startsAfter, 
-              rate: rate
+            return GestureDetector(
+              onTap: () => push(context,const TicketScreen(showCancel: false)),
+              child: ReservationCard(
+                imageURL: imageURL, 
+                movie: movie, 
+                date: date, 
+                type: type, 
+                startsAfter: startsAfter, 
+                rate: rate
+              ),
             );
           },
         ),

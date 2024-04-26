@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '/commun/widgets/custom_icon_button.dart';
+import '/features/profile/screens/edit_profile.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/features/profile/controllers/profile_form.dart';
 import '../widgets/edit_profile_form.dart';
@@ -22,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: CustomColors.black2,
           appBar: customAppBar(
-            title: 'Profile',
+            title: 'Edit Profile',
             showTitle: true,
             onGoBack: () => pop(context),
             actions: [
@@ -46,14 +48,36 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 10),
-                    const SizedBox(
-                      height: 72,
-                      width: 72,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/avatar3.png'),
-                      ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        const SizedBox(
+                          height: 100,
+                          width: 120
+                        ),
+                        const SizedBox(
+                          height: 80,
+                          width: 80,
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage('assets/images/avatar3.png'),
+                          ),
+                        ),
+                        Positioned(
+                          right: 0,
+                          bottom: 0,
+                          child: CustomIconButton(
+                            onPressed: () => push(context, const EditProfileScreen()), 
+                            backgroundColor: CustomColors.black3,
+                            child: SvgPicture.asset(
+                              'assets/icons/edit2.svg',
+                              height: 20,
+                              width: 20,
+                            )
+                          ),
+                        )
+                      ],
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 15),
                     Text(
                       formController.nameController.text,
                       style: TextStyles.style34,

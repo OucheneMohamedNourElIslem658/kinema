@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '/commun/utils/navigation_methods.dart';
 import '/commun/utils/custom_snack_bar.dart';
 import '/commun/constents/colors.dart';
 import '/commun/constents/text_styles.dart';
@@ -18,7 +19,8 @@ class InvoiceScreen extends StatelessWidget {
       backgroundColor: CustomColors.black2,
       appBar: customAppBar(
         title: 'Invoice',
-        showTitle: true
+        showTitle: true,
+        onGoBack: () => pop(context),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

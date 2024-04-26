@@ -10,7 +10,12 @@ import '/features/reservations/widgets/custom_appbar.dart';
 import '../widgets/ticket_info.dart';
 
 class TicketScreen extends StatelessWidget {
-  const TicketScreen({super.key});
+  const TicketScreen({
+    super.key,
+    this.showCancel = true
+  });
+
+  final bool showCancel;
 
   @override
   Widget build(BuildContext context) {
@@ -20,19 +25,21 @@ class TicketScreen extends StatelessWidget {
         showTitle: true,
         title: 'Your Ticket!',
         onGoBack: () => pop(context),
-        actions: [
-          CustomIconButton(
-            child: SvgPicture.asset(
-              'assets/icons/delete.svg',
-              // ignore: deprecated_member_use
-              color: CustomColors.white,
-            ), 
-            onPressed: () {
-              pop(context);
-              pop(context);
-            }
-          )
-        ]
+        actions: showCancel 
+          ? [
+              CustomIconButton(
+                child: SvgPicture.asset(
+                  'assets/icons/delete.svg',
+                  // ignore: deprecated_member_use
+                  color: CustomColors.white,
+                ), 
+                onPressed: () {
+                  pop(context);
+                  pop(context);
+                }
+              )
+            ]
+          : null
       ),
 
       body: Padding(

@@ -96,6 +96,7 @@ class CustomNavigation {
                 builder: (context, state) {
                   return FidelityMarketScreen(
                     key: state.pageKey,
+                    showBackButton: false,
                   );
                 },
               )

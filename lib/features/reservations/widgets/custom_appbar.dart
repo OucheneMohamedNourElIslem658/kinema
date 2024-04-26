@@ -15,6 +15,7 @@ AppBar customAppBar({
 }) {
   return AppBar(
     backgroundColor: CustomColors.transparent,
+    automaticallyImplyLeading: false,
     leading: showBackButton
       ? IconButton(
         onPressed: onGoBack ?? (){},
