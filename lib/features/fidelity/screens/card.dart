@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kinema/commun/utils/navigation_methods.dart';
+import 'package:kinema/features/fidelity/screens/invoice.dart';
 
 import '/commun/constents/colors.dart';
 import '/commun/constents/text_styles.dart';
@@ -20,7 +22,8 @@ class CardScreen extends StatelessWidget {
       backgroundColor: CustomColors.black2,
       appBar: customAppBar(
         showTitle: true,
-        title: 'My Cart'
+        title: 'My Cart',
+        onGoBack: () => pop(context),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -35,7 +38,7 @@ class CardScreen extends StatelessWidget {
                 ? Align(
                   alignment: const Alignment(0,0.6),
                   child: CustomElevatedButton(
-                    onPressed: (){}, 
+                    onPressed: () => push(context, const InvoiceScreen()), 
                     padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 15),
                     child: Text(
                       'Get Items',

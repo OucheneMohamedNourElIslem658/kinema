@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kinema/commun/utils/navigation_methods.dart';
+import 'package:kinema/features/fidelity/screens/card.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
@@ -105,7 +107,7 @@ class MarketItem extends StatelessWidget {
               ),
               const Spacer(),
               GestureDetector(
-                onTap: () => GoRouter.of(context).go('/Card'),
+                onTap: () => push(context, const CardScreen()),
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   decoration: const BoxDecoration(
