@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../commun/constents/colors.dart';
-import '../../../commun/constents/text_styles.dart';
+import '../constents/colors.dart';
+import '../constents/text_styles.dart';
 
 class CustomDatePicker extends StatefulWidget {
   final double itemExtent;
@@ -351,13 +351,17 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
 }
 
 class CustomCupertinoDatePicker extends StatefulWidget {
-  const CustomCupertinoDatePicker({Key? key}) : super(key: key);
+  const CustomCupertinoDatePicker({
+    super.key, 
+    this.initialDate, 
+    this.onDateChanged
+  });
+  final DateTime? initialDate;
+  final void Function(DateTime)? onDateChanged;
   @override
-  State<CustomCupertinoDatePicker> createState() =>
-      _CustomCupertinoDatePickerState();
+  State<CustomCupertinoDatePicker> createState() =>_CustomCupertinoDatePickerState();
 }
-class _CustomCupertinoDatePickerState extends 
-  State<CustomCupertinoDatePicker> {
+class _CustomCupertinoDatePickerState extends State<CustomCupertinoDatePicker> {
   late final DateTime _minDate;
   late final DateTime _maxDate;
   late DateTime _selecteDate;
@@ -377,7 +381,7 @@ class _CustomCupertinoDatePickerState extends
         itemExtent: 55,
         minDate: _minDate,
         maxDate: _maxDate,
-        selectedDate: _selecteDate,
+        selectedDate: widget.initialDate ?? _selecteDate,
         selectionOverlay: Container(
           height: 55,
           margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -394,9 +398,7 @@ class _CustomCupertinoDatePickerState extends
         disabledStyle: TextStyles.style8.copyWith(
           color: Colors.grey[400],
         ),
-        onSelectedItemChanged: (date) {
-          _selecteDate = date;
-        },
+        onSelectedItemChanged: widget.onDateChanged ?? (_){}
       ),
     );
   }

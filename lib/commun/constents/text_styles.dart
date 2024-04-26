@@ -196,4 +196,9 @@ class TextStyles {
     fontFamily: _montserratSemiBold,
     color: CustomColors.white,
   );
+  static TextStyle style38 = const TextStyle(
+    fontSize: 12,
+    fontFamily: _montserrat,
+    color: CustomColors.greyText3,
+  );
 }

@@ -6,6 +6,7 @@ import 'package:kinema/features/fidelity/screens/fidelity_market.dart';
 import 'package:kinema/features/fidelity/screens/invoice.dart';
 import 'package:kinema/features/movies/screens/movie_selected.dart';
 import 'package:kinema/features/movies/screens/movies.dart';
+import 'package:kinema/features/profile/screens/profile.dart';
 import 'package:kinema/features/profile/screens/profile_settings.dart';
 import 'package:kinema/features/program/screens/program.dart';
 import 'package:kinema/features/reservations/screens/seat_choice.dart';
@@ -37,6 +38,10 @@ class CustomNavigation {
 
   static final _rootNavigatorProfile = GlobalKey<NavigatorState>(
     debugLabel: 'shellProfile'
+  );
+
+  static final _rootNavigatorProfileSettings = GlobalKey<NavigatorState>(
+    debugLabel: 'shellProfileSettings'
   );
 
   static final _rootNavigatorMovie = GlobalKey<NavigatorState>(
@@ -119,11 +124,11 @@ class CustomNavigation {
             ]
           ),
           StatefulShellBranch(
-            navigatorKey: _rootNavigatorProfile,
+            navigatorKey: _rootNavigatorProfileSettings,
             routes: [
               GoRoute(
-                path: '/profile',
-                name: 'Profile',
+                path: '/profileSettings',
+                name: 'ProfileSettings',
                 builder: (context, state) {
                   return ProfileSettingsScreen(
                     key: state.pageKey,
@@ -168,6 +173,20 @@ class CustomNavigation {
                 name: 'Invoice',
                 builder: (context, state) {
                   return InvoiceScreen(
+                    key: state.pageKey,
+                  );
+                },
+              )
+            ]
+          ),
+          StatefulShellBranch(
+            navigatorKey: _rootNavigatorProfile,
+            routes: [
+              GoRoute(
+                path: '/profile',
+                name: 'Profile',
+                builder: (context, state) {
+                  return ProfileScreen(
                     key: state.pageKey,
                   );
                 },

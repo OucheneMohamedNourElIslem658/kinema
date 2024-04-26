@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import '../widgets/custom_cupertino_date_picker.dart';
+import '../../../commun/widgets/custom_cupertino_date_picker.dart';
 import '/features/auth/widgets/background.dart';
 import '../../../commun/widgets/custom_elevated_button.dart';
 
