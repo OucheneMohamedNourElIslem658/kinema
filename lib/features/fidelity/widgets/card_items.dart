@@ -6,7 +6,7 @@ import 'package:kinema/commun/widgets/vertical_scroll_behaviour.dart';
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
 import '../../../commun/widgets/custom_icon_button.dart';
-import '../controllers/show_hide_button.dart';
+import '../controllers/card.dart';
 import 'empty_card.dart';
 
 class CardItems extends StatelessWidget {

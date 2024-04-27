@@ -6,7 +6,7 @@ import '/features/fidelity/screens/invoice.dart';
 import '/commun/constents/colors.dart';
 import '/commun/constents/text_styles.dart';
 import '/commun/widgets/custom_elevated_button.dart';
-import '/features/fidelity/controllers/show_hide_button.dart';
+import '../controllers/card.dart';
 import '/features/reservations/widgets/custom_appbar.dart';
 
 import '../widgets/card_items.dart';
@@ -34,7 +34,7 @@ class CardScreen extends StatelessWidget {
                 CardItems(
                   cardController: cardContoller,
                 ),
-                cardContoller.isScrollingUp && cardContoller.cardItems.isNotEmpty
+                cardContoller.isScrollingUp
                 ? Align(
                   alignment: const Alignment(0,0.6),
                   child: CustomElevatedButton(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
+import '/features/reservations/controllers/reservations_controller.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/commun/constents/colors.dart';
 import '/commun/constents/text_styles.dart';
@@ -24,7 +26,9 @@ class TicketScreen extends StatelessWidget {
       appBar: customAppBar(
         showTitle: true,
         title: 'Your Ticket!',
-        onGoBack: () => pop(context),
+        onGoBack: () {
+          pop(context);
+        },
         actions: showCancel 
           ? [
               CustomIconButton(
@@ -36,6 +40,7 @@ class TicketScreen extends StatelessWidget {
                 onPressed: () {
                   pop(context);
                   pop(context);
+                  Get.delete<ReservationsController>();
                 }
               )
             ]

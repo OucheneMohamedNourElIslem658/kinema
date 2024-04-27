@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
-import '../controllers/show_hide_button.dart';
+import '../controllers/card.dart';
 
 class InvoiceInfo extends StatelessWidget {
   const InvoiceInfo({super.key});

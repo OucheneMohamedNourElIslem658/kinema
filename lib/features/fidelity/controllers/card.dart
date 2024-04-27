@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 class CardController extends GetxController {
-
   final cardItems = [
     {
       'name': 'Black Kinema Cap',
@@ -44,6 +43,19 @@ class CardController extends GetxController {
 
   void deleteItem(int index){
     cardItems.removeAt(index);
+    update();
+  }
+
+  void addItem({
+    required String name,
+    required String path,
+    required int price,
+  }){
+    cardItems.add({
+      'name': name,
+      'path': path,
+      'price': price
+    });
     update();
   }
 

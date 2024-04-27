@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void push (BuildContext context, Widget screen) {
   Navigator.of(context).push(
@@ -8,7 +9,10 @@ void push (BuildContext context, Widget screen) {
   );
 }
 
-void pop (BuildContext context) {
+void pop(BuildContext context,{GetxController? controller}) {
+  if (controller != null) {
+    controller.dispose();
+  }
   Navigator.of(context).pop();
 }
 

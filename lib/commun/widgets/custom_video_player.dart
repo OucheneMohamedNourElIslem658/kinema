@@ -206,7 +206,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
                         GestureDetector(
                           onTap: () => toggleMutation(),
                           child: Icon(
-                            isMuted
+                            !isMuted
                             ? Icons.volume_up_rounded
                             : Icons.volume_off_rounded,
                             color: CustomColors.white,

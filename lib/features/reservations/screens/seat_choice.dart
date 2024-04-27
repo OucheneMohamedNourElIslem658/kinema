@@ -26,7 +26,10 @@ class SeatChoiceScreen extends StatelessWidget {
         title: 'AVATAR 2',
         centertitle: true,
         showTitle: true,
-        onGoBack: () => pop(context),
+        onGoBack: () {
+          pop(context);
+          Get.delete<ReservationsController>();
+        },
       ),
       body: VerticalScrollBehaviour(
         child: Column(

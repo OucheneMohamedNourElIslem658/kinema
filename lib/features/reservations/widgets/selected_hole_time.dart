@@ -56,7 +56,7 @@ class HoleReservationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedDefaultTextStyle(
-      duration: const Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 100),
       style: const TextStyle(fontSize: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

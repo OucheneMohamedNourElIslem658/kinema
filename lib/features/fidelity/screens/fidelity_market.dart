@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../controllers/card.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/commun/constents/colors.dart';
 import '/features/reservations/widgets/custom_appbar.dart';
@@ -16,6 +18,8 @@ class FidelityMarketScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cardController = Get.put(CardController());
+
     return Scaffold(
       backgroundColor: CustomColors.black2,
       appBar: customAppBar(
@@ -23,7 +27,15 @@ class FidelityMarketScreen extends StatelessWidget {
         showTitle: true,
         showBackButton: showBackButton,
         onGoBack: () => pop(context),
-        actions: [const BagButton()]
+        actions: [
+          GetBuilder<CardController>(
+            builder: (_) {
+              return BagButton(
+                addRedDot: cardController.cardItems.isNotEmpty,
+              );
+            }
+          )
+        ]
       ),
       body: const SingleChildScrollView(
         child: Column(

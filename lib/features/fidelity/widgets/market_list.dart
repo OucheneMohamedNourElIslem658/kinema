@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
-import '/commun/utils/navigation_methods.dart';
-import '/features/fidelity/screens/card.dart';
-
+import '/features/fidelity/controllers/card.dart';
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
 
@@ -20,6 +19,8 @@ class MarketList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cardController = Get.put(CardController());
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,10 +41,15 @@ class MarketList extends StatelessWidget {
               Row(
                 children: List.generate(
                   3, 
-                  (index) => const MarketItem(
+                  (index) => MarketItem(
                     name: 'Black Kinema Cap', 
                     url: 'assets/images/t_shirt.png', 
-                    price: 1400
+                    price: 1400,
+                    onDelete: () => cardController.addItem(
+                      name: 'Black Kinema Cap', 
+                      path: 'assets/images/t_shirt.png',
+                      price: 1200
+                    ),
                   )
                 ),
               ),
@@ -61,11 +67,13 @@ class MarketItem extends StatelessWidget {
     required this.name, 
     required this.url, 
     required this.price,
+    required this.onDelete
   });
 
   final String name;
   final String url;
   final int price;
+  final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +115,7 @@ class MarketItem extends StatelessWidget {
               ),
               const Spacer(),
               GestureDetector(
-                onTap: () => push(context, const CardScreen()),
+                onTap: onDelete,
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   decoration: const BoxDecoration(
