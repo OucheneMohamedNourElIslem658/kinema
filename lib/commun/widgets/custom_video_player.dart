@@ -1,6 +1,7 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kinema/commun/widgets/custom_network_image.dart';
 import 'package:video_player/video_player.dart';
 
 import '../constents/colors.dart';
@@ -39,7 +40,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
 
   void _initVideoController() async {
     videoPlayerController = VideoPlayerController
-      .asset(widget.videoURL)
+      .networkUrl(Uri.parse(widget.videoURL))
       ..initialize().then((_) {
         setState(() {});
       });
@@ -47,7 +48,9 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
       videoPlayerController: videoPlayerController,
       showControls: false,
       aspectRatio: 16/9,
-      looping: true
+      looping: true,
+      placeholder: const LoaderWithShimmer(),
+      errorBuilder: (context, errorMessage) => const LoaderWithShimmer(),
     );
     videoDurationInfo = _getVideoDurationInfo();
   }

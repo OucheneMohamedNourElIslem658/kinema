@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '/commun/widgets/custom_network_image.dart';
 import '../../../commun/constents/text_styles.dart';
 import '../controllers/cast_scroll.dart';
 
@@ -24,9 +25,9 @@ class CastList extends StatelessWidget {
               child: CarouselSlider(
                 options: CarouselOptions(
                   onPageChanged: (index,reason) => castContoller.changeActor(index),
-                  viewportFraction: 0.14,
+                  viewportFraction: 0.15,
                   enlargeCenterPage: true,
-                  enlargeFactor: 0.1
+                  enlargeFactor: 0.2
                 ),
                 items: List.generate(
                   castContoller.cast.length, 
@@ -35,14 +36,14 @@ class CastList extends StatelessWidget {
                     final url = actor['imageURL'] as String;
                     return Center(
                       child: AnimatedContainer(
-                        height: castContoller.currentActor == index ? 70 : 35,
                         duration: const Duration(milliseconds: 100),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: NetworkImage(url)
-                          )
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.rectangle,
                         ),
+                        child: CustomNetworkImage(
+                          backgroundImageURL: url,
+                          shape: BoxShape.circle,
+                        )
                       ),
                     );
                   }

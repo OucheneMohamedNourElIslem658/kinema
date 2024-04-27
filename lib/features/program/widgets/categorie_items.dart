@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kinema/commun/widgets/custom_network_image.dart';
 
 import '/commun/utils/navigation_methods.dart';
 import '/features/movies/screens/movie_selected.dart';
@@ -78,37 +79,41 @@ class MovieItem extends StatelessWidget {
         width: 163,
         child: Column(
           children: [
-            Container(
-              height: 230,
-              alignment: Alignment.topRight,
-              padding: const EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                image: DecorationImage(
-                  image: NetworkImage(
-                    imageURL
+            Stack(
+              children: [
+                Container(
+                  height: 230,
+                  alignment: Alignment.topRight,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  fit: BoxFit.cover
+                  child: CustomNetworkImage(
+                    backgroundImageURL: imageURL,
+                    shimmerBorderRadius: 8,
+                  )
                 ),
-              ),
-              child: Container(
-                padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: CustomColors.black7,
-                  borderRadius: BorderRadius.circular(8),
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: CustomColors.black7,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SvgPicture.asset('assets/icons/clock.svg'),
+                        const SizedBox(width: 5),
+                        Text(
+                          time,
+                          style: TextStyles.style29,
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SvgPicture.asset('assets/icons/clock.svg'),
-                    const SizedBox(width: 5),
-                    Text(
-                      time,
-                      style: TextStyles.style29,
-                    )
-                  ],
-                ),
-              ),
+              ],
             ),
             const SizedBox(height: 5),
             Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../commun/widgets/custom_network_image.dart';
 import '/commun/widgets/vertical_scroll_behaviour.dart';
 import '../../../commun/constents/colors.dart';
 import '../../reservations/widgets/custom_appbar.dart';
@@ -31,15 +32,9 @@ class ScreenWithShadow extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       children: [
         Positioned.fill(
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(backgroundImageURL),
-                fit: BoxFit.fitWidth,
-                alignment: Alignment.topCenter
-              )
-            ),
-          ),
+          child: CustomNetworkImage(
+            backgroundImageURL: backgroundImageURL
+          )
         ),
         VerticalScrollBehaviour(
           controller: scrollController,

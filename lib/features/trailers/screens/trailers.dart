@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../movies/widgets/trailer.dart';
+import '../widgets/trailer.dart';
 import '/commun/constents/colors.dart';
 import '/features/reservations/widgets/custom_appbar.dart';
 import '/features/trailers/controllers/trailers.dart';

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '/commun/constents/colors.dart';
-import '/commun/constents/text_styles.dart';
+import '/features/movies/widgets/discription_tile.dart';
+import '../widgets/categorie_list.dart';
+import '../widgets/trailers_list.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/features/movies/screens/movie_selected.dart';
 import '/features/movies/widgets/screen_with_shadow.dart';
-import '../../../commun/widgets/custom_video_player.dart';
-import '../../../commun/widgets/imdb_rate.dart';
 
 class MoviesScreen extends StatelessWidget {
   const MoviesScreen({super.key});
@@ -31,7 +30,7 @@ class MoviesScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Description(),
+                    const DescriptionTile(),
                     GestureDetector(
                       onTap: () => push(context, const MovieScreen()),
                       child: SvgPicture.asset(
@@ -51,145 +50,6 @@ class MoviesScreen extends StatelessWidget {
           ),
         ), 
       ),
-    );
-  }
-}
-
-class TrailersList extends StatelessWidget {
-  const TrailersList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: Text(
-            'Popular Trailers',
-            style: TextStyles.style14.copyWith(
-              color: CustomColors.white
-            ),
-          ),
-        ),
-        const SizedBox(height: 10),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              const SizedBox(width: 20),
-              Row(
-                children: List.generate(
-                  3, 
-                  (index) => const Padding(
-                    padding: EdgeInsets.only(right: 15),
-                    child: CustomVideoPlayer(
-                      videoURL: 'assets/videos/flutter.mp4',
-                      width: 280,
-                      borderRadius: 12,
-                      title: 'Spiderman: Into The Spiderverse',
-                      showTitle: true,
-                    ),
-                  )
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class CategorieList extends StatelessWidget {
-  const CategorieList({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: Text(
-            'Diffusing Today',
-            style: TextStyles.style14.copyWith(
-              color: CustomColors.white
-            ),
-          ),
-        ),
-        const SizedBox(height: 10),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              const SizedBox(width: 20),
-              Row(
-                children: List.generate(
-                  5,
-                  (index) => GestureDetector(
-                    onTap: () =>  push(context, const MovieScreen()),
-                    child: Container(
-                      height: 184,
-                      width: 128,
-                      margin: const EdgeInsets.only(right: 10),
-                      padding: const EdgeInsets.all(5),
-                      alignment: Alignment.topLeft,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        image: const DecorationImage(
-                          image: NetworkImage('https://musicart.xboxlive.com/7/14815100-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080'),
-                          fit: BoxFit.cover
-                        )
-                      ),
-                      child: const IMDBRate(
-                        rate: 7.5,
-                        fontSize: 7,
-                        paddingHor: 12,
-                        paddingVer: 6,
-                        borderRadius: 6,
-                      ),
-                    ),
-                  )
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class Description extends StatelessWidget {
-  const Description({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Text(
-              "COCO",
-              style: TextStyles.style13,
-            ),
-            const SizedBox(width: 15),
-            const IMDBRate(
-              rate: 7.5,
-            )
-          ],
-        ),
-        Text(
-          'Animation, Musical',
-          style: TextStyles.style17,
-        )
-      ],
     );
   }
 }

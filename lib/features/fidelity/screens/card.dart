@@ -34,7 +34,7 @@ class CardScreen extends StatelessWidget {
                 CardItems(
                   cardController: cardContoller,
                 ),
-                cardContoller.isScrollingUp
+                cardContoller.isScrollingUp && cardContoller.cardItems.isNotEmpty
                 ? Align(
                   alignment: const Alignment(0,0.6),
                   child: CustomElevatedButton(
