@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
-import '../controllers/reservations_controller.dart';
+import '../controllers/reservations.dart';
 
 class Seats extends StatelessWidget {
   const Seats({

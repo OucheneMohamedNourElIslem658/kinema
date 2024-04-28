@@ -1,8 +1,9 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kinema/commun/widgets/custom_network_image.dart';
 import 'package:video_player/video_player.dart';
+
+import '/commun/widgets/custom_network_image.dart';
 
 import '../constents/colors.dart';
 import '../constents/text_styles.dart';
@@ -15,21 +16,21 @@ class CustomVideoPlayer extends StatefulWidget {
     this.height,
     this.borderRadius,
     this.title, 
-    this.showTitle = false
+    this.showTitle = false,
+    required this.controller
   });
 
   final String? title;
   final String videoURL;
   final double? width,height,borderRadius;
   final bool showTitle;
+  final VideoPlayerController controller;
 
   @override
   State<CustomVideoPlayer> createState() => _CustomVideoPlayerState();
 }
 
 class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
-
-  late VideoPlayerController videoPlayerController;
   late ChewieController chewieController;
   late String videoDurationInfo;
   late double progresScale = 0;
@@ -39,13 +40,8 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
   bool isTabBarShown = false;
 
   void _initVideoController() async {
-    videoPlayerController = VideoPlayerController
-      .networkUrl(Uri.parse(widget.videoURL))
-      ..initialize().then((_) {
-        setState(() {});
-      });
     chewieController = ChewieController(
-      videoPlayerController: videoPlayerController,
+      videoPlayerController: widget.controller,
       showControls: false,
       aspectRatio: 16/9,
       looping: true,
@@ -57,9 +53,9 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
 
   void toggleVideo(){
     if (isPlaying) {
-      videoPlayerController.pause();
+      widget.controller.pause();
     } else {
-      videoPlayerController.play();
+      widget.controller.play();
     }
     isPlaying = !isPlaying;
     setState(() {});
@@ -72,7 +68,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
   }
 
   void listenToVideoProgres(){
-    final status = videoPlayerController.value;
+    final status = widget.controller.value;
     updateDurationInfo();
     updateProgresScale(status);
   }
@@ -88,17 +84,17 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
   }
 
   void updateProgresScaleManualy(double newValue){
-    videoPlayerController.seekTo(
+    widget.controller.seekTo(
       Duration(
-        seconds: (newValue*videoPlayerController.value.duration.inSeconds).toInt()
+        seconds: (newValue*widget.controller.value.duration.inSeconds).toInt()
       )
     );
-    updateProgresScale(videoPlayerController.value);
+    updateProgresScale(widget.controller.value);
   }
 
   String _getVideoDurationInfo() => '${_getVideoPlayerProgress()}/${_getVideoPlayerDuration()}';
-  String _getVideoPlayerDuration() => _formatDuration(videoPlayerController.value.duration);
-  String _getVideoPlayerProgress() => _formatDuration(videoPlayerController.value.position);
+  String _getVideoPlayerDuration() => _formatDuration(widget.controller.value.duration);
+  String _getVideoPlayerProgress() => _formatDuration(widget.controller.value.position);
 
   String _formatDuration(Duration duration) {
     String twoDigits(int n) => n.toString().padLeft(2, '0');
@@ -109,9 +105,9 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
 
   void toggleMutation(){
     if (isMuted) {
-      videoPlayerController.setVolume(1);
+      widget.controller.setVolume(1);
     } else {
-      videoPlayerController.setVolume(0);
+      widget.controller.setVolume(0);
     }
     isMuted = !isMuted;
     setState(() {});
@@ -130,7 +126,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
   @override
   void initState() {
     _initVideoController();
-    videoPlayerController.addListener(listenToVideoProgres);
+    widget.controller.addListener(listenToVideoProgres);
     chewieController.addListener(() {
       isBig = chewieController.isFullScreen;
       setState(() {});

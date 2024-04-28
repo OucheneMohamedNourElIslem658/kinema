@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '/features/reservations/controllers/reservations_controller.dart';
+import '/commun/widgets/custom_network_image.dart';
+import '../controllers/reservations.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/commun/constents/colors.dart';
 import '/commun/constents/text_styles.dart';
@@ -21,6 +22,7 @@ class TicketScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: CustomColors.black2,
       appBar: customAppBar(
@@ -59,25 +61,12 @@ class TicketScreen extends StatelessWidget {
                   color: CustomColors.primaryBej,
                   borderRadius: BorderRadius.circular(12)
                 ),
-                child: Column(
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      height: 344,
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
-                        ),
-                        image: DecorationImage(
-                          image: NetworkImage('https://musicart.xboxlive.com/7/14815100-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080'),
-                          fit: BoxFit.cover,
-                          alignment: Alignment.topCenter
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    const TicketInfo(
+                    Ticket(),
+                    SizedBox(height: 20),
+                    TicketInfo(
                       title: 'AVATAR 2', 
                       date: '10 AM - 01 PM', 
                       type: 'Fantasy, Sci-fi', 
@@ -104,6 +93,31 @@ class TicketScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class Ticket extends StatelessWidget {
+  const Ticket({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 344,
+      width: double.maxFinite,
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          topRight: Radius.circular(12),
+        ),
+      ),
+      child: const CustomNetworkImage(
+        backgroundImageURL: 'https://musicart.xboxlive.com/7/14815100-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080',
+        shimmerBorderRadius: 12,
+        isJustTopRadius: true,
       ),
     );
   }

@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
-class TrailersController extends GetxController {
-  var trailers = [
+class PopularTrailersController extends GetxController {
+  final trailers = [
     {
       'path': 'https://firebasestorage.googleapis.com/v0/b/fir-methods-9cc92.appspot.com/o/Rebel%20Moon%20-%20Part%20Two_%20The%20Scargiver%20_%20Official%20Teaser%20_%20Netflix.mp4?alt=media&token=feebfa58-56b5-489c-ac10-ed575aa8a554',
       'title': 'Spiderman: Into The Spiderverse',
@@ -26,16 +26,16 @@ class TrailersController extends GetxController {
     },
   ];
 
-  Future<void> initVideoPlayerForEachVideo() async {
+  void initVideoPlayerForEachVideo(){
     for (var i = 0; i < trailers.length; i++) {
       final videoPlayerController = VideoPlayerController
       .networkUrl(Uri.parse(trailers[i]['path'] as String))
       ..initialize();
       trailers[i]['controller'] = videoPlayerController;
     }
-    // update();
+    update();
   }
-  
+
   @override
   void onInit() {
     initVideoPlayerForEachVideo();

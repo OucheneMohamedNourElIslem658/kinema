@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:video_player/video_player.dart';
 
 import '/commun/utils/navigation_methods.dart';
 import '/features/movies/screens/movie_selected.dart';
@@ -20,12 +21,14 @@ class Trailer extends StatelessWidget {
     required this.path,
     required this.time,
     required this.type,
+    required this.controller
   });
 
   final String title;
   final String path;
   final String time;
   final String type;
+  final VideoPlayerController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +47,7 @@ class Trailer extends StatelessWidget {
           ),
           CustomVideoPlayer(
             videoURL: path,
+            controller: controller,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20),

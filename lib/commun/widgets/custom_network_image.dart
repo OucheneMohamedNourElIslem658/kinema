@@ -7,19 +7,26 @@ class CustomNetworkImage extends StatelessWidget {
     required this.backgroundImageURL,
     this.shimmerBorderRadius,
     this.shape = BoxShape.rectangle,
+    this.isJustTopRadius = false
   });
 
   final String backgroundImageURL;
   final double? shimmerBorderRadius;
   final BoxShape shape;
+  final bool isJustTopRadius;
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(shimmerBorderRadius ?? 0),
+      borderRadius: isJustTopRadius 
+        ? BorderRadius.only(
+          topLeft: Radius.circular(shimmerBorderRadius ?? 0),
+          topRight: Radius.circular(shimmerBorderRadius ?? 0),
+        )
+        : BorderRadius.circular(shimmerBorderRadius ?? 0),
       child: Image.network(
         backgroundImageURL,
-        fit: BoxFit.cover,
+        fit: BoxFit.fitWidth,
         alignment: Alignment.topCenter,
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) {
@@ -28,12 +35,14 @@ class CustomNetworkImage extends StatelessWidget {
             return LoaderWithShimmer(
               shimmerBorderRadius: shimmerBorderRadius,
               shape: shape,
+              isJustTopRadius: isJustTopRadius,
             );
           }
         },
         errorBuilder: (context, error, stackTrace) => LoaderWithShimmer(
           shimmerBorderRadius: shimmerBorderRadius,
           shape: shape,
+          isJustTopRadius: isJustTopRadius,
         ),
       ),
     );
@@ -45,10 +54,12 @@ class LoaderWithShimmer extends StatelessWidget {
     super.key,
     this.shimmerBorderRadius,
     this.shape = BoxShape.rectangle,
+    this.isJustTopRadius = false,
   });
 
   final double? shimmerBorderRadius;
   final BoxShape shape;
+  final bool isJustTopRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +67,6 @@ class LoaderWithShimmer extends StatelessWidget {
       decoration: BoxDecoration(
         shape: shape,
         color: Colors.grey,
-        borderRadius: shape == BoxShape.rectangle 
-          ? BorderRadius.circular(shimmerBorderRadius ?? 0) 
-          : null,
       ),
     ) .animate(
       onComplete: (controller) => controller.repeat()

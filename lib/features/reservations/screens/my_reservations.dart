@@ -5,7 +5,7 @@ import '/commun/utils/navigation_methods.dart';
 import '/features/reservations/screens/ticket.dart';
 import '../../../commun/constents/colors.dart';
 import '../widgets/reservation_card.dart';
-import '../controllers/reservations_controller.dart';
+import '../controllers/reservations.dart';
 import '../widgets/custom_appbar.dart';
 
 class MyReservationsScreen extends StatelessWidget {

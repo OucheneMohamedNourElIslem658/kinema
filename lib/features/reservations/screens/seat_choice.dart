@@ -8,7 +8,7 @@ import '../widgets/reservation_summery.dart';
 import '/commun/constents/colors.dart';
 import '/commun/constents/text_styles.dart';
 import '/commun/widgets/custom_elevated_button.dart';
-import '/features/reservations/controllers/reservations_controller.dart';
+import '../controllers/reservations.dart';
 import '/features/reservations/widgets/custom_appbar.dart';
 import '../widgets/seats.dart';
 import '../widgets/screen.dart';

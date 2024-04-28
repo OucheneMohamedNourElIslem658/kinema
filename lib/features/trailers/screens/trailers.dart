@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:video_player/video_player.dart';
 
 import '../widgets/trailer.dart';
 import '/commun/constents/colors.dart';
@@ -11,7 +12,7 @@ class TrailersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final trailersController = Get.put(TrailersController());
+    var trailersController = Get.put(TrailersController());
 
     return Scaffold(
       appBar: customAppBar(
@@ -23,24 +24,34 @@ class TrailersScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Column(
-              children: List.generate(
-                trailersController.tailers.length, 
-                (index) {
-                  final trailer = trailersController.tailers[index];
-                  final title = trailer['title'] as String;
-                  final time = trailer['time'] as String;
-                  final type = trailer['type'] as String;
-                  final path = trailer['path'] as String;
-
-                  return Trailer(
-                    title: title, 
-                    path: path, 
-                    time: time, 
-                    type: type
-                  );
-                },
-              )
+            GetBuilder<TrailersController>(
+              builder: (_) {
+                return Column(
+                  children: List.generate(
+                    trailersController.trailers.length, 
+                    (index) {
+                      final trailer = trailersController.trailers[index];
+                      final title = trailer['title'] as String;
+                      final time = trailer['time'] as String;
+                      final type = trailer['type'] as String;
+                      final path = trailer['path'] as String;
+                      final controller = trailer['controller'] as VideoPlayerController?;
+      
+                      if (controller == null) {
+                        return const SizedBox();
+                      }
+                          
+                      return Trailer(
+                        title: title, 
+                        path: path, 
+                        time: time, 
+                        type: type,
+                        controller: controller,
+                      );
+                    },
+                  )
+                );
+              }
             ),
             const SizedBox(height: 50)
           ],

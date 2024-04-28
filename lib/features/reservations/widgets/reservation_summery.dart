@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:kinema/commun/constents/colors.dart';
 
 import '../../../commun/constents/text_styles.dart';
-import '../controllers/reservations_controller.dart';
+import '../controllers/reservations.dart';
 
 class ReservationSummery extends StatelessWidget {
   const ReservationSummery({super.key});
