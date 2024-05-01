@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kinema/commun/widgets/custom_network_image.dart';
 
+import '/commun/widgets/custom_network_image.dart';
+import '/models/movie.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/features/movies/screens/movie_selected.dart';
 import '../../../commun/constents/colors.dart';
@@ -16,7 +17,7 @@ class CategoriItems extends StatelessWidget {
   });
 
   final String name;
-  final List movies;
+  final List<Movie> movies;
 
   @override
   Widget build(BuildContext context) {
@@ -36,21 +37,20 @@ class CategoriItems extends StatelessWidget {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: List.generate(
-              6, 
-              (index) => const Row(
-                children: [
-                  SizedBox(width: 20),
-                  MovieItem(
-                    imageURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaKZoi9-IkxLYjV6GB6tnoyrmoR1eySjfbm8NKkTb5Ig&s',
-                    name: 'The Batman',
-                    type: 'Action',
-                    rate: 7.5,
-                    time: '10AM-01PM',
-                  ),
-                ],
-              )
-            ),
+            children: [
+              const SizedBox(width: 20),
+              Row(
+                children: List.generate(
+                  movies.length, 
+                  (index) {
+                    final movie = movies[index];
+                    return MovieItem(
+                      movie: movie,
+                    );
+                  }
+                ),
+              ),
+            ],
           ),
         )
       ],
@@ -61,93 +61,91 @@ class CategoriItems extends StatelessWidget {
 class MovieItem extends StatelessWidget {
   const MovieItem({
     super.key, 
-    required this.imageURL, 
-    required this.name, 
-    required this.type, 
-    required this.rate,
-    required this.time
+    required this.movie
   });
 
-  final String imageURL,name,type,time;
-  final double rate;
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => push(context,const MovieScreen()),
-      child: SizedBox(
-        width: 163,
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: 230,
-                  alignment: Alignment.topRight,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: CustomNetworkImage(
-                    backgroundImageURL: imageURL,
-                    shimmerBorderRadius: 8,
-                  )
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Container(
-                    padding: const EdgeInsets.all(5),
+    return Padding(
+      padding: const EdgeInsets.only(right: 20),
+      child: GestureDetector(
+        onTap: () => push(context, MovieScreen(movie: movie)),
+        child: SizedBox(
+          width: 163,
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    height: 230,
+                    alignment: Alignment.topRight,
                     decoration: BoxDecoration(
-                      color: CustomColors.black7,
                       borderRadius: BorderRadius.circular(8),
                     ),
+                    child: CustomNetworkImage(
+                      backgroundImageURL: movie.picUrl,
+                      shimmerBorderRadius: 8,
+                    )
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Container(
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: CustomColors.black7,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SvgPicture.asset('assets/icons/clock.svg'),
+                          const SizedBox(width: 5),
+                          Text(
+                            "${movie.time} min",
+                            style: TextStyles.style29,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 5),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: Row(
-                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        SvgPicture.asset('assets/icons/clock.svg'),
-                        const SizedBox(width: 5),
-                        Text(
-                          time,
-                          style: TextStyles.style29,
+                        Expanded(
+                          child: Text(
+                            movie.name,
+                            style: TextStyles.style6.copyWith(
+                              overflow: TextOverflow.ellipsis
+                            ),
+                          ),
+                        ),
+                        IMDBRate(
+                          rate: movie.rate,
+                          fontSize: 7,
+                          borderRadius: 6,
+                          paddingHor: 8,
+                          paddingVer: 5,
                         )
                       ],
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 5),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          name,
-                          style: TextStyles.style6.copyWith(
-                            overflow: TextOverflow.ellipsis
-                          ),
-                        ),
-                      ),
-                      const IMDBRate(
-                        rate: 7.5,
-                        fontSize: 7,
-                        borderRadius: 6,
-                        paddingHor: 8,
-                        paddingVer: 5,
-                      )
-                    ],
-                  ),
-                ),
-                Text(
-                  type,
-                  style: TextStyles.style28
-                )
-              ],
-            )
-          ],
+                  Text(
+                    movie.type,
+                    style: TextStyles.style28
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

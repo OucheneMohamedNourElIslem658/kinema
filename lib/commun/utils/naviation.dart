@@ -7,7 +7,7 @@ import '/features/movies/screens/movies.dart';
 import '/features/profile/screens/profile_settings.dart';
 import '/features/program/screens/program.dart';
 import '/features/trailers/screens/trailers.dart';
-import '../screens/home.dart';
+import '../../screens/home.dart';
 
 class CustomNavigation {
   CustomNavigation._();

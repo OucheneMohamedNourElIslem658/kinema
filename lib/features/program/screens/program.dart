@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../commun/controllers/program.dart';
 import '../../../commun/constents/colors.dart';
 import '/features/reservations/widgets/custom_appbar.dart';
 import '../widgets/categorie_items.dart';
@@ -9,6 +11,8 @@ class ProgramScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final programController = Get.put(ProgramController());
+
     return Scaffold(
       backgroundColor: CustomColors.black2,
       appBar: customAppBar(
@@ -17,25 +21,25 @@ class ProgramScreen extends StatelessWidget {
         title: 'This Week’s Program',
         space: 20,
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             CategoriItems(
-              name: 'Diffusing Today',
-              movies: [],
+              name: 'Action Movies',
+              movies: programController.getActionMovies(),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             CategoriItems(
-              name: 'Diffusing Today',
-              movies: [],
+              name: 'Adventure Movies',
+              movies: programController.getAdventureMovies(),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             CategoriItems(
-              name: 'Wednesday, April 24th',
-              movies: [],
+              name: 'Crime Movies', 
+              movies: programController.getCrimeMovies()
             ),
-            SizedBox(height: 70),
+            const SizedBox(height: 70),
           ],
         ),
       ),

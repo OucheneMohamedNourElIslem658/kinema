@@ -11,7 +11,6 @@ import '../constents/text_styles.dart';
 class CustomVideoPlayer extends StatefulWidget {
   const CustomVideoPlayer({
     super.key,
-    required this.videoURL,
     this.width,
     this.height,
     this.borderRadius,
@@ -21,7 +20,6 @@ class CustomVideoPlayer extends StatefulWidget {
   });
 
   final String? title;
-  final String videoURL;
   final double? width,height,borderRadius;
   final bool showTitle;
   final VideoPlayerController controller;

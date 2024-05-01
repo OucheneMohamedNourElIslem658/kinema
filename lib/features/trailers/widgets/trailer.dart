@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kinema/models/movie.dart';
 import 'package:video_player/video_player.dart';
 
 import '/commun/utils/navigation_methods.dart';
@@ -17,17 +18,11 @@ import '../../auth/widgets/custom_text_button.dart';
 class Trailer extends StatelessWidget {
   const Trailer({
     super.key,
-    required this.title,
-    required this.path,
-    required this.time,
-    required this.type,
+    required this.movie,
     required this.controller
   });
 
-  final String title;
-  final String path;
-  final String time;
-  final String type;
+  final Movie movie;
   final VideoPlayerController controller;
 
   @override
@@ -35,30 +30,36 @@ class Trailer extends StatelessWidget {
     return Container(
       color: CustomColors.black5,
       margin: const EdgeInsets.only(bottom: 15),
+      padding: const EdgeInsets.symmetric(vertical: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Text(
-              title,
+              movie.name,
               style: TextStyles.style24,
             ),
           ),
           CustomVideoPlayer(
-            videoURL: path,
             controller: controller,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: HorizontalScrollBehaviour(
               child: Info(
-                time: time, 
-                type: type,
-                onSeeMore: () => push(context, const MovieScreen()),
+                time: movie.time.toString(), 
+                type: movie.type,
+                onSeeMore: () => push(
+                  context, 
+                  MovieScreen(
+                    movie: movie,
+                  )
+                ),
               ),
             ),
           ),
+          const SizedBox(height: 10),
           Center(
             child: BuyTicketButton(
               onPressed: () => push(context, const SeatChoiceScreen()),

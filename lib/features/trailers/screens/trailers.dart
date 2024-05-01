@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kinema/models/movie.dart';
 import 'package:video_player/video_player.dart';
 
 import '../widgets/trailer.dart';
@@ -12,7 +13,7 @@ class TrailersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var trailersController = Get.put(TrailersController());
+    final trailersController = Get.put(TrailersController());
 
     return Scaffold(
       appBar: customAppBar(
@@ -31,10 +32,7 @@ class TrailersScreen extends StatelessWidget {
                     trailersController.trailers.length, 
                     (index) {
                       final trailer = trailersController.trailers[index];
-                      final title = trailer['title'] as String;
-                      final time = trailer['time'] as String;
-                      final type = trailer['type'] as String;
-                      final path = trailer['path'] as String;
+                      final movie = trailer['movie'] as Movie;
                       final controller = trailer['controller'] as VideoPlayerController?;
       
                       if (controller == null) {
@@ -42,10 +40,7 @@ class TrailersScreen extends StatelessWidget {
                       }
                           
                       return Trailer(
-                        title: title, 
-                        path: path, 
-                        time: time, 
-                        type: type,
+                        movie: movie,
                         controller: controller,
                       );
                     },

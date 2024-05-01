@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../commun/constents/movies_list.dart';
 import '/features/movies/widgets/discription_tile.dart';
 import '../widgets/categorie_list.dart';
 import '../widgets/trailers_list.dart';
@@ -13,9 +14,11 @@ class MoviesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final programController = Get.put(ProgramController());
+
     return Scaffold(
       body: ScreenWithShadow(
-        backgroundImageURL: 'https://musicart.xboxlive.com/7/14815100-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080', 
+        backgroundImageURL: program[1].picUrl, 
         showAppBar: false,
         showPayButton: false,
         shadowPadding: -0.15,
@@ -32,7 +35,9 @@ class MoviesScreen extends StatelessWidget {
                   children: [
                     const DescriptionTile(),
                     GestureDetector(
-                      onTap: () => push(context, const MovieScreen()),
+                      onTap: () => push(context, MovieScreen(
+                        movie: program[1],
+                      )),
                       child: SvgPicture.asset(
                         'assets/icons/play.svg',
                         height: 42,
@@ -42,7 +47,7 @@ class MoviesScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 15),
-              const CategorieList(),
+              CategorieList(movies: program),
               const SizedBox(height: 15),
               const TrailersList(),
               const SizedBox(height: 70),

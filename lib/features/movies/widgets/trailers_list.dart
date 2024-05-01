@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kinema/models/movie.dart';
 
 import '/features/movies/controllers/popular_trailers.dart';
 import 'package:video_player/video_player.dart';
@@ -40,8 +41,8 @@ class TrailersList extends StatelessWidget {
                       (index) {
                         final trailer = trailerController.trailers[index];
                         final controller = trailer['controller'] as VideoPlayerController?;
-                        final title = trailer['title'] as String;
-                        final path = trailer['path'] as String;
+                        final movie = trailer['movie'] as Movie;
+                        // final path = trailer['path'] as String;
 
                         if (controller == null) {
                           return const SizedBox();
@@ -49,10 +50,9 @@ class TrailersList extends StatelessWidget {
                         return Padding(
                           padding: const EdgeInsets.only(right: 15),
                           child: CustomVideoPlayer(
-                            videoURL: path,
                             width: 280,
                             borderRadius: 12,
-                            title: title,
+                            title: movie.name,
                             showTitle: true,
                             controller: controller,
                           ),

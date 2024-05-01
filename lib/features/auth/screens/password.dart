@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:kinema/commun/utils/navigation_methods.dart';
-import 'package:kinema/features/auth/screens/birth_day.dart';
 
+import '/commun/utils/navigation_methods.dart';
+import '/features/auth/screens/gender_screen.dart';
 import '../controllers/auth.dart';
 import '/features/auth/widgets/background.dart';
 import '../../../commun/widgets/custom_elevated_button.dart';
 import '/features/auth/widgets/custom_text_field.dart';
-
 import '../../../commun/constents/text_styles.dart';
 
 class PasswordScreen extends StatelessWidget {
@@ -52,7 +51,7 @@ class PasswordScreen extends StatelessWidget {
               child: CustomElevatedButton(
                 onPressed: (){
                   if (authController.validatePassword()) {
-                    push(context, const BirthDayScreen());
+                    push(context, const GenderScreen());
                   }
                 }, 
                 width: null,

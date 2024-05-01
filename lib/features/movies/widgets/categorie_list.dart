@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kinema/models/movie.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
@@ -10,7 +11,10 @@ import '../screens/movie_selected.dart';
 class CategorieList extends StatelessWidget {
   const CategorieList({
     super.key,
+    required this.movies
   });
+
+  final List<Movie> movies;
 
   @override
   Widget build(BuildContext context) {
@@ -34,38 +38,41 @@ class CategorieList extends StatelessWidget {
               const SizedBox(width: 20),
               Row(
                 children: List.generate(
-                  5,
-                  (index) => GestureDetector(
-                    onTap: () =>  push(context, const MovieScreen()),
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: 184,
-                          width: 128,
-                          margin: const EdgeInsets.only(right: 10),
-                          padding: const EdgeInsets.all(5),
-                          alignment: Alignment.topLeft,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
+                  movies.length,
+                  (index) {
+                    final movie = movies[index];
+                    return GestureDetector(
+                      onTap: () =>  push(context, MovieScreen(movie: movie)),
+                      child: Stack(
+                        children: [
+                          Container(
+                            height: 184,
+                            width: 128,
+                            margin: const EdgeInsets.only(right: 10),
+                            padding: const EdgeInsets.all(5),
+                            alignment: Alignment.topLeft,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child:  CustomNetworkImage(
+                              backgroundImageURL: movie.picUrl,
+                              shimmerBorderRadius: 12,
+                            ),
                           ),
-                          child: const CustomNetworkImage(
-                            backgroundImageURL: 'https://musicart.xboxlive.com/7/14815100-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080',
-                            shimmerBorderRadius: 12,
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: IMDBRate(
+                                rate: movie.rate,
+                                fontSize: 7,
+                                paddingHor: 12,
+                                paddingVer: 6,
+                                borderRadius: 6,
+                            ),
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.all(10),
-                          child: IMDBRate(
-                              rate: 7.5,
-                              fontSize: 7,
-                              paddingHor: 12,
-                              paddingVer: 6,
-                              borderRadius: 6,
-                          ),
-                        ),
-                      ]
-                    ),
-                  )
+                        ]
+                      ),
+                    );
+                  }
                 ),
               ),
             ],

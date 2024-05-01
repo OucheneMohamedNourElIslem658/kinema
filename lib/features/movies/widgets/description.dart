@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kinema/models/movie.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
@@ -8,7 +9,10 @@ import 'cast_list.dart';
 class Description extends StatelessWidget {
   const Description({
     super.key,
+    required this.movie
   });
+
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +31,13 @@ class Description extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Tenet',
+                        movie.name,
                         style: TextStyles.style13.copyWith(
                           color: CustomColors.white
                         ),
                       ),
                       Text(
-                        'Action, Sci-Fi, Thriller',
+                        movie.type,
                         style: TextStyles.style17,
                       ),
                     ],
@@ -45,13 +49,13 @@ class Description extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 25),
-        const Row(
+        Row(
           children: [
-            StatisticItem(title: 'Time',count: '127 Min'),
-            SizedBox(width: 15),
-            StatisticItem(title: 'Views',count: '1.08 M'),
-            SizedBox(width: 15),
-            StatisticItem(title: 'P-G',count: '13+'),
+            StatisticItem(title: 'Time',count: '${movie.time} Min'),
+            const SizedBox(width: 15),
+            StatisticItem(title: 'Views',count: '${movie.views / 1000000} M'),
+            const SizedBox(width: 15),
+            const StatisticItem(title: 'P-G',count: '13+'),
           ],
         ),
         const SizedBox(height: 15),
@@ -65,7 +69,9 @@ class Description extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        const CastList(),
+        CastList(
+          cast: movie.cast,
+        ),
         const SizedBox(height: 30),
         const Padding(
           padding: EdgeInsets.only(left: 25),
