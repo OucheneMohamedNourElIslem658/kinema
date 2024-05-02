@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:kinema/models/movie.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../commun/widgets/more_button.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/features/movies/screens/movie_selected.dart';
 import '/features/reservations/screens/seat_choice.dart';
@@ -13,7 +14,6 @@ import '../../../commun/widgets/custom_elevated_button.dart';
 import '../../../commun/widgets/custom_video_player.dart';
 import '../../../commun/widgets/devider.dart';
 import '../../../commun/widgets/horizotal_scroll_behaviour.dart';
-import '../../auth/widgets/custom_text_button.dart';
 
 class Trailer extends StatelessWidget {
   const Trailer({
@@ -146,19 +146,7 @@ class Info extends StatelessWidget {
         ),
         const Spacer(),
         const SizedBox(width: 5),
-        CustomTextButton(
-          onPressed: onSeeMore, 
-          child: Row(
-            children: [
-              Text(
-                'See More',
-                style: TextStyles.style26,
-              ),
-              const SizedBox(width: 5),
-              SvgPicture.asset('assets/icons/arrow_forward_ios.svg')
-            ],
-          ),
-        )
+        MoreButton(onSeeMore: onSeeMore)
       ],
     );
   }

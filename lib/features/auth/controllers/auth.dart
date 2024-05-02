@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kinema/features/auth/repositories/auth.dart';
 
 class AuthController extends GetxController {
   late TextEditingController emailController,passwordController,nameController;
   late GlobalKey<FormState> emailFormKey,passwordFormKey,nameFormKey,loginFormKey;
+  final _authRepo = AuthRepository();
+  DateTime? dateOfBirth;
 
   @override
   void onInit() {
@@ -63,6 +66,32 @@ class AuthController extends GetxController {
 
   bool validateLoginForm(){
     return loginFormKey.currentState!.validate();
+  }
+
+  Future<void> registerUser(
+    BuildContext context,
+  ) async {
+
+    return _authRepo.registerUser(
+      context, 
+      name: nameController.text,
+      password: passwordController.text,
+      email: emailController.text,
+      dateOfBirth: "${dateOfBirth!.year.toString().padLeft(4, '0')}-${dateOfBirth!.month.toString().padLeft(2, '0')}-${dateOfBirth!.day.toString().padLeft(2, '0')}",
+      phoneNumber: '+123456789',
+      address: 'no'
+    );
+  }
+
+  Future<void> loginUser(
+    BuildContext context,
+  ) async {
+
+    return _authRepo.loginUser(
+      context, 
+      password: passwordController.text,
+      email: emailController.text,
+    );
   }
 
   @override

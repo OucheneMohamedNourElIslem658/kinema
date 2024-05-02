@@ -16,7 +16,8 @@ class ScreenWithShadow extends StatelessWidget {
     this.onPayButtonPressed, 
     this.shadowPadding,
     this.onGoBack,
-    this.scrollController
+    this.scrollController,
+    this.appBar
   });
 
   final Widget child;
@@ -25,6 +26,7 @@ class ScreenWithShadow extends StatelessWidget {
   final double? shadowPadding;
   final VoidCallback? onPayButtonPressed,onGoBack;
   final ScrollController? scrollController;
+  final AppBar? appBar;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +71,7 @@ class ScreenWithShadow extends StatelessWidget {
           right: 0,
           top: 0,
           child: SafeArea(
-            child: customAppBar(onGoBack: onGoBack)
+            child: appBar ?? customAppBar(onGoBack: onGoBack)
           ),
         )
         : const SizedBox(),

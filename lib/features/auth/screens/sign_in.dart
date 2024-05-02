@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
-
 import '/commun/utils/navigation_methods.dart';
 import '/features/auth/screens/forgot_password.dart';
 import '../controllers/auth.dart';
@@ -60,9 +58,9 @@ class SignInScreen extends StatelessWidget {
                   const Spacer(),
                   Center(
                     child: CustomElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if(authController.validateLoginForm()){
-                          GoRouter.of(context).go('/Movies');
+                          await authController.loginUser(context);
                         }
                       }, 
                       width: null,

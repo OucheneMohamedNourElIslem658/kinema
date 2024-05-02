@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kinema/features/auth/screens/email.dart';
 import 'package:kinema/features/auth/screens/sign_in.dart';
 
 import '/commun/constents/text_styles.dart';
 import '/commun/utils/custom_snack_bar.dart';
 import '/commun/utils/navigation_methods.dart';
-import '/features/auth/screens/email.dart';
 import '../widgets/background.dart';
 import '../../../commun/widgets/custom_elevated_button.dart';
 import '../widgets/cutom_outlined_button.dart';
@@ -32,7 +32,7 @@ class AuthScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: CustomElevatedButton(
-                  onPressed: () => push(context, const EmailScreen()),
+                  onPressed: () async => push(context,const EmailScreen()),
                   child: Text(
                     'Sign up',
                     style: TextStyles.style2,

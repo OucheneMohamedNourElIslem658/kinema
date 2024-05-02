@@ -7,11 +7,6 @@ void showSnackBar(String message,BuildContext context){
     SnackBar(
       backgroundColor: CustomColors.transparent,
       behavior: SnackBarBehavior.floating,
-      margin: EdgeInsets.only(
-        bottom: MediaQuery.of(context).size.height - 150,
-        left: 20,
-        right: 20,
-      ),
       elevation: 0,
       content: Container(
         padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),

@@ -1,13 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kinema/commun/widgets/payment_button.dart';
+import 'package:kinema/features/reservations/screens/ticket.dart';
+import 'package:pay/pay.dart';
 
 import '/commun/utils/navigation_methods.dart';
 import '/commun/widgets/vertical_scroll_behaviour.dart';
-import '/features/reservations/screens/ticket.dart';
 import '../widgets/reservation_summery.dart';
 import '/commun/constents/colors.dart';
-import '/commun/constents/text_styles.dart';
-import '/commun/widgets/custom_elevated_button.dart';
 import '../controllers/reservations.dart';
 import '/features/reservations/widgets/custom_appbar.dart';
 import '../widgets/seats.dart';
@@ -68,15 +69,30 @@ class SeatChoiceScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Spacer(),
-            CustomElevatedButton(
-              onPressed: () => push(context, const TicketScreen()), 
-              padding: const EdgeInsets.symmetric(
-                horizontal: 60, vertical: 16
-              ),
-              child: Text(
-                'Next',
-                style: TextStyles.style2
-              ),
+            // CustomElevatedButton(
+            //   onPressed: () => push(context, const TicketScreen()), 
+            //   padding: const EdgeInsets.symmetric(
+            //     horizontal: 60, vertical: 16
+            //   ),
+            //   child: Text(
+            //     'Next',
+            //     style: TextStyles.style2
+            //   ),
+            // ),
+            PaymentButton(
+              paymentItems: [
+                PaymentItem(
+                  label: 'Total',
+                  amount: reservationController.totalPrice.toString(),
+                  status: PaymentItemStatus.final_price,
+                )
+              ],
+              onPaymentResult: (result) {
+                if (kDebugMode) {
+                  print(result);
+                }
+                push(context, const TicketScreen());
+              },
             ),
             const Spacer(),
             const SizedBox(height: 70)

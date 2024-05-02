@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kinema/features/profile/screens/about_kinema.dart';
 
 import '/commun/utils/custom_snack_bar.dart';
 import '/commun/utils/navigation_methods.dart';
@@ -52,6 +53,12 @@ class Settings extends StatelessWidget {
                 title: 'Feedback', 
                 iconPath: 'assets/icons/flag.svg', 
                 onPressed: () => showSnackBar('Not supported yet', context)
+              ),
+              devider(),
+              SettingsItem(
+                title: 'About Kinema',
+                iconPath: 'assets/icons/help.svg',
+                onPressed: () => push(context, const AboutKinema())
               ),
               devider(),
               SettingsItem(

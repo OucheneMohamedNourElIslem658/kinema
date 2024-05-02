@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kinema/features/auth/screens/auth.dart';
+import 'package:kinema/features/reservations/screens/seat_choice.dart';
 
+import '/features/auth/screens/auth.dart';
+import '/screens/lost_connection.dart';
+import '/screens/random_problem.dart';
 import '/features/fidelity/screens/fidelity_market.dart';
 import '/features/movies/screens/movies.dart';
 import '/features/profile/screens/profile_settings.dart';
@@ -11,9 +14,8 @@ import '../../screens/home.dart';
 
 class CustomNavigation {
   CustomNavigation._();
-
-  static String initialRoute = '/Movies';
-  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
+  
+  static final rootNavigatorKey = GlobalKey<NavigatorState>();
   static final _rootNavigatorMovies = GlobalKey<NavigatorState>(
     debugLabel: 'shellMovie'
   );
@@ -34,95 +36,102 @@ class CustomNavigation {
     debugLabel: 'shellProfileSettings'
   );
 
-  static final GoRouter router = GoRouter(
-    initialLocation: initialRoute,
-    navigatorKey: _rootNavigatorKey,
-    routes: <RouteBase>[
-      StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) {
-          return  HomeScreen(
-            navigationShell: navigationShell,
-          );
-        },
-        branches: [
-          StatefulShellBranch(
-            navigatorKey: _rootNavigatorMovies,
-            routes: [
-              GoRoute(
-                path: '/movies',
-                name: 'Movies',
-                builder: (context, state) {
-                  return MoviesScreen(
-                    key: state.pageKey,
-                  );
-                },
-              )
-            ]
-          ),
-          StatefulShellBranch(
-            navigatorKey: _rootNavigatorProgram,
-            routes: [
-              GoRoute(
-                path: '/program',
-                name: 'Program',
-                builder: (context, state) {
-                  return ProgramScreen(
-                    key: state.pageKey,
-                  );
-                },
-              )
-            ]
-          ),
-          StatefulShellBranch(
-            navigatorKey: _rootNavigatorTrailers,
-            routes: [
-              GoRoute(
-                path: '/trailers',
-                name: 'Trailers',
-                builder: (context, state) {
-                  return TrailersScreen(
-                    key: state.pageKey,
-                  );
-                },
-              )
-            ]
-          ),
-          StatefulShellBranch(
-            navigatorKey: _rootNavigatorFidelity,
-            routes: [
-              GoRoute(
-                path: '/fidelity',
-                name: 'Fidelity',
-                builder: (context, state) {
-                  return FidelityMarketScreen(
-                    key: state.pageKey,
-                    showBackButton: false,
-                  );
-                },
-              )
-            ]
-          ),
-          StatefulShellBranch(
-            navigatorKey: _rootNavigatorProfileSettings,
-            routes: [
-              GoRoute(
-                path: '/profileSettings',
-                name: 'ProfileSettings',
-                builder: (context, state) {
-                  return ProfileSettingsScreen(
-                    key: state.pageKey,
-                  );
-                },
-              )
-            ]
-          ),
-        ]
-      ),
-      GoRoute(
-        path: '/Auth',
-        builder: (context, state) => const AuthScreen(),
-      )
-    ] 
-  );
-
+  static final routes = <RouteBase>[
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return  HomeScreen(
+          navigationShell: navigationShell,
+        );
+      },
+      branches: [
+        StatefulShellBranch(
+          navigatorKey: _rootNavigatorMovies,
+          routes: [
+            GoRoute(
+              path: '/movies',
+              name: 'Movies',
+              builder: (context, state) {
+                return MoviesScreen(
+                  key: state.pageKey,
+                );
+              },
+            )
+          ]
+        ),
+        StatefulShellBranch(
+          navigatorKey: _rootNavigatorProgram,
+          routes: [
+            GoRoute(
+              path: '/program',
+              name: 'Program',
+              builder: (context, state) {
+                return ProgramScreen(
+                  key: state.pageKey,
+                );
+              },
+            )
+          ]
+        ),
+        StatefulShellBranch(
+          navigatorKey: _rootNavigatorTrailers,
+          routes: [
+            GoRoute(
+              path: '/trailers',
+              name: 'Trailers',
+              builder: (context, state) {
+                return TrailersScreen(
+                  key: state.pageKey,
+                );
+              },
+            )
+          ]
+        ),
+        StatefulShellBranch(
+          navigatorKey: _rootNavigatorFidelity,
+          routes: [
+            GoRoute(
+              path: '/fidelity',
+              name: 'Fidelity',
+              builder: (context, state) {
+                return FidelityMarketScreen(
+                  key: state.pageKey,
+                  showBackButton: false,
+                );
+              },
+            )
+          ]
+        ),
+        StatefulShellBranch(
+          navigatorKey: _rootNavigatorProfileSettings,
+          routes: [
+            GoRoute(
+              path: '/profileSettings',
+              name: 'ProfileSettings',
+              builder: (context, state) {
+                return ProfileSettingsScreen(
+                  key: state.pageKey,
+                );
+              },
+            )
+          ]
+        ),
+      ]
+    ),
+    GoRoute(
+      path: '/Auth',
+      builder: (context, state) => const AuthScreen(),
+    ),
+    GoRoute(
+      path: '/Lost',
+      builder: (context, state) => const LostConnectionScreen(),
+    ),
+    GoRoute(
+      path: '/Random',
+      builder: (context, state) => const RandomProblemScreen(),
+    ),
+    GoRoute(
+      path: '/Ticket',
+      builder: (context, state) => const SeatChoiceScreen(),
+    ),
+  ];
 }

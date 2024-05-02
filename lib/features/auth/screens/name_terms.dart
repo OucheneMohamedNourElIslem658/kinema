@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
+import 'package:kinema/commun/utils/navigation_methods.dart';
 
 import '/commun/utils/custom_snack_bar.dart';
 import '../controllers/auth.dart';
@@ -32,7 +32,7 @@ class NameTermsScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 40),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: () => pop(context),
                   child:  SvgPicture.asset('assets/icons/back_arrow.svg'),
                 ),
                 const SizedBox(height: 20),
@@ -59,11 +59,11 @@ class NameTermsScreen extends StatelessWidget {
                 const TermsAgreements(),
                 Center(
                   child: CustomElevatedButton(
-                    onPressed: (){
+                    onPressed: () async {
                       if (authController.validateName()) {
                         termsAgreementController.updateIsAllChecked();
                         if (termsAgreementController.isAllChecked) {
-                          GoRouter.of(context).go('/Movies');
+                          await authController.registerUser(context);
                         } else {
                           showSnackBar('You need to check all terms', context);
                         }
@@ -86,3 +86,4 @@ class NameTermsScreen extends StatelessWidget {
     );
   }
 }
+

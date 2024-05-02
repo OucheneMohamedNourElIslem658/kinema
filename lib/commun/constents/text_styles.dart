@@ -201,4 +201,14 @@ class TextStyles {
     fontFamily: _montserrat,
     color: CustomColors.greyText3,
   );
+  static TextStyle style39 = const TextStyle(
+    fontSize: 20,
+    fontFamily: _interBold,
+    color: CustomColors.primaryBej
+  );
+  static TextStyle style40 = const TextStyle(
+    fontSize: 13,
+    fontFamily: _interReg,
+    color: CustomColors.primaryBej,
+  );
 }

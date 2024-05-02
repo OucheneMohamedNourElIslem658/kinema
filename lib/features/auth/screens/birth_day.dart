@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:kinema/features/auth/controllers/auth.dart';
 
 import '/commun/utils/navigation_methods.dart';
 import '/features/auth/screens/name_terms.dart';
@@ -14,6 +16,8 @@ class BirthDayScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = Get.put(AuthController());
+
     return Scaffold(
       body: Background(
         child: SafeArea(
@@ -31,8 +35,8 @@ class BirthDayScreen extends StatelessWidget {
                 style: TextStyles.style4,
               ),
               const Spacer(flex: 2),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: SizedBox(
                   height: 130,
                   child: Stack(
@@ -42,7 +46,9 @@ class BirthDayScreen extends StatelessWidget {
                         left: 0,
                         right: 0,
                         bottom: -1000,
-                        child: CustomCupertinoDatePicker()
+                        child: CustomCupertinoDatePicker(
+                          onDateChanged: (date) => authController.dateOfBirth = date,
+                        )
                       ),
                     ],
                   )
@@ -51,7 +57,9 @@ class BirthDayScreen extends StatelessWidget {
               const Spacer(flex: 3),
               Center(
                 child: CustomElevatedButton(
-                  onPressed: () => push(context, const NameTermsScreen()), 
+                  onPressed: () {
+                    push(context, const NameTermsScreen());
+                  }, 
                   width: null,
                   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 16),
                   child: Text(
