@@ -7,13 +7,15 @@ class CustomNetworkImage extends StatelessWidget {
     required this.backgroundImageURL,
     this.shimmerBorderRadius,
     this.shape = BoxShape.rectangle,
-    this.isJustTopRadius = false
+    this.isJustTopRadius = false,
+    this.fit = BoxFit.fitWidth
   });
 
   final String backgroundImageURL;
   final double? shimmerBorderRadius;
   final BoxShape shape;
   final bool isJustTopRadius;
+  final BoxFit fit;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class CustomNetworkImage extends StatelessWidget {
         : BorderRadius.circular(shimmerBorderRadius ?? 0),
       child: Image.network(
         backgroundImageURL,
-        fit: BoxFit.fitWidth,
+        fit: fit,
         alignment: Alignment.topCenter,
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) {

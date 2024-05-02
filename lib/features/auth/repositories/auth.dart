@@ -20,7 +20,6 @@ class AuthRepository {
       required String dateOfBirth
     }
   ) async {
-      // Map<String, dynamic> body = user.toJson();
       final user1 = {
         "Full_Name": name,
         "username": name.replaceAll(' ', ''),
@@ -56,7 +55,7 @@ class AuthRepository {
         "password": password,
       };
       final response = await http.post(
-        Uri.parse('${_url}/login'), 
+        Uri.parse('$_url/login'), 
         body: user1
       );
       if (response.statusCode == 200) {

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:kinema/features/event/controllers/event.dart';
+import 'package:kinema/features/event/screens/event.dart';
+import '../../../commun/constents/colors.dart';
+import '../../../commun/constents/text_styles.dart';
+import '../../../commun/widgets/more_button.dart';
 import '../widgets/contact_us.dart';
 import '/commun/widgets/custom_network_image.dart';
 
 import '../../../commun/constents/movies_list.dart';
-import '../widgets/event.dart';
+import '../../../commun/widgets/event_item.dart';
 import '/features/movies/widgets/discription_tile.dart';
 import '../widgets/categorie_list.dart';
 import '../widgets/trailers_list.dart';
@@ -17,6 +23,8 @@ class MoviesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final eventController = Get.put(EventController());
 
     return Scaffold(
       body: ScreenWithShadow(
@@ -62,9 +70,27 @@ class MoviesScreen extends StatelessWidget {
                     backgroundImageURL:
                         'https://firebasestorage.googleapis.com/v0/b/fir-methods-9cc92.appspot.com/o/snacks.png?alt=media&token=4126c18c-125c-4135-8951-55d1fc4c7f78'),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Event(),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Text(
+                  'Upcoming Events',
+                  style: TextStyles.style14.copyWith(color: CustomColors.white),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: EventItem(
+                  event: eventController.events.first,
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: MoreButton(
+                  onSeeMore: () => push(context, const EventScreen()),
+                  text: 'More Events',
+                ),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),

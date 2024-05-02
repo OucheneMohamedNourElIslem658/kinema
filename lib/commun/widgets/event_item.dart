@@ -1,40 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:kinema/models/event.dart';
 
-import '../../../commun/constents/colors.dart';
-import '../../../commun/constents/text_styles.dart';
-import '../../../commun/widgets/custom_network_image.dart';
-import '../../../commun/widgets/more_button.dart';
+import '../constents/colors.dart';
+import '../constents/text_styles.dart';
+import 'custom_network_image.dart';
 
-class Event extends StatelessWidget {
-  const Event({
+class EventItem extends StatelessWidget {
+  const EventItem({
     super.key,
+    required this.event
   });
+
+  final EventModel event;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: Text(
-            'Upcoming Events',
-            style: TextStyles.style14.copyWith(
-              color: CustomColors.white
-            ),
-          ),
-        ),
-        const SizedBox(height: 15),
         Container(
           width: double.maxFinite,
-          height: 250,
+          height: 200,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8)
           ),
-          child: const CustomNetworkImage(
-            backgroundImageURL: 'https://s3-alpha-sig.figma.com/img/3dc4/15c4/719f297ab9eda53b6f036328ac86c18c?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=iFwKUpnGiF8a70JcGXWSxdYptRdPQrHI~SQYEqRuUInKA6RZhwej6l-MBUrib~LLQZ2xJt3KUWkaALpPPbvxmpADwCwH5hbg1ZKsYdAf0iYcnjWPv~rndMoSwhuaD2plvnYiUKbRo3QG7T~rQkKyVdDiZMAF3ZvXoB5xJfT1sB1YN14Fe5aBf53KLlUYjxLR8eaGMOkHONAEmvEJkFgZYLrmt1hp2mNxEj2uk7Ts3nRoYMZXfOlG4XzIJc-MOprukR~zcxt1MrKLxsMGS-tlc5t2KjJ2DCRlgw74-EJHH-o69phx0N7BWun~vn4dZyqxWAcyjIpg7wKjW0qbuyrzNw__',
+          child: CustomNetworkImage(
+            backgroundImageURL: event.url,
             shimmerBorderRadius: 8,
             isJustTopRadius: true,
+            fit: BoxFit.cover,
           ),
         ),
         Container(
@@ -45,19 +40,19 @@ class Event extends StatelessWidget {
             )
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.all(10),
             child: Row(
               children: [
                 Column(
                   children: [
                     Text(
-                      'Mar',
+                      event.month,
                       style: TextStyles.style25.copyWith(
                         color: CustomColors.greyText2
                       )
                     ),
                     Text(
-                      '11',
+                      event.day.toString(),
                       style: TextStyles.style39,
                     )
                   ],
@@ -68,13 +63,13 @@ class Event extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Ramadan Holly Month',
+                        event.title,
                         style: TextStyles.style33.copyWith(
                           color: CustomColors.primaryBej
                         ),
                       ),
                       Text(
-                        'Join us this Ramadan as Kinema pays tribute to Islamic civilization with special screenings...',
+                        event.description,
                         style: TextStyles.style25.copyWith(
                           color: CustomColors.greyText2
                         )
@@ -84,13 +79,6 @@ class Event extends StatelessWidget {
                 )
               ],
             ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.centerRight,
-          child: MoreButton(
-            onSeeMore: (){},
-            text: 'More Events',
           ),
         ),
       ],
