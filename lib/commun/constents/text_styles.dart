@@ -211,4 +211,9 @@ class TextStyles {
     fontFamily: _interReg,
     color: CustomColors.primaryBej,
   );
+  static TextStyle style41 = const TextStyle(
+    fontSize: 22,
+    fontFamily: _interBold,
+    color: CustomColors.primaryBej,
+  );
 }

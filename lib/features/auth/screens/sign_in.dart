@@ -60,7 +60,6 @@ class SignInScreen extends StatelessWidget {
                     child: CustomElevatedButton(
                       onPressed: () async {
                         if(true){
-                          print("mohamed");
                           await authController.loginUser(context);
                           // print("mohamed");
                         }

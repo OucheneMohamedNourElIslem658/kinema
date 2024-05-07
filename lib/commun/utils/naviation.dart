@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kinema/features/event/screens/event.dart';
+import 'package:kinema/features/auth/screens/forgot_password.dart';
 import 'package:kinema/features/reservations/screens/seat_choice.dart';
 
 import '/features/auth/screens/auth.dart';
@@ -135,8 +135,8 @@ class CustomNavigation {
       builder: (context, state) => const SeatChoiceScreen(),
     ),
     GoRoute(
-      path: '/Event',
-      builder: (context, state) => const EventScreen(),
+      path: '/password',
+      builder: (context, state) => const  ForgotPasswordScreen(),
     ),
   ];
 }
