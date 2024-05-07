@@ -31,13 +31,16 @@ class CustomVideoPlayer extends StatefulWidget {
 class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
   late ChewieController chewieController;
   late String videoDurationInfo;
-  late double progresScale = 0;
-  bool isPlaying = false;
-  bool isMuted = false;
+  late double progresScale;
+  late bool isPlaying;
+  late bool isMuted;
   bool isBig = false;
   bool isTabBarShown = false;
 
   void _initVideoController() async {
+    progresScale = widget.controller.value.position.inSeconds.toDouble();
+    isPlaying = widget.controller.value.isPlaying;
+    isMuted =  widget.controller.value.volume == 0; 
     chewieController = ChewieController(
       videoPlayerController: widget.controller,
       showControls: false,
@@ -148,9 +151,9 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
                     aspectRatio: 16/9,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(widget.borderRadius ?? 0),
-                      child: Chewie(
-                        controller: chewieController,
-                      ),
+                      child: widget.controller.value.isInitialized ? VideoPlayer(
+                        widget.controller,
+                      ) : Container(),
                     ),
                   ),
                 ),

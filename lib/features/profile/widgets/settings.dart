@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kinema/features/profile/screens/about_kinema.dart';
+import 'package:get/get.dart';
 
+import '/features/auth/controllers/auth.dart';
+import '/features/profile/screens/about_kinema.dart';
 import '/commun/utils/custom_snack_bar.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/features/auth/screens/forgot_password.dart';
@@ -15,6 +16,8 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = Get.put(AuthController());
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
       decoration: BoxDecoration(
@@ -64,7 +67,7 @@ class Settings extends StatelessWidget {
               SettingsItem(
                 title: 'Log Out', 
                 iconPath: 'assets/icons/logout.svg', 
-                onPressed: () => GoRouter.of(context).go('/Auth')
+                onPressed: () async => await authController.signOut(context)
               ),
             ],
           )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kinema/features/auth/repositories/auth.dart';
+import 'package:kinema/models/user.dart';
 
 class AuthController extends GetxController {
   late TextEditingController emailController,passwordController,nameController;
@@ -92,6 +93,14 @@ class AuthController extends GetxController {
       password: passwordController.text,
       email: emailController.text,
     );
+  }
+
+  Future<User?> getUserDetail(BuildContext context){
+    return _authRepo.getUserDetails(context);
+  }
+
+  Future<void> signOut(BuildContext context) async {
+    return _authRepo.signOut(context);
   }
 
   @override

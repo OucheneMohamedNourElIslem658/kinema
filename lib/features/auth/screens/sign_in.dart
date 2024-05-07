@@ -59,8 +59,10 @@ class SignInScreen extends StatelessWidget {
                   Center(
                     child: CustomElevatedButton(
                       onPressed: () async {
-                        if(authController.validateLoginForm()){
+                        if(true){
+                          print("mohamed");
                           await authController.loginUser(context);
+                          // print("mohamed");
                         }
                       }, 
                       width: null,
@@ -88,3 +90,6 @@ class SignInScreen extends StatelessWidget {
     );
   }
 }
+
+//123mohamed
+//m_ouchene@estin.dz

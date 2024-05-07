@@ -16,7 +16,7 @@ class TrailersController extends GetxController {
     for (var i = 0; i < trailers.length; i++) {
       final videoPlayerController = VideoPlayerController
       //change the url to the movies.videoURL
-      .networkUrl(Uri.parse('https://firebasestorage.googleapis.com/v0/b/fir-methods-9cc92.appspot.com/o/Rebel%20Moon%20-%20Part%20Two_%20The%20Scargiver%20_%20Official%20Teaser%20_%20Netflix.mp4?alt=media&token=feebfa58-56b5-489c-ac10-ed575aa8a554'))
+      .asset('assets/videos/complete_dilevery_button.mp4')
       ..initialize().then((_) => update());
       trailers[i]['controller'] = videoPlayerController;
     }
