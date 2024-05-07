@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kinema/features/auth/screens/forgot_password.dart';
-import 'package:kinema/features/reservations/screens/seat_choice.dart';
 
 import '/features/auth/screens/auth.dart';
 import '/screens/lost_connection.dart';
@@ -129,14 +127,6 @@ class CustomNavigation {
     GoRoute(
       path: '/Random',
       builder: (context, state) => const RandomProblemScreen(),
-    ),
-    GoRoute(
-      path: '/Ticket',
-      builder: (context, state) => const SeatChoiceScreen(),
-    ),
-    GoRoute(
-      path: '/password',
-      builder: (context, state) => const  ForgotPasswordScreen(),
     ),
   ];
 }

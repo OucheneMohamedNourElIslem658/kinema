@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kinema/commun/constents/movies_list.dart';
 
 import '/features/auth/controllers/auth.dart';
 import '/features/profile/screens/about_kinema.dart';
@@ -43,7 +44,12 @@ class Settings extends StatelessWidget {
               SettingsItem(
                 title: 'My Reservations', 
                 iconPath: 'assets/icons/ticket3.svg', 
-                onPressed: () => push(context, const MyReservationsScreen())
+                onPressed: () => push(
+                  context, 
+                  MyReservationsScreen(
+                    movies: program,
+                  )
+                )
               ),
               devider(),
               SettingsItem(

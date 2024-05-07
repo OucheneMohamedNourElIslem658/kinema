@@ -62,7 +62,12 @@ class Trailer extends StatelessWidget {
           const SizedBox(height: 10),
           Center(
             child: BuyTicketButton(
-              onPressed: () => push(context, const SeatChoiceScreen()),
+              onPressed: () => push(
+                context, 
+                SeatChoiceScreen(
+                  movie: movie,
+                )
+              ),
             ),
           )
         ],

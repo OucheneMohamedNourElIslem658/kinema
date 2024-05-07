@@ -27,7 +27,12 @@ class MovieScreen extends StatelessWidget {
             backgroundImageURL: movie.picUrl,
             onGoBack: () => pop(context),
             showAppBar: true,
-            onPayButtonPressed: () => push(context, const SeatChoiceScreen()),
+            onPayButtonPressed: () => push(
+              context, 
+              SeatChoiceScreen(
+                movie: movie,
+              )
+            ),
             showPayButton: showHideButtonController.isScrollingUp,
             scrollController: showHideButtonController.scrollController,
             child: SafeArea(

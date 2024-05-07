@@ -67,7 +67,7 @@ class TicketInfo extends StatelessWidget {
                         style: TextStyles.style33,
                       ),
                       Text(
-                        'Hall Alpha',
+                        date,
                         style: TextStyles.style6.copyWith(
                           color: CustomColors.black
                         ),

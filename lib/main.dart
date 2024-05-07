@@ -35,8 +35,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: GoRouter(
-        // initialLocation: !isLogedIn ? '/Auth' : '/Movies',
-        initialLocation: '/password',
+        initialLocation: !isLogedIn ? '/Auth' : '/Movies',
         navigatorKey: CustomNavigation.rootNavigatorKey,
         routes: CustomNavigation.routes
       ),
@@ -46,3 +45,4 @@ class _MyAppState extends State<MyApp> {
 
 // m_ouchene@estin.dz
 // 123mohamed
+// S2G9uz8j

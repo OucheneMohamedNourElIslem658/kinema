@@ -11,7 +11,15 @@ var program = [
     views: 1000, 
     cast: ['Keanu Reeves', 'Laurence Fishburne', 'Carrie-Anne Moss'],
     description: 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.', 
-    showTime: [DateTime.now(), DateTime.now().add(const Duration(hours: 3))],
+    showTime: [
+      DateTime.now(), 
+      DateTime.now().add(const Duration(hours: 3)),
+      DateTime.now().add(const Duration(hours: 6)),
+      DateTime.now().add(const Duration(days: 1)),
+      DateTime.now().add(const Duration(days: 2)),
+      DateTime.now().add(const Duration(days: 3)),
+      DateTime.now().add(const Duration(days: 4)),
+    ],
     price: 10
   ),
   Movie(

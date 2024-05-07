@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kinema/models/movie.dart';
 
 import '/commun/utils/navigation_methods.dart';
 import '/features/reservations/screens/ticket.dart';
@@ -9,7 +10,12 @@ import '../controllers/reservations.dart';
 import '../widgets/custom_appbar.dart';
 
 class MyReservationsScreen extends StatelessWidget {
-  const MyReservationsScreen({super.key});
+  const MyReservationsScreen({
+    super.key,
+    required this.movies
+  });
+
+  final List<Movie> movies;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +41,15 @@ class MyReservationsScreen extends StatelessWidget {
             final rate = reservation['rate'] as double;
             final imageURL = reservation['imageURL'] as String;
             return GestureDetector(
-              onTap: () => push(context,const TicketScreen(showCancel: false)),
+              onTap: () => push(
+                context,
+                TicketScreen(
+                  showCancel: false,
+                  movie: movies[index],
+                  seats: const ['G4', 'G3', 'G8', 'G9'],
+                  range: '10 AM - 01 PM',
+                )
+              ),
               child: ReservationCard(
                 imageURL: imageURL, 
                 movie: movie, 

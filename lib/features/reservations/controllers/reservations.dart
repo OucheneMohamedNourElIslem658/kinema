@@ -7,7 +7,7 @@ enum SeatStatus {
 }
 
 class ReservationsController extends GetxController {
-  final reservations = [
+  var reservations = [
     {
       'movie': 'The Lion King',
       'date': 'Tuesday, April 21st at 10:00 AM',
@@ -50,45 +50,6 @@ class ReservationsController extends GetxController {
     }
   ];
 
-  final holeReservationTimes = [
-    {
-      'day': 'Sat 24',
-      'time': '13:00-15:00',
-      'isSelected': true
-    },
-    {
-      'day': 'Sun 25',
-      'time': '15:00-17:00',
-      'isSelected': false
-    },
-    {
-      'day': 'Mon 26',
-      'time': '17:00-19:00',
-      'isSelected': false
-    },
-    {
-      'day': 'Tue 27',
-      'time': '19:00-21:00',
-      'isSelected': false
-    },
-    {
-      'day': 'Wed 28',
-      'time': '21:00-23:00',
-      'isSelected': false
-    }
-  ];
-
-  void selectHoleTime(int index){
-    for (var i = 0; i < holeReservationTimes.length; i++) {
-      if (i == index) {
-        holeReservationTimes[i]['isSelected'] = true;
-      } else {
-        holeReservationTimes[i]['isSelected'] = false;
-      }
-    }
-    update();
-  }
-
   
 
   final seats = [
@@ -103,21 +64,28 @@ class ReservationsController extends GetxController {
     [SeatStatus.blocked,SeatStatus.available,SeatStatus.available,SeatStatus.available,SeatStatus.available,SeatStatus.blocked,SeatStatus.blocked,SeatStatus.available,SeatStatus.available,SeatStatus.available,SeatStatus.available,SeatStatus.available],
   ];
 
+  final List<String> reservedPlaces = [];
+
   double totalPrice = 0;
   double singleSeatPrice = 800;
 
   void reserveSeat(int row, int column){
+    final rowLetter = String.fromCharCode(row + 65);
     switch (seats[row][column]) {
       case SeatStatus.available:
         seats[row][column] = SeatStatus.selected;
         totalPrice += singleSeatPrice;
+        reservedPlaces.add('$rowLetter${column+1}');
         break;
       case SeatStatus.selected:
         seats[row][column] = SeatStatus.available;
         totalPrice -= singleSeatPrice;
+        reservedPlaces.removeLast();
         break;
       default: break;
     }
     update();
   }
+
+
 }

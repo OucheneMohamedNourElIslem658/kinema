@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kinema/models/movie.dart';
 
 import '/commun/widgets/custom_network_image.dart';
 import '../controllers/reservations.dart';
@@ -15,14 +16,19 @@ import '../widgets/ticket_info.dart';
 class TicketScreen extends StatelessWidget {
   const TicketScreen({
     super.key,
-    this.showCancel = true
+    this.showCancel = true, 
+    required this.movie, 
+    required this.seats,
+    required this.range
   });
 
   final bool showCancel;
+  final Movie movie;
+  final List<String> seats;
+  final String range;
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: CustomColors.black2,
       appBar: customAppBar(
@@ -61,17 +67,19 @@ class TicketScreen extends StatelessWidget {
                   color: CustomColors.primaryBej,
                   borderRadius: BorderRadius.circular(12)
                 ),
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Ticket(),
-                    SizedBox(height: 20),
+                    Ticket(
+                      imageURL: movie.picUrl,
+                    ),
+                    const SizedBox(height: 20),
                     TicketInfo(
-                      title: 'AVATAR 2', 
-                      date: '10 AM - 01 PM', 
-                      type: 'Fantasy, Sci-fi', 
-                      seats: ['G4', 'G3', 'G8', 'G9'], 
-                      image: AssetImage('assets/images/barcode.png')
+                      title: movie.name, 
+                      date: range, 
+                      type: movie.type, 
+                      seats: seats, 
+                      image: const AssetImage('assets/images/barcode.png')
                     ),
                   ],
                 ),
@@ -96,12 +104,23 @@ class TicketScreen extends StatelessWidget {
       ),
     );
   }
+  String getTimeRange(DateTime dateTime, int minutesToAdd) {
+    DateTime endDateTime = dateTime.add(Duration(minutes: minutesToAdd));
+    String startTime =
+        '${dateTime.hour % 12 == 0 ? 12 : dateTime.hour % 12}:${dateTime.minute.toString().padLeft(2, '0')} ${dateTime.hour >= 12 ? 'PM' : 'AM'}';
+    String endTime =
+        '${endDateTime.hour % 12 == 0 ? 12 : endDateTime.hour % 12}:${endDateTime.minute.toString().padLeft(2, '0')} ${endDateTime.hour >= 12 ? 'PM' : 'AM'}';
+    return '$startTime - $endTime';
+  }
 }
 
 class Ticket extends StatelessWidget {
   const Ticket({
     super.key,
+    required this.imageURL
   });
+
+  final String imageURL;
 
   @override
   Widget build(BuildContext context) {
@@ -114,8 +133,8 @@ class Ticket extends StatelessWidget {
           topRight: Radius.circular(12),
         ),
       ),
-      child: const CustomNetworkImage(
-        backgroundImageURL: 'https://musicart.xboxlive.com/7/14815100-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080',
+      child: CustomNetworkImage(
+        backgroundImageURL: imageURL,
         shimmerBorderRadius: 12,
         isJustTopRadius: true,
       ),

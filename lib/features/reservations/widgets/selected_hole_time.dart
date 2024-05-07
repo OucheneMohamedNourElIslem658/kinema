@@ -1,16 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:kinema/models/movie.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
-import '../controllers/reservations.dart';
 
-class SelectedHoleTimes extends StatelessWidget {
+class SelectedHoleTimes extends StatefulWidget {
   const SelectedHoleTimes({
     super.key,
-    required this.reservationController,
+    required this.movie,
+    this.onHoleTimeChanged
   });
+  final Movie movie;
+  final Function(DateTime date,int duration)? onHoleTimeChanged;
 
-  final ReservationsController reservationController;
+  @override
+  State<SelectedHoleTimes> createState() => _SelectedHoleTimesState();
+}
+
+class _SelectedHoleTimesState extends State<SelectedHoleTimes> {
+  @override
+  void initState() {
+    initShowTimes(widget.movie.showTime);
+    super.initState();
+  }
+
+  List<Map<String,dynamic>> holeReservationTimes = [];
+
+  void initShowTimes(List<DateTime> showTimes) {
+    for (var i = 0; i < showTimes.length; i++) {
+      final time = showTimes[i];
+      holeReservationTimes.add({
+        'day': formatDateTime(time),
+        'time': '${formatHour(time)}-${addMinutes(time, widget.movie.time.toInt())}',
+        'isSelected': i == 0 ? true : false
+      });
+    }
+    setState(() {});
+  }
+
+  String addMinutes(DateTime dateTime, int minutesToAdd) {
+    DateTime newDateTime = dateTime.add(Duration(minutes: minutesToAdd));
+    return formatHour(newDateTime);
+  }
+
+  String formatDateTime(DateTime dateTime) {
+    List<String> days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    String dayOfWeek = days[dateTime.weekday - 1];
+    String dayOfMonth = dateTime.day.toString().padLeft(2, '0');
+    return '$dayOfWeek $dayOfMonth';
+  }
+
+  String formatHour(DateTime dateTime) {
+    String hour = dateTime.hour.toString().padLeft(2, '0');
+    String minute = dateTime.minute.toString().padLeft(2, '0');
+    return '$hour:$minute';
+  }
+
+  void selectHoleTime(int index) {
+    for (var i = 0; i < holeReservationTimes.length; i++) {
+      if (i == index) {
+        holeReservationTimes[i]['isSelected'] = true;
+      } else {
+        holeReservationTimes[i]['isSelected'] = false;
+      }
+    }
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,17 +75,29 @@ class SelectedHoleTimes extends StatelessWidget {
         height: 50,
         child: Row(
           children: List.generate(
-            reservationController.holeReservationTimes.length, 
+            holeReservationTimes.length, 
             (index) {
-              final holeReservation = reservationController.holeReservationTimes[index];
+              final holeReservation = holeReservationTimes[index];
               final day = holeReservation['day'] as String;
               final time = holeReservation['time'] as String;
               final isSelected = holeReservation['isSelected'] as bool;
               return Padding(
                 padding: const EdgeInsets.only(right: 30),
                 child: GestureDetector(
-                  onTap: () => reservationController.selectHoleTime(index),
-                  child: HoleReservationItem(isSelected: isSelected, day: day, time: time),
+                  onTap: () {
+                    selectHoleTime(index);
+                    widget.onHoleTimeChanged != null
+                      ? widget.onHoleTimeChanged!(
+                        widget.movie.showTime[index],
+                        widget.movie.time.toInt()
+                      )
+                      :null;
+                  },
+                  child: HoleReservationItem(
+                    isSelected: isSelected, 
+                    day: day,
+                    time: time
+                  ),
                 ),
               );
             }
