@@ -95,8 +95,22 @@ class AuthController extends GetxController {
     );
   }
 
-  Future<User?> getUserDetail(BuildContext context){
+  Future<UserModel?> getUserDetail(BuildContext context){
     return _authRepo.getUserDetails(context);
+  }
+
+  Future<UserModel?> signInWithGoogle(BuildContext context) async {
+    final user = await _authRepo.signInWithGoogle(context);
+    print("===============================");
+    print("${user!.displayName} , ${user.email} , ${user.phoneNumber} , ${user.photoURL}");
+    print("===============================");
+    return UserModel(
+      email: user.email,
+      fullName: user.displayName,
+      username: user.displayName,
+      phoneNumber: user.phoneNumber,
+      profilePicture: user.photoURL
+    );
   }
 
   Future<void> signOut(BuildContext context) async {

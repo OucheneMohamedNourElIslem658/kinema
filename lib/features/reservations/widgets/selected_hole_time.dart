@@ -3,6 +3,7 @@ import 'package:kinema/models/movie.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
+import '../../../commun/utils/date_formats.dart';
 
 class SelectedHoleTimes extends StatefulWidget {
   const SelectedHoleTimes({
@@ -36,24 +37,6 @@ class _SelectedHoleTimesState extends State<SelectedHoleTimes> {
       });
     }
     setState(() {});
-  }
-
-  String addMinutes(DateTime dateTime, int minutesToAdd) {
-    DateTime newDateTime = dateTime.add(Duration(minutes: minutesToAdd));
-    return formatHour(newDateTime);
-  }
-
-  String formatDateTime(DateTime dateTime) {
-    List<String> days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    String dayOfWeek = days[dateTime.weekday - 1];
-    String dayOfMonth = dateTime.day.toString().padLeft(2, '0');
-    return '$dayOfWeek $dayOfMonth';
-  }
-
-  String formatHour(DateTime dateTime) {
-    String hour = dateTime.hour.toString().padLeft(2, '0');
-    String minute = dateTime.minute.toString().padLeft(2, '0');
-    return '$hour:$minute';
   }
 
   void selectHoleTime(int index) {

@@ -1,0 +1,126 @@
+{
+  "project_info": {
+    "project_number": "722261620700",
+    "project_id": "fir-methods-9cc92",
+    "storage_bucket": "fir-methods-9cc92.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722261620700:android:12b2b3f5df1984569e4119",
+        "android_client_info": {
+          "package_name": "com.example.chat_box"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722261620700-gumvnsf83rpj0m6o8bl34js9u60p2des.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chat_box",
+            "certificate_hash": "901ad1599a90bd239813e1720e1b95bf376c99a4"
+          }
+        },
+        {
+          "client_id": "722261620700-4292iv0p8a5ftm54n69a5rt0d9v4korv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV9mPWqOD3C-mWQ3xRSsKWAD1O2T4TKvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722261620700-4292iv0p8a5ftm54n69a5rt0d9v4korv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "722261620700-4gmn5jpl33skbl9qup8vs7frtgimiq4i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.chatBox"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722261620700:android:f960b46dd464fe0b9e4119",
+        "android_client_info": {
+          "package_name": "com.example.kinema"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722261620700-4292iv0p8a5ftm54n69a5rt0d9v4korv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV9mPWqOD3C-mWQ3xRSsKWAD1O2T4TKvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722261620700-4292iv0p8a5ftm54n69a5rt0d9v4korv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "722261620700-4gmn5jpl33skbl9qup8vs7frtgimiq4i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.chatBox"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722261620700:android:40404db28d51a9ee9e4119",
+        "android_client_info": {
+          "package_name": "com.example.mohamed_ouchene_portfolio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722261620700-4292iv0p8a5ftm54n69a5rt0d9v4korv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV9mPWqOD3C-mWQ3xRSsKWAD1O2T4TKvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722261620700-4292iv0p8a5ftm54n69a5rt0d9v4korv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "722261620700-4gmn5jpl33skbl9qup8vs7frtgimiq4i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.chatBox"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

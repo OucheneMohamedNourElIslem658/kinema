@@ -35,7 +35,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: GoRouter(
-        initialLocation: !isLogedIn ? '/Auth' : '/Movies',
+        // initialLocation: !isLogedIn ? '/Auth' : '/Movies',
+        initialLocation: '/Auth',
         navigatorKey: CustomNavigation.rootNavigatorKey,
         routes: CustomNavigation.routes
       ),

@@ -104,14 +104,6 @@ class TicketScreen extends StatelessWidget {
       ),
     );
   }
-  String getTimeRange(DateTime dateTime, int minutesToAdd) {
-    DateTime endDateTime = dateTime.add(Duration(minutes: minutesToAdd));
-    String startTime =
-        '${dateTime.hour % 12 == 0 ? 12 : dateTime.hour % 12}:${dateTime.minute.toString().padLeft(2, '0')} ${dateTime.hour >= 12 ? 'PM' : 'AM'}';
-    String endTime =
-        '${endDateTime.hour % 12 == 0 ? 12 : endDateTime.hour % 12}:${endDateTime.minute.toString().padLeft(2, '0')} ${endDateTime.hour >= 12 ? 'PM' : 'AM'}';
-    return '$startTime - $endTime';
-  }
 }
 
 class Ticket extends StatelessWidget {

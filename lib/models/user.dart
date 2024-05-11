@@ -1,4 +1,4 @@
-class User {
+class UserModel {
   int? id;
   String? fullName;
   String? username;
@@ -13,7 +13,7 @@ class User {
   bool? isSuperuser;
   int? fidelityPoints;
 
-  User({
+  UserModel({
     this.id,
     this.fullName,
     this.username,
@@ -29,8 +29,8 @@ class User {
     this.fidelityPoints,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
       id: json['id'],
       fullName: json['Full_Name'],
       username: json['username'],

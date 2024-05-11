@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kinema/commun/utils/date_formats.dart';
 import 'package:kinema/models/movie.dart';
 
 import '../../../commun/constents/colors.dart';
@@ -20,47 +21,53 @@ class Description extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          children: [
-            const SizedBox(height: 20),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        movie.name,
-                        style: TextStyles.style13.copyWith(
-                          color: CustomColors.white
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          movie.name,
+                          style: TextStyles.style13.copyWith(
+                            color: CustomColors.white
+                          ),
                         ),
-                      ),
-                      Text(
-                        movie.type,
-                        style: TextStyles.style17,
-                      ),
-                    ],
-                  )
-                ),
-                const IMDBRate(rate: 7.5)
-              ],
-            )
-          ],
+                        Text(
+                          movie.type,
+                          style: TextStyles.style17,
+                        ),
+                      ],
+                    )
+                  ),
+                  const IMDBRate(rate: 7.5)
+                ],
+              )
+            ],
+          ),
         ),
         const SizedBox(height: 25),
-        Row(
-          children: [
-            StatisticItem(title: 'Time',count: '${movie.time} Min'),
-            const SizedBox(width: 15),
-            StatisticItem(title: 'Views',count: '${movie.views / 1000000} M'),
-            const SizedBox(width: 15),
-            const StatisticItem(title: 'P-G',count: '13+'),
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            children: [
+              StatisticItem(title: 'Time',count: '${movie.time} Min'),
+              const SizedBox(width: 15),
+              StatisticItem(title: 'Views',count: '${movie.views / 1000000} M'),
+              const SizedBox(width: 15),
+              const StatisticItem(title: 'P-G',count: '13+'),
+            ],
+          ),
         ),
         const SizedBox(height: 15),
         Padding(
-          padding: const EdgeInsets.only(left: 25),
+          padding: const EdgeInsets.only(left: 45),
           child: Text(
             'Cast',
             style: TextStyles.style14.copyWith(
@@ -69,15 +76,65 @@ class Description extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        CastList(
-          cast: movie.cast,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: CastList(
+            cast: movie.cast,
+          ),
+        ),
+        DiffusingTimes(
+          movie: movie,
         ),
         const SizedBox(height: 30),
         const Padding(
-          padding: EdgeInsets.only(left: 25),
+          padding: EdgeInsets.symmetric(horizontal: 40),
           child: DescriptionText(),
         )
       ],
+    );
+  }
+}
+
+class DiffusingTimes extends StatelessWidget {
+  const DiffusingTimes({
+    super.key,
+    required this.movie
+  });
+
+  final Movie movie;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: List.generate(
+          movie.showTime.length, 
+          (index) {
+            final time = movie.showTime[index];
+            return StatisticItem(
+              title: '', 
+              count: '',
+              child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  formatDateTime(time),
+                  style: TextStyles.style13,
+                ),
+                Text(
+                  '\n${formatHour(time)}-${addMinutes(time,movie.time)}',
+                  style: TextStyles.style12
+                    .copyWith(color: CustomColors.white, height: 0.4)
+                )
+                ],
+              ),
+            );
+          }
+        ),
+      ),
     );
   }
 }
@@ -109,15 +166,19 @@ class StatisticItem extends StatelessWidget {
   const StatisticItem({
     super.key,
     required this.title,
-    required this.count
+    required this.count,
+    this.child,
+    this.padding
   });
 
   final String title,count;
+  final Widget? child;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
+      padding: padding ?? const EdgeInsets.symmetric(
         horizontal: 15,
         vertical: 8
       ),
@@ -127,7 +188,7 @@ class StatisticItem extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(10)
       ),
-      child: RichText(
+      child: child ?? RichText(
         textAlign: TextAlign.center,
         text: TextSpan(
           children: [

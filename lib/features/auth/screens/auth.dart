@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:kinema/features/auth/controllers/auth.dart';
 import 'package:kinema/features/auth/screens/email.dart';
 import 'package:kinema/features/auth/screens/sign_in.dart';
 
@@ -16,6 +18,7 @@ class AuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = Get.put(AuthController());
     return Scaffold(
       body: Background(
         child: SafeArea(
@@ -41,7 +44,7 @@ class AuthScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               CustomOutlinedButton(
-                onPressed: ()  => showSnackBar('Not supported yet', context),
+                onPressed: () async  => await authController.signInWithGoogle(context),
                 child: const SignInWithCredentialDescription(
                   text: 'Continue with Google',
                   iconPath: 'assets/icons/google.svg',

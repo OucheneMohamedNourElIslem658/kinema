@@ -18,7 +18,7 @@ class ProfileTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) { 
     final authController = Get.put(AuthController());
-    return FutureBuilder<User?>(
+    return FutureBuilder<UserModel?>(
       future: authController.getUserDetail(context),
       builder: (context, snapshot) {
         return Container(

@@ -41,11 +41,8 @@ class MovieScreen extends StatelessWidget {
                   const SizedBox(height: 200),
                   SizedBox(
                     width: double.maxFinite,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Description(
-                        movie: movie,
-                      ),
+                    child: Description(
+                      movie: movie,
                     ),
                   ),
                   const SizedBox(height: 70)
