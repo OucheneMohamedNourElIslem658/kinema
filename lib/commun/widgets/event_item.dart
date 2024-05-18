@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:kinema/models/event.dart';
 
 import '../constents/colors.dart';
 import '../constents/text_styles.dart';
 import 'custom_network_image.dart';
 
-class EventItem extends StatelessWidget {
+class EventItem extends StatefulWidget {
   const EventItem({
     super.key,
     required this.event
   });
 
   final EventModel event;
+
+  @override
+  State<EventItem> createState() => _EventItemState();
+}
+
+class _EventItemState extends State<EventItem> {
+  var showAllDescription = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,59 +34,65 @@ class EventItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(8)
           ),
           child: CustomNetworkImage(
-            backgroundImageURL: event.url,
+            backgroundImageURL: widget.event.url,
             shimmerBorderRadius: 8,
             isJustTopRadius: true,
             fit: BoxFit.cover,
           ),
         ),
         Container(
+          padding: const EdgeInsets.all(10),
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(8),
               bottomRight: Radius.circular(8)
             )
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              children: [
-                Column(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                children: [
+                  Text(
+                    widget.event.month,
+                    style: TextStyles.style25.copyWith(
+                      color: CustomColors.greyText2
+                    )
+                  ),
+                  Text(
+                    widget.event.day.toString(),
+                    style: TextStyles.style39,
+                  )
+                ],
+              ),
+              const SizedBox(width: 20),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      event.month,
-                      style: TextStyles.style25.copyWith(
-                        color: CustomColors.greyText2
-                      )
+                      widget.event.title,
+                      style: TextStyles.style33.copyWith(
+                        color: CustomColors.primaryBej
+                      ),
                     ),
-                    Text(
-                      event.day.toString(),
-                      style: TextStyles.style39,
+                    GestureDetector(
+                      onTap: () => setState(() {
+                        showAllDescription = !showAllDescription;
+                      }),
+                      child: Text(
+                        widget.event.description,
+                        maxLines: !showAllDescription ? 2 : null,
+                        overflow: !showAllDescription ? TextOverflow.ellipsis : null,
+                        style: TextStyles.style25.copyWith(
+                          color: CustomColors.greyText2,
+                        )
+                      ),
                     )
                   ],
-                ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        event.title,
-                        style: TextStyles.style33.copyWith(
-                          color: CustomColors.primaryBej
-                        ),
-                      ),
-                      Text(
-                        event.description,
-                        style: TextStyles.style25.copyWith(
-                          color: CustomColors.greyText2
-                        )
-                      )
-                    ],
-                  )
                 )
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ],

@@ -9,6 +9,7 @@ class SettingsController extends GetxController {
       avatars[i]['isSelected'] = false;
     }
     avatars[index]['isSelected'] = true;
+    currentAvatarPath = avatars[index]['imagePath'] as String;
     update();
   }
 
@@ -33,33 +34,15 @@ class SettingsController extends GetxController {
 
   @override
   void onInit() {
-    getCurrentAvatar();
     avatars = [
-      {
-        'imagePath': 'assets/images/avatar1.png',
-        'isSelected': true
-      },
-      {
-        'imagePath': 'assets/images/avatar2.png',
-        'isSelected': false
-      },
-      {
-        'imagePath': 'assets/images/avatar3.png',
-        'isSelected': false
-      },
-      {
-        'imagePath': 'assets/images/avatar4.png',
-        'isSelected': false
-      },
-      {
-        'imagePath': 'assets/images/avatar5.png',
-        'isSelected': false
-      },
-      {
-        'imagePath': 'assets/images/avatar6.png',
-        'isSelected': false
-      },
+      {'imagePath': 'assets/images/avatar1.png', 'isSelected': true},
+      {'imagePath': 'assets/images/avatar2.png', 'isSelected': false},
+      {'imagePath': 'assets/images/avatar3.png', 'isSelected': false},
+      {'imagePath': 'assets/images/avatar4.png', 'isSelected': false},
+      {'imagePath': 'assets/images/avatar5.png', 'isSelected': false},
+      {'imagePath': 'assets/images/avatar6.png', 'isSelected': false},
     ];
+    getCurrentAvatar();
     super.onInit();
   }
 

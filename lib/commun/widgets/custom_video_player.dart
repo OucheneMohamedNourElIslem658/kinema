@@ -151,8 +151,8 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
                     aspectRatio: 16/9,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(widget.borderRadius ?? 0),
-                      child: widget.controller.value.isInitialized ? VideoPlayer(
-                        widget.controller,
+                      child: widget.controller.value.isInitialized ? Chewie(
+                        controller:  chewieController,
                       ) : Container(),
                     ),
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../commun/constents/colors.dart';
@@ -44,21 +45,24 @@ class TicketInfo extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Seat',
-                        style: TextStyles.style33,
-                      ),
-                      Text(
-                        seats.join(','),
-                        style: TextStyles.style6.copyWith(
-                          color: CustomColors.black
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Seat',
+                          style: TextStyles.style33,
                         ),
-                      ),
-                    ],
+                        Text(
+                          seats.join(','),
+                          style: TextStyles.style6.copyWith(
+                            color: CustomColors.black
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
+                  const SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

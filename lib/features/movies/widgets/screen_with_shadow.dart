@@ -46,7 +46,7 @@ class ScreenWithShadow extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      begin: Alignment(0,shadowPadding ?? -0.45),
+                      begin: Alignment(0,shadowPadding ?? -0.5),
                       end: Alignment.topCenter,
                       colors: const [
                         CustomColors.black,

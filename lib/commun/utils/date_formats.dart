@@ -24,3 +24,79 @@ String formatHour(DateTime dateTime) {
   String minute = dateTime.minute.toString().padLeft(2, '0');
   return '$hour:$minute';
 }
+
+String formatDateTime1(DateTime dateTime) {
+  String dayOfWeek = _getDayOfWeek(dateTime.weekday);
+  String month = _getMonth(dateTime.month);
+  int day = dateTime.day;
+  String suffix = _getDaySuffix(day);
+  String time = _formatTime(dateTime);
+
+  return '$dayOfWeek, $month $day$suffix at $time';
+}
+
+String _getDayOfWeek(int weekday) {
+  const daysOfWeek = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+  ];
+  return daysOfWeek[weekday - 1];
+}
+
+String _getMonth(int month) {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
+  return months[month - 1];
+}
+
+String _getDaySuffix(int day) {
+  if (day >= 11 && day <= 13) {
+    return 'th';
+  }
+  switch (day % 10) {
+    case 1:
+      return 'st';
+    case 2:
+      return 'nd';
+    case 3:
+      return 'rd';
+    default:
+      return 'th';
+  }
+}
+
+String _formatTime(DateTime dateTime) {
+  int hour = dateTime.hour;
+  int minute = dateTime.minute;
+  String period = hour >= 12 ? 'PM' : 'AM';
+
+  hour = hour % 12;
+  hour = hour == 0 ? 12 : hour; // Convert 0 hour to 12 for 12-hour format
+
+  String minuteStr = minute < 10 ? '0$minute' : '$minute';
+
+  return '$hour:$minuteStr $period';
+}
+
+void main() {
+  DateTime now = DateTime.now();
+  print(formatDateTime(now)); // e.g., Tuesday, April 21st at 10:00 AM
+}
+

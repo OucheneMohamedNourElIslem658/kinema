@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kinema/features/reservations/screens/my_reservations.dart';
 
 import '/features/auth/screens/auth.dart';
 import '/screens/lost_connection.dart';
@@ -127,6 +128,10 @@ class CustomNavigation {
     GoRoute(
       path: '/Random',
       builder: (context, state) => const RandomProblemScreen(),
+    ),
+    GoRoute(
+      path: '/Res',
+      builder: (context, state) => MyReservationsScreen(),
     ),
   ];
 }

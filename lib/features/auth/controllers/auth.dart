@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:kinema/features/auth/repositories/auth.dart';
 import 'package:kinema/models/user.dart';
 
@@ -9,8 +12,21 @@ class AuthController extends GetxController {
   final _authRepo = AuthRepository();
   DateTime? dateOfBirth;
 
+  late bool isLogedIn;
+
+  void checkLogStatus() {
+    final storage = GetStorage();
+    final jwt = storage.read('jwt');
+    if (jwt == null) {
+      isLogedIn = false;
+    } else {
+      isLogedIn = true;
+    }
+  }
+
   @override
   void onInit() {
+    checkLogStatus();
     emailFormKey = GlobalKey<FormState>();
     passwordFormKey = GlobalKey<FormState>();
     nameFormKey = GlobalKey<FormState>();
@@ -87,7 +103,7 @@ class AuthController extends GetxController {
   Future<void> loginUser(
     BuildContext context,
   ) async {
-
+    isLogedIn = true;
     return _authRepo.loginUser(
       context, 
       password: passwordController.text,
@@ -114,6 +130,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> signOut(BuildContext context) async {
+    isLogedIn = false;
     return _authRepo.signOut(context);
   }
 

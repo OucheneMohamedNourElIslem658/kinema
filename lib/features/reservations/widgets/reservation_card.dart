@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:kinema/commun/widgets/custom_network_image.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
@@ -13,7 +15,8 @@ class ReservationCard extends StatelessWidget {
     required this.date,
     required this.type,
     required this.startsAfter,
-    required this.rate,
+    required this.rate, 
+    required this.onCancel,
   });
 
   final String imageURL;
@@ -22,6 +25,7 @@ class ReservationCard extends StatelessWidget {
   final String type;
   final String startsAfter;
   final double rate;
+  final VoidCallback onCancel;
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +49,15 @@ class ReservationCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        movie,
-                        style: TextStyles.style5,
+                      Expanded(
+                        child: Text(
+                          movie,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyles.style5,
+                        ),
                       ),
                       GestureDetector(
-                        onTap: (){},
+                        onTap: onCancel,
                         child: Text(
                           'Cancel',
                           style: TextStyles.style11,
@@ -88,15 +95,12 @@ class MovieImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 80,
       width: 50,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        image: DecorationImage(
-          image: NetworkImage(imageURL),
-          fit: BoxFit.cover
-        )
+      child: CustomNetworkImage(
+        backgroundImageURL: imageURL,
+        shimmerBorderRadius: 12,
       ),
     );
   }

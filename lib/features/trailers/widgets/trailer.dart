@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kinema/commun/utils/date_formats.dart';
 import 'package:kinema/models/movie.dart';
 import 'package:video_player/video_player.dart';
 
@@ -48,7 +49,7 @@ class Trailer extends StatelessWidget {
             padding: const EdgeInsets.only(left: 20),
             child: HorizontalScrollBehaviour(
               child: Info(
-                time: movie.time.toString(), 
+                time: formatDateTime(movie.showTime.first), 
                 type: movie.type,
                 onSeeMore: () => push(
                   context, 

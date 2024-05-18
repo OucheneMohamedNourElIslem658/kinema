@@ -82,10 +82,20 @@ class Description extends StatelessWidget {
             cast: movie.cast,
           ),
         ),
-        DiffusingTimes(
-          movie: movie,
+        const SizedBox(height: 10),
+        Padding(
+          padding: const EdgeInsets.only(left: 45),
+          child: Text(
+            'Diffusing times',
+            style: TextStyles.style14.copyWith(color: CustomColors.white),
+          ),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 10),
+        DuffisioningTime(
+          times: movie.showTime,
+          duration: movie.time,
+        ),
+        const SizedBox(height: 20),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 40),
           child: DescriptionText(),
@@ -95,45 +105,56 @@ class Description extends StatelessWidget {
   }
 }
 
-class DiffusingTimes extends StatelessWidget {
-  const DiffusingTimes({
-    super.key,
-    required this.movie
+class DuffisioningTime extends StatelessWidget {
+  const DuffisioningTime({
+    super.key, 
+    required this.times,
+    required this.duration
   });
 
-  final Movie movie;
+  final List<DateTime> times;
+  final int duration;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: List.generate(
-          movie.showTime.length, 
-          (index) {
-            final time = movie.showTime[index];
-            return StatisticItem(
-              title: '', 
-              count: '',
-              child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  formatDateTime(time),
-                  style: TextStyles.style13,
-                ),
-                Text(
-                  '\n${formatHour(time)}-${addMinutes(time,movie.time)}',
-                  style: TextStyles.style12
-                    .copyWith(color: CustomColors.white, height: 0.4)
-                )
-                ],
-              ),
-            );
-          }
-        ),
+        children: [
+          const SizedBox(width: 40),
+          Row(
+            children: List.generate(
+              times.length, 
+              (index) {
+                final time = times[index];
+                return Container(
+                  padding: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.only(right: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: CustomColors.white.withOpacity(0.08)
+                    )
+                  ),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '${formatDateTime(time)}\n',
+                          style: TextStyles.style2
+                        ),
+                        TextSpan(
+                          text: '${formatHour(time)}-${addMinutes(time, duration)}', 
+                          style: TextStyles.style27
+                        )
+                      ]
+                    )
+                  )
+                );
+              }
+            ),
+          )
+        ],
       ),
     );
   }

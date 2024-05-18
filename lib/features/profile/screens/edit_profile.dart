@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../controllers/settings.dart';
 import '../widgets/avatars.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/commun/constents/colors.dart';
@@ -10,25 +12,32 @@ class EditProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final settingsContoller = Get.put(SettingsController());
+
     return Scaffold(
       backgroundColor: CustomColors.black2,
       appBar: customAppBar(
         title: 'Edit Avatar',
+        showTitle: true,
         onGoBack: () => pop(context)
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           children: [
-            SizedBox(height: 30),
-            SizedBox(
-              height: 108,
-              width: 108,
-              child: CircleAvatar(
-                backgroundImage: AssetImage("assets/images/avatar3.png"),
-              ),
+            const SizedBox(height: 30),
+            GetBuilder<SettingsController>(
+              builder: (_) {
+                return SizedBox(
+                  height: 108,
+                  width: 108,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage(settingsContoller.currentAvatarPath),
+                  ),
+                );
+              }
             ),
-            SizedBox(height: 30),
-            Avatars()
+            const SizedBox(height: 30),
+            const Avatars()
           ],
         ),
       ),
