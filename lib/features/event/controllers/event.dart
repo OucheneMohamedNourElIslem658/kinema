@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kinema/features/event/repositories/events.dart';
-import 'package:kinema/models/event.dart';
+import 'package:kinema/commun/models/event.dart';
 
 class EventController extends GetxController{
   List<EventModel> events = [];
@@ -9,6 +9,13 @@ class EventController extends GetxController{
 
   Future<void> getEvents() async {
     events = (await _eventsRepo.getEvents()) ?? [];
+    update();
+  }
+
+  Future<void> geEvents() async {
+    events = (await _eventsRepo.getEvents()) ?? [];
+    events = events.sublist(1,1);
+    update();
   }
 
   @override

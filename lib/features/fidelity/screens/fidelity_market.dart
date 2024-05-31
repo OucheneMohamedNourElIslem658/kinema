@@ -37,25 +37,26 @@ class FidelityMarketScreen extends StatelessWidget {
           )
         ]
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             MarketList(
               categorieName: 'Caps',
-              items: [],
+              items: cardController
+                .market
+                .where((element) => element['categorie'] == 'caps')
+                .toList(),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             MarketList(
               categorieName: 'Shirts',
-              items: [],
+              items: cardController.market
+                  .where((element) => element['categorie'] == 'shirts')
+                  .toList(),
             ),
-            SizedBox(height: 10),
-            MarketList(
-              categorieName: 'Cups',
-              items: [],
-            ),
-            SizedBox(height: 70)
+            const SizedBox(height: 70)
           ],
         ),
       ),

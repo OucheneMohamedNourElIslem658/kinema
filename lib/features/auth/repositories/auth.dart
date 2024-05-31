@@ -8,7 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http ;
 import 'package:kinema/commun/utils/custom_snack_bar.dart';
 
-import '../../../models/user.dart';
+import '../../../commun/models/user.dart';
 
 class AuthRepository {
   final _url = 'http://10.0.2.2:8000/cinephile/';
@@ -86,7 +86,7 @@ class AuthRepository {
     
   }
 
-  Future<UserModel?> getUserDetails(BuildContext context) async {
+  Future<UserModel?> getUserDetails() async {
     try {
       var url = Uri.parse('${_url}user');
       final storage = GetStorage();
@@ -101,10 +101,10 @@ class AuthRepository {
         var userData = json.decode(response.body);
         return UserModel.fromJson(userData);
       } else {
-        signOut();
+        await signOut();
       }
     } catch (e) {
-      signOut();
+      await signOut();
     }
     return null;
   }

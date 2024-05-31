@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '/features/auth/screens/auth.dart';
-import '/screens/lost_connection.dart';
-import '/screens/random_problem.dart';
+import '../screens/lost_connection.dart';
+import '../screens/random_problem.dart';
 import '/features/fidelity/screens/fidelity_market.dart';
 import '/features/movies/screens/movies.dart';
 import '/features/profile/screens/profile_settings.dart';
 import '/features/program/screens/program.dart';
 import '/features/trailers/screens/trailers.dart';
-import '../../screens/home.dart';
+import '../screens/home.dart';
 
 class CustomNavigation {
   CustomNavigation._();

@@ -1,4 +1,4 @@
-import '../../models/movie.dart';
+import '../models/movie.dart';
 
 var program = [
   Movie(

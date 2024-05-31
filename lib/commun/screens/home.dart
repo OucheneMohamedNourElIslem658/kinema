@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../commun/widgets/buttom_nav_bar.dart';
+import '../widgets/buttom_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({

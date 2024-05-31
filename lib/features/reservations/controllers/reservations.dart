@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:kinema/commun/constents/movies_list.dart';
-import '/models/movie.dart';
+import '../../../commun/models/movie.dart';
 
 enum SeatStatus {
   available,
@@ -9,7 +9,7 @@ enum SeatStatus {
 }
 
 class ReservationsController extends GetxController {
-  late List<Movie> reservations;
+  List<Movie> reservations = [];
   final seats = [
     [SeatStatus.available,SeatStatus.available,SeatStatus.blocked,SeatStatus.available,SeatStatus.available,SeatStatus.blocked,SeatStatus.blocked,SeatStatus.available,SeatStatus.available,SeatStatus.available,SeatStatus.available,SeatStatus.available],
     [SeatStatus.available,SeatStatus.available,SeatStatus.available,SeatStatus.available,SeatStatus.available,SeatStatus.blocked,SeatStatus.blocked,SeatStatus.available,SeatStatus.available,SeatStatus.available,SeatStatus.available,SeatStatus.available],
@@ -50,10 +50,11 @@ class ReservationsController extends GetxController {
     update();
   }
 
-  @override
-  void onInit() {
-    reservations = program.sublist(0,3);
-    super.onInit();
+  void addReserVation(Movie movie){
+    reservations.add(
+      movie
+    );
+    update();
   }
 
 }

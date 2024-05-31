@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:kinema/features/auth/controllers/auth.dart';
-import 'package:kinema/models/movie.dart';
+import 'package:kinema/commun/models/movie.dart';
 import 'package:http/http.dart' as http;
 
 class ProgramRepo {
@@ -31,10 +31,10 @@ class ProgramRepo {
         }
         return movies;
       } else {
-        _authController.signOut();
+        await _authController.signOut();
       }
     } catch (e) {
-      _authController.signOut();
+      await _authController.signOut();
     }
     return null;
   }

@@ -3,41 +3,50 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 class CardController extends GetxController {
-  final cardItems = [
+  final List<Map<String,dynamic>> cardItems = [];
+
+  final market = [
     {
+      'categorie': 'caps',
       'name': 'Black Kinema Cap',
       'path': 'assets/images/cap.png',
       'price': 1400
     },
     {
+      'categorie': 'caps',
       'name': 'Red Kinema Cap',
       'path': 'assets/images/cap.png',
-      'price': 1400
+      'price': 1200
     },
     {
+      'categorie': 'caps',
       'name': 'Blue Kinema Cap',
       'path': 'assets/images/cap.png',
-      'price': 1400
+      'price': 1000
     },
     {
-      'name': 'Green Kinema Cap',
-      'path': 'assets/images/cap.png',
-      'price': 1400
+      'categorie': 'shirts',
+      'name': 'Red Kinema t-shirt',
+      'path': 'assets/images/t_shirt.png',
+      'price': 800
     },
     {
-      'name': 'Yellow Kinema Cap',
-      'path': 'assets/images/cap.png',
-      'price': 1400
+      'categorie': 'shirts',
+      'name': 'Red Kinema t-shirt',
+      'path': 'assets/images/t_shirt.png',
+      'price': 900
     },
     {
-      'name': 'White Kinema Cap',
-      'path': 'assets/images/cap.png',
-      'price': 1400
+      'categorie': 'shirts',
+      'name': 'Red Kinema t-shirt',
+      'path': 'assets/images/t_shirt.png',
+      'price': 600
     },
     {
-      'name': 'Black Kinema Cap',
-      'path': 'assets/images/cap.png',
-      'price': 1400
+      'categorie': 'shirts',
+      'name': 'Red Kinema t-shirt',
+      'path': 'assets/images/t_shirt.png',
+      'price': 70
     },
   ];
 

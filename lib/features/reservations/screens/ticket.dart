@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:kinema/models/movie.dart';
+import 'package:kinema/commun/models/movie.dart';
 
 import '/commun/widgets/custom_network_image.dart';
 import '../controllers/reservations.dart';

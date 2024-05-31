@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kinema/commun/utils/date_formats.dart';
-import 'package:kinema/models/movie.dart';
+import 'package:kinema/commun/models/movie.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../commun/widgets/more_button.dart';

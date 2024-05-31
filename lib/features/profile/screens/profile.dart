@@ -44,16 +44,8 @@ class ProfileScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: VerticalScrollBehaviour(
-            child: FutureBuilder(
-              future: formController.initialiseCurrentUser(context),
-              builder: (context,snapshot) {
-                if (snapshot.connectionState != ConnectionState.waiting) {
-                  WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                      if (formController.currentUser != null) {
-                        formController.initForm();
-                      }
-                  });
-                }
+            child: GetBuilder<ProfileFormController>(
+              builder: (_) {
                 return Column(
                   children: [
                     const SizedBox(height: 10),
@@ -88,7 +80,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 15),
     
-                    if (snapshot.connectionState == ConnectionState.waiting && formController.currentUser == null) 
+                    if (formController.currentUser == null) 
                       const CustomTextLoader(height: 15, width: 100) 
                     else 
                       Text(
@@ -97,8 +89,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     const SizedBox(height: 5),
     
-                    if (snapshot.connectionState == ConnectionState.waiting &&
-                          formController.currentUser == null) 
+                    if (formController.currentUser == null) 
                       const CustomTextLoader(height: 15, width: 150) 
                     else 
                       Text(

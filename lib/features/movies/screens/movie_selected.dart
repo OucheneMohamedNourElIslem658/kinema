@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kinema/commun/utils/navigation_methods.dart';
 import 'package:kinema/features/reservations/screens/seat_choice.dart';
-import 'package:kinema/models/movie.dart';
+import 'package:kinema/commun/models/movie.dart';
 
 import '../controllers/show_hide_button.dart';
 import '../widgets/description.dart';

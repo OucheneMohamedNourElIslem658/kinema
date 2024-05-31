@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:kinema/features/program/repositories/program.dart';
-import 'package:kinema/models/movie.dart';
+import 'package:kinema/commun/models/movie.dart';
 import 'package:video_player/video_player.dart';
 
 class ProgramController extends GetxController {

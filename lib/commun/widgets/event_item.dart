@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kinema/commun/utils/date_formats.dart';
-import 'package:kinema/models/event.dart';
+import 'package:kinema/commun/models/event.dart';
 
 import '../constents/colors.dart';
 import '../constents/text_styles.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:kinema/features/auth/controllers/auth.dart';
-import 'package:kinema/models/user.dart';
+import 'package:kinema/commun/models/user.dart';
 
 class ProfileFormController extends GetxController {
   late TextEditingController nameController,emailController,phoneController,dateOfBirthController;
@@ -11,8 +11,10 @@ class ProfileFormController extends GetxController {
   bool? enableForm;
   final authController = Get.find<AuthController>();
 
-  Future<void> initialiseCurrentUser(BuildContext context) async {
-    currentUser = (await authController.getUserDetail(context))!;
+  Future<void> initialiseCurrentUser() async {
+    currentUser = (await authController.getUserDetail())!;
+    initForm();
+    update();
   }
 
   void initForm(){
@@ -26,11 +28,15 @@ class ProfileFormController extends GetxController {
 
   @override
   void onInit() {
-    formKey = GlobalKey<FormState>();  
-    nameController = TextEditingController();
-    emailController = TextEditingController();
-    dateOfBirthController = TextEditingController();
-    phoneController = TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      formKey = GlobalKey<FormState>();  
+      nameController = TextEditingController();
+      emailController = TextEditingController();
+      dateOfBirthController = TextEditingController();
+      phoneController = TextEditingController();
+      await initialiseCurrentUser();
+    });
+    
     super.onInit();
   }
 

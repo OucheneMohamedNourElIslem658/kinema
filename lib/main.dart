@@ -18,13 +18,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final authController = Get.put(AuthController());
 
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: GoRouter(
-        initialLocation: authController.isLogedIn ? '/Movies' : '/Auth',
-        navigatorKey: CustomNavigation.rootNavigatorKey,
-        routes: CustomNavigation.routes
-      ),
+    return GetBuilder<AuthController>(
+      builder: (_) {
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          routerConfig: GoRouter(
+            initialLocation: authController.isLogedIn ? '/Movies' : '/Auth',
+            navigatorKey: CustomNavigation.rootNavigatorKey,
+            routes: CustomNavigation.routes
+          ),
+        );
+      }
     );
   }
 }

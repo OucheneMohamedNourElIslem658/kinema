@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kinema/commun/widgets/indication.dart';
 
-import '../commun/constents/colors.dart';
+import '../constents/colors.dart';
 
 class LostConnectionScreen extends StatelessWidget {
   const LostConnectionScreen({super.key});

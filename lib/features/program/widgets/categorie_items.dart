@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '/commun/widgets/custom_network_image.dart';
-import '/models/movie.dart';
+import '../../../commun/models/movie.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/features/movies/screens/movie_selected.dart';
 import '../../../commun/constents/colors.dart';

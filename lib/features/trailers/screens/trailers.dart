@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kinema/commun/controllers/program.dart';
 import 'package:kinema/commun/widgets/waiting_widget.dart';
-import 'package:kinema/models/movie.dart';
+import 'package:kinema/commun/models/movie.dart';
 import 'package:video_player/video_player.dart';
 
 import '../widgets/trailer.dart';

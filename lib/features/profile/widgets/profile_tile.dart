@@ -17,9 +17,8 @@ class ProfileTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) { 
     final profileFormController = Get.put(ProfileFormController());
-    return FutureBuilder(
-      future: profileFormController.initialiseCurrentUser(context),
-      builder: (context, snapshot) {
+    return GetBuilder<ProfileFormController>(
+      builder: (_) {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
           decoration: BoxDecoration(
@@ -44,15 +43,14 @@ class ProfileTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    snapshot.connectionState == ConnectionState.waiting && profileFormController.currentUser == null
+                    profileFormController.currentUser == null
                       ? const CustomTextLoader(height: 15, width: 100)
                       : Text(
                         profileFormController.currentUser!.fullName!,
                         style: TextStyles.style34,
                       ),
                     const SizedBox(height: 3),
-                    snapshot.connectionState == ConnectionState.waiting &&
-                            profileFormController.currentUser == null
+                    profileFormController.currentUser == null
                       ? const CustomTextLoader(height: 15, width: 150)
                       : Text(
                           profileFormController.currentUser!.email!,

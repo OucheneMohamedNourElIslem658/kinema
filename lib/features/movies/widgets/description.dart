@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kinema/commun/utils/date_formats.dart';
-import 'package:kinema/models/movie.dart';
+import 'package:kinema/commun/models/movie.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';

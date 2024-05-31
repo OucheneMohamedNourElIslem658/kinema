@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kinema/models/movie.dart';
+import 'package:kinema/commun/models/movie.dart';
 
 import '/features/movies/controllers/popular_trailers.dart';
 import 'package:video_player/video_player.dart';

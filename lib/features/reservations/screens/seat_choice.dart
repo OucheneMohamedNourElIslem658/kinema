@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kinema/commun/widgets/payment_button.dart';
 import 'package:kinema/features/reservations/screens/ticket.dart';
-import 'package:kinema/models/movie.dart';
+import 'package:kinema/commun/models/movie.dart';
 import 'package:pay/pay.dart';
 
 import '/commun/utils/navigation_methods.dart';
@@ -52,6 +52,8 @@ class _SeatChoiceScreenState extends State<SeatChoiceScreen> {
   @override
   Widget build(BuildContext context) {
     final reservationController = Get.put(ReservationsController());
+
+
     return Scaffold(
       backgroundColor: CustomColors.black2,
       appBar: customAppBar(
@@ -102,16 +104,6 @@ class _SeatChoiceScreenState extends State<SeatChoiceScreen> {
             ),
             const SizedBox(height: 20),
             const Spacer(),
-            // CustomElevatedButton(
-            //   onPressed: () => push(context, const TicketScreen()), 
-            //   padding: const EdgeInsets.symmetric(
-            //     horizontal: 60, vertical: 16
-            //   ),
-            //   child: Text(
-            //     'Next',
-            //     style: TextStyles.style2
-            //   ),
-            // ),
             GetBuilder<ReservationsController>(
               builder: (_) {
                 return reservationController.totalPrice == 0
@@ -128,6 +120,7 @@ class _SeatChoiceScreenState extends State<SeatChoiceScreen> {
                       if (kDebugMode) {
                         print(result);
                       }
+                      reservationController.addReserVation(widget.movie);
                       push(
                         context, 
                         TicketScreen(

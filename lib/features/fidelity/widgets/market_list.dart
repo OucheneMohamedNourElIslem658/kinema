@@ -15,7 +15,7 @@ class MarketList extends StatelessWidget {
   });
 
   final String categorieName;
-  final List items;
+  final List<Map<String,dynamic>> items;
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +40,23 @@ class MarketList extends StatelessWidget {
               const SizedBox(width: 20),
               Row(
                 children: List.generate(
-                  3, 
-                  (index) => MarketItem(
-                    name: 'Black Kinema Cap', 
-                    url: 'assets/images/t_shirt.png', 
-                    price: 1400,
-                    onDelete: () => cardController.addItem(
-                      name: 'Black Kinema Cap', 
-                      path: 'assets/images/t_shirt.png',
-                      price: 1200
-                    ),
-                  )
+                  items.length, 
+                  (index) {
+                    final item = items[index];
+                    final name = item['name'] as String;
+                    final path = item['path'] as String;
+                    final price = item['price'] as int;
+                    return MarketItem(
+                      name: name, 
+                      url: path, 
+                      price: price,
+                      onDelete: () => cardController.addItem(
+                        name: name, 
+                        path: path,
+                        price: price
+                      ),
+                  );
+                  }
                 ),
               ),
             ],
