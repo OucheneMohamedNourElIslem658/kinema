@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../commun/widgets/custom_text_loader.dart';
 import '/commun/widgets/custom_icon_button.dart';
 import '/features/profile/screens/edit_profile.dart';
 import '/commun/utils/navigation_methods.dart';
@@ -19,33 +20,41 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final formController = Get.put(ProfileFormController());
 
-    return GetBuilder<ProfileFormController>(
-      builder: (_) {
-        return Scaffold(
-          backgroundColor: CustomColors.black2,
-          appBar: customAppBar(
-            title: 'Edit Profile',
-            showTitle: true,
-            onGoBack: () => pop(context),
-            actions: [
-              formController.enableForm
-              ? IconButton(
-                onPressed: () => formController.cancelEdit(), 
-                icon: SvgPicture.asset(
-                  'assets/icons/delete.svg',
-                  // ignore: deprecated_member_use
-                  color: CustomColors.white,
-                )
-              )
-              : const SizedBox()
-            ]
-          ),
-        
-          body: Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: VerticalScrollBehaviour(
-                child: Column(
+    return Scaffold(
+      backgroundColor: CustomColors.black2,
+      appBar: customAppBar(
+        title: 'Edit Profile',
+        showTitle: true,
+        onGoBack: () => pop(context),
+        actions: [
+          formController.enableForm == true
+          ? IconButton(
+            onPressed: () => formController.cancelEdit(context), 
+            icon: SvgPicture.asset(
+              'assets/icons/delete.svg',
+              // ignore: deprecated_member_use
+              color: CustomColors.white,
+            )
+          )
+          : const SizedBox()
+        ]
+      ),
+    
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: VerticalScrollBehaviour(
+            child: FutureBuilder(
+              future: formController.initialiseCurrentUser(context),
+              builder: (context,snapshot) {
+                if (snapshot.connectionState != ConnectionState.waiting) {
+                  WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                      if (formController.currentUser != null) {
+                        formController.initForm();
+                      }
+                  });
+                }
+                return Column(
                   children: [
                     const SizedBox(height: 10),
                     Stack(
@@ -78,24 +87,33 @@ class ProfileScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 15),
-                    Text(
-                      formController.nameController.text,
-                      style: TextStyles.style34,
-                    ),
+    
+                    if (snapshot.connectionState == ConnectionState.waiting && formController.currentUser == null) 
+                      const CustomTextLoader(height: 15, width: 100) 
+                    else 
+                      Text(
+                        formController.currentUser!.fullName!,
+                        style: TextStyles.style34,
+                      ),
                     const SizedBox(height: 5),
-                    Text(
-                      formController.emailController.text,
-                      style: TextStyles.style35,
-                    ),
+    
+                    if (snapshot.connectionState == ConnectionState.waiting &&
+                          formController.currentUser == null) 
+                      const CustomTextLoader(height: 15, width: 150) 
+                    else 
+                      Text(
+                        formController.currentUser!.email!,
+                        style: TextStyles.style35,
+                      ),
                     const SizedBox(height: 30),
                     const EditProfileFrom(),
                   ],
-                ),
-              ),
+                );
+              }
             ),
           ),
-        );
-      }
+        ),
+      ),
     );
   }
 }

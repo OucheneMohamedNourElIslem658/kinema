@@ -70,7 +70,7 @@ class Settings extends StatelessWidget {
               SettingsItem(
                 title: 'Log Out', 
                 iconPath: 'assets/icons/logout.svg', 
-                onPressed: () async => await authController.signOut(context)
+                onPressed: () async => await authController.signOut()
               ),
             ],
           )

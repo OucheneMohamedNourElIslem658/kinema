@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kinema/commun/widgets/vertical_scroll_behaviour.dart';
+import 'package:kinema/commun/widgets/waiting_widget.dart';
 
 import '../../../commun/controllers/program.dart';
 import '../../../commun/constents/colors.dart';
@@ -21,26 +23,40 @@ class ProgramScreen extends StatelessWidget {
         title: 'This Week’s Program',
         space: 20,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            CategoriItems(
-              name: 'Action Movies',
-              movies: programController.getActionMovies(),
-            ),
-            const SizedBox(height: 20),
-            CategoriItems(
-              name: 'Adventure Movies',
-              movies: programController.getAdventureMovies(),
-            ),
-            const SizedBox(height: 20),
-            CategoriItems(
-              name: 'Crime Movies', 
-              movies: programController.getCrimeMovies()
-            ),
-            const SizedBox(height: 70),
-          ],
+      body: RefreshIndicator(
+        color: CustomColors.primaryRed,
+        backgroundColor: CustomColors.black,
+        onRefresh: () async {
+          await programController.getProgram();
+        },
+        child: VerticalScrollBehaviour(
+          child: GetBuilder<ProgramController>(
+            builder: (_) {
+              if (programController.movies.isEmpty) {
+                return const WaitingWidget();
+              }
+              return Column(
+                children: [
+                  const SizedBox(height: 20),
+                  CategoriItems(
+                    name: 'Action Movies',
+                    movies: programController.movies,
+                  ),
+                  const SizedBox(height: 20),
+                  CategoriItems(
+                    name: 'Adventure Movies',
+                    movies: programController.movies,
+                  ),
+                  const SizedBox(height: 20),
+                  CategoriItems(
+                    name: 'Crime Movies', 
+                    movies: programController.movies
+                  ),
+                  const SizedBox(height: 70),
+                ],
+              );
+            }
+          ),
         ),
       ),
     );

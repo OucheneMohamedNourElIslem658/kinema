@@ -115,23 +115,10 @@ class AuthController extends GetxController {
     return _authRepo.getUserDetails(context);
   }
 
-  Future<UserModel?> signInWithGoogle(BuildContext context) async {
-    final user = await _authRepo.signInWithGoogle(context);
-    print("===============================");
-    print("${user!.displayName} , ${user.email} , ${user.phoneNumber} , ${user.photoURL}");
-    print("===============================");
-    return UserModel(
-      email: user.email,
-      fullName: user.displayName,
-      username: user.displayName,
-      phoneNumber: user.phoneNumber,
-      profilePicture: user.photoURL
-    );
-  }
-
-  Future<void> signOut(BuildContext context) async {
+  Future<void> signOut() async {
     isLogedIn = false;
-    return _authRepo.signOut(context);
+    update();
+    return _authRepo.signOut();
   }
 
   @override

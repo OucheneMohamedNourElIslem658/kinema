@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '/commun/widgets/custom_network_image.dart';
@@ -69,7 +71,7 @@ class MovieItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 20),
+      padding: const EdgeInsets.only(right: 10),
       child: GestureDetector(
         onTap: () => push(context, MovieScreen(movie: movie)),
         child: SizedBox(
@@ -80,7 +82,7 @@ class MovieItem extends StatelessWidget {
                 children: [
                   Container(
                     height: 230,
-                    alignment: Alignment.topRight,
+                    alignment: Alignment.topCenter,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                     ),

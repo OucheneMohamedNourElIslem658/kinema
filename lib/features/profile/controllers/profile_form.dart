@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:kinema/features/auth/controllers/auth.dart';
+import 'package:kinema/models/user.dart';
 
 class ProfileFormController extends GetxController {
   late TextEditingController nameController,emailController,phoneController,dateOfBirthController;
   late GlobalKey<FormState> formKey;
-  bool enableForm = false;
+  UserModel? currentUser;
+  bool? enableForm;
+  final authController = Get.find<AuthController>();
 
-  void initialiseForm(){
-    nameController = TextEditingController(text: 'Lamia Bakli');
-    emailController = TextEditingController(text: 'lamiachikoura@gmail.com');
-    dateOfBirthController = TextEditingController(text: '01/05/2004');
-    phoneController = TextEditingController(text: '+213551307909');
-    formKey = GlobalKey<FormState>();
+  Future<void> initialiseCurrentUser(BuildContext context) async {
+    currentUser = (await authController.getUserDetail(context))!;
+  }
+
+  void initForm(){
+    nameController.text = currentUser!.fullName!;
+    emailController.text = currentUser!.email!;
+    dateOfBirthController.text = currentUser!.dateOfBirth!;
+    phoneController.text = currentUser!.phoneNumber!;
+    enableForm = false;
+    update();
   }
 
   @override
   void onInit() {
-    initialiseForm();
+    formKey = GlobalKey<FormState>();  
+    nameController = TextEditingController();
+    emailController = TextEditingController();
+    dateOfBirthController = TextEditingController();
+    phoneController = TextEditingController();
     super.onInit();
   }
 
@@ -50,13 +63,15 @@ class ProfileFormController extends GetxController {
     return 'Invalid email';
   }
 
-  DateTime formatDateOfBirth(){
-    final date = dateOfBirthController.text.split('/');
-    return DateTime(int.parse(date[2]),int.parse(date[1]),int.parse(date[0]));
+  DateTime formatDateOfBirth(String dateString){
+    DateTime parsedDate = DateTime.parse(dateString);
+    return parsedDate;
   }
 
   String formateDateToString(DateTime date){
-    return '${date.day}/${date.month}/${date.year}';
+    String formattedDate =
+        "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
+    return formattedDate;
   }
 
   void changeDateOfBirth(DateTime date){
@@ -80,8 +95,8 @@ class ProfileFormController extends GetxController {
     return false;
   }
 
-  void cancelEdit(){
-    initialiseForm();
+  void cancelEdit(BuildContext context) async {
+    initForm();
     enableForm = false;
     update();
   }

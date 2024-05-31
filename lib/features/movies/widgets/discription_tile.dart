@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kinema/models/movie.dart';
 
 import '../../../commun/constents/text_styles.dart';
 import '../../../commun/widgets/imdb_rate.dart';
@@ -6,7 +7,10 @@ import '../../../commun/widgets/imdb_rate.dart';
 class DescriptionTile extends StatelessWidget {
   const DescriptionTile({
     super.key,
+    required this.movie
   });
+
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,8 @@ class DescriptionTile extends StatelessWidget {
         Row(
           children: [
             Text(
-              "COCO",
+              '${movie.name.substring(1,10)}...',
+              overflow: TextOverflow.clip,
               style: TextStyles.style13,
             ),
             const SizedBox(width: 15),
@@ -26,7 +31,7 @@ class DescriptionTile extends StatelessWidget {
           ],
         ),
         Text(
-          'Animation, Musical',
+          movie.type,
           style: TextStyles.style17,
         )
       ],

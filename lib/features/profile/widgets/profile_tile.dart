@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:kinema/features/auth/controllers/auth.dart';
-import 'package:kinema/models/user.dart';
+import 'package:kinema/features/profile/controllers/profile_form.dart';
 
+import '../../../commun/widgets/custom_text_loader.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/features/profile/screens/profile.dart';
 import '../../../commun/constents/colors.dart';
@@ -17,9 +16,9 @@ class ProfileTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) { 
-    final authController = Get.put(AuthController());
-    return FutureBuilder<UserModel?>(
-      future: authController.getUserDetail(context),
+    final profileFormController = Get.put(ProfileFormController());
+    return FutureBuilder(
+      future: profileFormController.initialiseCurrentUser(context),
       builder: (context, snapshot) {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
@@ -45,17 +44,18 @@ class ProfileTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    snapshot.data == null 
+                    snapshot.connectionState == ConnectionState.waiting && profileFormController.currentUser == null
                       ? const CustomTextLoader(height: 15, width: 100)
                       : Text(
-                        snapshot.data!.fullName!,
+                        profileFormController.currentUser!.fullName!,
                         style: TextStyles.style34,
                       ),
                     const SizedBox(height: 3),
-                    snapshot.data == null
+                    snapshot.connectionState == ConnectionState.waiting &&
+                            profileFormController.currentUser == null
                       ? const CustomTextLoader(height: 15, width: 150)
                       : Text(
-                          snapshot.data!.email!,
+                          profileFormController.currentUser!.email!,
                           style: TextStyles.style35,
                         ),
                   ],
@@ -73,34 +73,6 @@ class ProfileTile extends StatelessWidget {
           ),
         );
       }
-    );
-  }
-}
-
-class CustomTextLoader extends StatelessWidget {
-  const CustomTextLoader({
-    super.key, 
-    required this.height, 
-    required this.width,
-    this.borderRadius = 3
-  });
-
-  final double height,width,borderRadius;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints(
-        maxHeight: height,
-        maxWidth: width
-      ),
-      decoration: BoxDecoration(
-        color: Colors.grey,
-        borderRadius: BorderRadius.circular(borderRadius)
-      ),
-    ).animate(onComplete: (controller) => controller.repeat())
-    .shimmer(
-      duration: const Duration(seconds: 1)
     );
   }
 }

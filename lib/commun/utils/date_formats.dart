@@ -95,8 +95,21 @@ String _formatTime(DateTime dateTime) {
   return '$hour:$minuteStr $period';
 }
 
-void main() {
-  DateTime now = DateTime.now();
-  print(formatDateTime(now)); // e.g., Tuesday, April 21st at 10:00 AM
-}
+String getMonthAbbreviation(int monthNumber) {
+  List<String> months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ];
 
+  return months[monthNumber - 1];
+}

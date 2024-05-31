@@ -11,7 +11,7 @@ class EventScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final eventController = Get.put(EventController());
+    final eventsController = Get.put(EventController());
 
     return Scaffold(
       backgroundColor: CustomColors.black2,
@@ -20,31 +20,42 @@ class EventScreen extends StatelessWidget {
         title: 'Events',
         onGoBack: () => pop(context)
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Column(
-                children: List.generate(
-                  eventController.events.length, 
-                  (index) {
-                    final event = eventController.events[index];
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: CustomColors.black3
-                      ),
-                      child: EventItem(event: event),
-                    );
-                  }
-                ),
+      body: GetBuilder<EventController>(
+        builder: (_) {
+          if (eventsController.events.isEmpty) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: CustomColors.primaryRed,
               ),
-              const SizedBox(height: 70)
-            ],
-          ),
-        ),
+            );
+          }
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Column(
+                    children: List.generate(
+                      eventsController.events.length, 
+                      (index) {
+                        final event = eventsController.events[index];
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: CustomColors.black3
+                          ),
+                          child: EventItem(event: event),
+                        );
+                      }
+                    ),
+                  ),
+                  const SizedBox(height: 70)
+                ],
+              ),
+            ),
+          );
+        }
       ),
     );
   }

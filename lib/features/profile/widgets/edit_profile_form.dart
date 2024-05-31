@@ -29,18 +29,18 @@ class EditProfileFrom extends StatelessWidget {
                   label: 'Full Name',
                   controller: formController.nameController,
                   validator: (_) => formController.nameValidation(),
-                  enabled: formController.enableForm,
+                  enabled: formController.enableForm == true,
                 ),
                 const SizedBox(height: 10),
                 CustomTextField(
                   label: 'Email',
                   controller: formController.emailController,
                   validator: (_) => formController.emailValidation(),
-                  enabled: formController.enableForm,
+                  enabled: formController.enableForm == true,
                 ),
                 const SizedBox(height: 10),
                 GestureDetector(
-                  onTap: formController.enableForm 
+                  onTap: formController.enableForm == true
                     ? () => showDialog(
                       context: context,
                       builder: (context) => DateOfBirthDialog(formController: formController),
@@ -56,26 +56,29 @@ class EditProfileFrom extends StatelessWidget {
                   label: 'Phone Number',
                   controller: formController.phoneController,
                   validator: (_) => formController.phoneNumberValidation(),
-                  enabled: formController.enableForm,
+                  enabled: formController.enableForm ?? false,
                 ),
+                const SizedBox(height: 20),
                 const Spacer(),
-                !formController.enableForm
-                ? CustomIconButton(
-                  onPressed: () => formController.editForm(), 
-                  backgroundColor: CustomColors.black3,
-                  padding: const EdgeInsets.all(10),
-                  child: SvgPicture.asset('assets/icons/edit2.svg')
-                )
-                : CustomElevatedButton(
-                  onPressed: () => formController.validateForm(),
-                  padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 16), 
-                  child: Text(
-                    'Save Changes',
-                    style: TextStyles.style5.copyWith(
-                      color: CustomColors.primaryBej
-                    ),
+                if (formController.enableForm == null) 
+                  const SizedBox() 
+                else formController.enableForm == false 
+                  ? CustomIconButton(
+                    onPressed: () => formController.editForm(), 
+                    backgroundColor: CustomColors.black3,
+                    padding: const EdgeInsets.all(10),
+                    child: SvgPicture.asset('assets/icons/edit2.svg')
                   )
-                ),
+                  : CustomElevatedButton(
+                    onPressed: () => formController.validateForm(),
+                    padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 16), 
+                    child: Text(
+                      'Save Changes',
+                      style: TextStyles.style5.copyWith(
+                        color: CustomColors.primaryBej
+                      ),
+                    )
+                  ),
                 const Spacer(),
                 const SizedBox(height: 70)
               ],
@@ -103,7 +106,7 @@ class _DateOfBirthDialogState extends State<DateOfBirthDialog> {
   late DateTime currentDate;
   @override
   void initState() {
-    currentDate = widget.formController.formatDateOfBirth();
+    currentDate = widget.formController.formatDateOfBirth(widget.formController.dateOfBirthController.text);
     super.initState();
   }
   @override
@@ -139,7 +142,7 @@ class _DateOfBirthDialogState extends State<DateOfBirthDialog> {
                     right: 0,
                     bottom: -1000,
                     child: CustomCupertinoDatePicker(
-                      initialDate: widget.formController.formatDateOfBirth(),
+                      initialDate: currentDate,
                       onDateChanged: (p0) {
                         currentDate = p0;
                       },

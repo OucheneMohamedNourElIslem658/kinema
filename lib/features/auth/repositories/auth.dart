@@ -2,11 +2,9 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http ;
 import 'package:kinema/commun/utils/custom_snack_bar.dart';
 
@@ -82,6 +80,7 @@ class AuthRepository {
         print(response.body);
       }
     } catch (e) {
+      print(e.toString());
       showSnackBar(e.toString(), context);
     }
     
@@ -102,41 +101,19 @@ class AuthRepository {
         var userData = json.decode(response.body);
         return UserModel.fromJson(userData);
       } else {
-        showSnackBar(response.body, context);
+        signOut();
       }
     } catch (e) {
-      showSnackBar(e.toString(), context);
+      signOut();
     }
-    signOut(context);
     return null;
   }
 
-  Future<void> signOut(BuildContext context) async {
-    try {
-      final storage = GetStorage();
-      await storage.remove('jwt');
-      await storage.remove('refresh_token');
-      await storage.remove('email');
-      await storage.remove('avatar');
-      GoRouter.of(context).go('/Auth');
-    } catch (e) {
-      showSnackBar(e.toString(), context);
-    }
-  }
-
-  Future<User?> signInWithGoogle(BuildContext context) async {
-    try {
-      final googleUser = await GoogleSignIn().signIn();
-      final googleAuth = await googleUser?.authentication;
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
-      await FirebaseAuth.instance.signInWithCredential(credential);
-      return FirebaseAuth.instance.currentUser;
-    } catch (e) {
-      showSnackBar(e.toString(), context);
-      return null;
-    }
+  Future<void> signOut() async {
+    final storage = GetStorage();
+    await storage.remove('jwt');
+    await storage.remove('refresh_token');
+    await storage.remove('email');
+    await storage.remove('avatar');
   }
 }

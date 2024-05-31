@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kinema/features/auth/controllers/auth.dart';
 
+import 'features/auth/controllers/auth.dart';
 import 'commun/utils/naviation.dart';
 
 void main() async {
@@ -22,9 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: GoRouter(
-        initialLocation: !authController.isLogedIn 
-          ? '/Auth'
-          : '/Movies',
+        initialLocation: authController.isLogedIn ? '/Movies' : '/Auth',
         navigatorKey: CustomNavigation.rootNavigatorKey,
         routes: CustomNavigation.routes
       ),

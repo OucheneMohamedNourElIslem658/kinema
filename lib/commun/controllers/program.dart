@@ -1,31 +1,42 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:kinema/features/program/repositories/program.dart';
 import 'package:kinema/models/movie.dart';
-
-import '../constents/movies_list.dart';
+import 'package:video_player/video_player.dart';
 
 class ProgramController extends GetxController {
 
-  List<Movie> getActionMovies() {
-    return program.where((movie) => movie.type == 'Action').toList();
+  final _programRepo = ProgramRepo();
+  List<Movie> movies = [];
+
+  Future<void> getProgram() async {
+    movies = (await _programRepo.getMovies()) ?? [];
+    update();
   }
 
-  List<Movie> getDramaMovies() {
-    return program.where((movie) => movie.type == 'Drama').toList();
+  @override
+  void onInit() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await getProgram();
+      await initVideoPlayerForEachVideo();
+    });
+    super.onInit();
   }
 
-  List<Movie> getAdventureMovies() {
-    return program.where((movie) => movie.type == 'Adventure').toList();
-  }
+  List<Map<String, Object>> trailers = [];
 
-  List<Movie> getCrimeMovies() {
-    return program.where((movie) => movie.type == 'Crime').toList();
-  }
-
-  List<Movie> getBiographyMovies() {
-    return program.where((movie) => movie.type == 'Biography').toList();
-  }
-
-  List<Movie> getScienceFictionMovies() {
-    return program.where((movie) => movie.type == 'Science Fiction').toList();
+  Future<void> initVideoPlayerForEachVideo() async {
+    for (var i = 0; i < movies.length; i++) {
+      trailers.add({'movie': movies[i]});
+    }
+    for (var i = 0; i < trailers.length; i++) {
+      final videoPlayerController = VideoPlayerController
+          //change the url to the movies.videoURL
+          .networkUrl(Uri.parse(
+              'https://firebasestorage.googleapis.com/v0/b/fir-methods-9cc92.appspot.com/o/The%20Fast%20and%20the%20Furious%20Official%20Trailer%20%231%20-%20(2001)%20HD.mp4?alt=media&token=e413bcbc-9657-40d1-9f8f-7c72eced158d'))
+        ..initialize().then((_) => update());
+      trailers[i]['controller'] = videoPlayerController;
+    }
+    update();
   }
 }

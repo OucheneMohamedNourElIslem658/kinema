@@ -29,39 +29,34 @@ class Movie {
 
   factory Movie.fromMap(Map<String, dynamic> map) {
     return Movie(
-      name: map['name'],
-      picUrl: map['picUrl'],
-      trailerUrl: map['trailerUrl'],
-      rate: map['rate'],
-      type: map['type'],
-      time: map['time'],
-      views: map['views'],
-      cast: List<String>.from(map['cast']),
-      description: map['description'],
-      showTime: List<DateTime>.from(map['showTime'].map((x) => DateTime.parse(x))),
-      price: map['price'],
+      name: map['title'] as String,
+      picUrl: map['Poster'] as String,
+      trailerUrl: '',
+      rate: 7.5,
+      type: _convertStringToCharacterList(map['Genre']).first,
+      time: int.parse(map['Duration'] as String),
+      views: 500000,
+      cast: _convertStringToCharacterList(map['Movie_Cast']),
+      description: map['Description'] as String,
+      showTime: [DateTime.now(), DateTime.now().add(const Duration(days: 2))],
+      price: 50,
     );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-      'picUrl': picUrl,
-      'trailerUrl': trailerUrl,
-      'rate': rate,
-      'type': type,
-      'time': time,
-      'views': views,
-      'cast': cast,
-      'description': description,
-      'showTime': showTime.map((x) => x.toIso8601String()).toList(),
-      'price': price,
-    };
   }
 }
 
-String movieToJson(Movie movie) {
-  return json.encode(movie.toMap());
+List<String> _convertStringToCharacterList(String inputString) {
+  // Remove the first and last characters (square brackets and single quotes)
+  String trimmedString = inputString.substring(1, inputString.length - 1);
+
+  // Split the string into a list of strings based on comma and single quote delimiters
+  List<String> characterList = trimmedString.split(", '");
+
+  // Remove any empty strings from the list
+  characterList.removeWhere((String element) => element.isEmpty);
+  for (var i = 0; i < characterList.length; i++) {
+    characterList[i] = characterList[i].replaceAll('\'', '');
+  }
+  return characterList;
 }
 
 Movie movieFromJson(String source) {

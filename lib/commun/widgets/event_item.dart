@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:kinema/commun/utils/date_formats.dart';
 import 'package:kinema/models/event.dart';
 
 import '../constents/colors.dart';
@@ -54,13 +55,13 @@ class _EventItemState extends State<EventItem> {
               Column(
                 children: [
                   Text(
-                    widget.event.month,
+                    getMonthAbbreviation(widget.event.date.month),
                     style: TextStyles.style25.copyWith(
                       color: CustomColors.greyText2
                     )
                   ),
                   Text(
-                    widget.event.day.toString(),
+                    widget.event.date.day.toString(),
                     style: TextStyles.style39,
                   )
                 ],
