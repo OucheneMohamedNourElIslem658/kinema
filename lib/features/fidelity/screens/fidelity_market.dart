@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/card.dart';
+import 'package:kinema/commun/widgets/waiting_widget.dart';
+import 'package:kinema/features/fidelity/controllers/fidelity.dart';
+
 import '/commun/utils/navigation_methods.dart';
 import '/commun/constents/colors.dart';
 import '/features/reservations/widgets/custom_appbar.dart';
@@ -18,7 +20,7 @@ class FidelityMarketScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardController = Get.put(CardController());
+    final fidelityMarketController = Get.put(FidelityController());
 
     return Scaffold(
       backgroundColor: CustomColors.black2,
@@ -28,37 +30,49 @@ class FidelityMarketScreen extends StatelessWidget {
         showBackButton: showBackButton,
         onGoBack: () => pop(context),
         actions: [
-          GetBuilder<CardController>(
+          GetBuilder<FidelityController>(
             builder: (_) {
               return BagButton(
-                addRedDot: cardController.cardItems.isNotEmpty,
+                addRedDot: fidelityMarketController.cardItems.isNotEmpty,
               );
             }
           )
         ]
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 10),
-            MarketList(
-              categorieName: 'Caps',
-              items: cardController
-                .market
-                .where((element) => element['categorie'] == 'caps')
-                .toList(),
+      body: GetBuilder<FidelityController>(
+        builder: (_) {
+          if (fidelityMarketController.items.isEmpty) {
+            return const WaitingWidget();
+          }
+          return RefreshIndicator(
+            onRefresh: () async {
+              await fidelityMarketController.getItems();
+            },
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  MarketList(
+                    categorieName: 'Caps',
+                    items: fidelityMarketController.items
+                  ),
+                  const SizedBox(height: 10),
+                  MarketList(
+                    categorieName: 'Shirts',
+                    items: fidelityMarketController.items
+                  ),
+                  const SizedBox(height: 10),
+                  MarketList(
+                    categorieName: 'Shirts',
+                    items: fidelityMarketController.items
+                  ),
+                  const SizedBox(height: 70)
+                ],
+              ),
             ),
-            const SizedBox(height: 10),
-            MarketList(
-              categorieName: 'Shirts',
-              items: cardController.market
-                  .where((element) => element['categorie'] == 'shirts')
-                  .toList(),
-            ),
-            const SizedBox(height: 70)
-          ],
-        ),
+          );
+        }
       ),
     );
   }

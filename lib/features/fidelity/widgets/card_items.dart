@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:kinema/commun/widgets/vertical_scroll_behaviour.dart';
+import 'package:kinema/features/fidelity/controllers/fidelity.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
 import '../../../commun/widgets/custom_icon_button.dart';
-import '../controllers/card.dart';
 import 'empty_card.dart';
 
 class CardItems extends StatelessWidget {
@@ -15,13 +15,13 @@ class CardItems extends StatelessWidget {
     required this.cardController
   });
 
-  final CardController cardController;
+  final FidelityController cardController;
 
   @override
   Widget build(BuildContext context) {
     return VerticalScrollBehaviour(
       controller: cardController.scrollController,
-      child: GetBuilder<CardController>(
+      child: GetBuilder<FidelityController>(
         builder: (_) {
           if (cardController.cardItems.isNotEmpty) {
             return Column(
@@ -32,14 +32,11 @@ class CardItems extends StatelessWidget {
                     cardController.cardItems.length,  
                     (index) {
                       final item = cardController.cardItems[index];
-                      final name = item['name'] as String;
-                      final path = item['path'] as String;
-                      final price = item['price'] as int;
 
                       return CardItem(
-                        path: path, 
-                        name: name, 
-                        price: price, 
+                        path: item.imgurl!, 
+                        name: item.name!, 
+                        price: item.pointsPrice!, 
                         cardController: cardController,
                         index: index
                       );
@@ -74,7 +71,7 @@ class CardItem extends StatelessWidget {
   final String path;
   final String name;
   final int price;
-  final CardController cardController;
+  final FidelityController cardController;
   final int index;
 
   @override
@@ -88,7 +85,7 @@ class CardItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(
+          Image.network(
             path,
             height: 60,
           ),

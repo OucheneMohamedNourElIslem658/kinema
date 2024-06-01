@@ -1,21 +1,19 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:kinema/features/auth/controllers/auth.dart';
-import 'package:kinema/commun/models/event.dart';
+import 'package:kinema/commun/models/fidelity_item.dart';
 import 'package:http/http.dart' as http;
+import 'package:kinema/features/auth/controllers/auth.dart';
 
-class EventsRepo {
-  final String _url = 'http://10.5.3.117:80/events/';
-
+class FiedelityRepo {
+  final _url = "http://10.5.3.117:80/merch/";
   final _authController = Get.find<AuthController>();
 
-  Future<List<EventModel>?> getEvents() async {
+
+  Future<List<FidelityItem>?> getItems() async {
     try {
-      final List<EventModel> events = [];
+      final List<FidelityItem> items = [];
       var url = Uri.parse('${_url}list');
       final storage = GetStorage();
       var jwt = storage.read('jwt') as String;
@@ -25,13 +23,13 @@ class EventsRepo {
 
       if (response.statusCode == 200) {
         final result = json.decode(response.body) as Map<String, dynamic>;
-        final eventsMap = result["results"] as List<dynamic>;
-        for (var i = 0; i < eventsMap.length; i++) {
-          final eventMap = eventsMap[i] as Map<String, dynamic>;
-          final movie = EventModel.fromMap(eventMap);
-          events.add(movie);
+        final itemsMap = result["results"] as List<dynamic>;
+        for (var i = 0; i < itemsMap.length; i++) {
+          final itemMap = itemsMap[i] as Map<String, dynamic>;
+          final movie = FidelityItem.fromJson(itemMap);
+          items.add(movie);
         }
-        return events;
+        return items;
       } else {
         await _authController.signOut();
       }

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kinema/commun/models/fidelity_item.dart';
+import 'package:kinema/features/fidelity/controllers/fidelity.dart';
 
-import '/features/fidelity/controllers/card.dart';
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
 
@@ -15,11 +16,11 @@ class MarketList extends StatelessWidget {
   });
 
   final String categorieName;
-  final List<Map<String,dynamic>> items;
+  final List<FidelityItem> items;
 
   @override
   Widget build(BuildContext context) {
-    final cardController = Get.put(CardController());
+    final cardController = Get.put(FidelityController());
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,18 +44,11 @@ class MarketList extends StatelessWidget {
                   items.length, 
                   (index) {
                     final item = items[index];
-                    final name = item['name'] as String;
-                    final path = item['path'] as String;
-                    final price = item['price'] as int;
                     return MarketItem(
-                      name: name, 
-                      url: path, 
-                      price: price,
-                      onDelete: () => cardController.addItem(
-                        name: name, 
-                        path: path,
-                        price: price
-                      ),
+                      name: item.name!, 
+                      url: item.imgurl!, 
+                      price: item.pointsPrice!,
+                      onDelete: () => cardController.addItem(item),
                   );
                   }
                 ),
@@ -95,7 +89,7 @@ class MarketItem extends StatelessWidget {
         children: [
           const SizedBox(height: 20),
           Center(
-            child: Image.asset(
+            child: Image.network(
               url,
               height: 106,
             ),

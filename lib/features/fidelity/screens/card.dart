@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kinema/features/fidelity/controllers/fidelity.dart';
 
 import '/commun/utils/navigation_methods.dart';
 import '/features/fidelity/screens/invoice.dart';
 import '/commun/constents/colors.dart';
 import '/commun/constents/text_styles.dart';
 import '/commun/widgets/custom_elevated_button.dart';
-import '../controllers/card.dart';
 import '/features/reservations/widgets/custom_appbar.dart';
 
 import '../widgets/card_items.dart';
@@ -16,7 +16,7 @@ class CardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardContoller = Get.put(CardController());
+    final fidelityController = Get.put(FidelityController());
 
     return Scaffold(
       backgroundColor: CustomColors.black2,
@@ -27,14 +27,14 @@ class CardScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: GetBuilder<CardController>(
+        child: GetBuilder<FidelityController>(
           builder: (_) {
             return Stack(
               children: [
                 CardItems(
-                  cardController: cardContoller,
+                  cardController: fidelityController,
                 ),
-                cardContoller.isScrollingUp && cardContoller.cardItems.isNotEmpty
+                fidelityController.isScrollingUp && fidelityController.cardItems.isNotEmpty
                 ? Align(
                   alignment: const Alignment(0,0.6),
                   child: CustomElevatedButton(

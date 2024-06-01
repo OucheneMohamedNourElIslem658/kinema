@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 
 import '/commun/utils/navigation_methods.dart';
 import '/commun/utils/custom_snack_bar.dart';
@@ -15,6 +17,7 @@ class InvoiceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final cardController = Get.put()
     return Scaffold(
       backgroundColor: CustomColors.black2,
       appBar: customAppBar(
@@ -62,7 +65,10 @@ class InvoiceScreen extends StatelessWidget {
               const Spacer(flex: 2),
               Center(
                 child: DownloadButton(
-                  onPressed: () => showSnackBar('Item Added to Cart', context),
+                  onPressed: () {
+                    
+                    showSnackBar('Cart downloaded successfully', context);
+                  },
                 ),
               ),
               const Spacer(),

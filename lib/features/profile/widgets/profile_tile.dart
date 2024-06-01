@@ -46,7 +46,7 @@ class ProfileTile extends StatelessWidget {
                     profileFormController.currentUser == null
                       ? const CustomTextLoader(height: 15, width: 100)
                       : Text(
-                        profileFormController.currentUser!.fullName!,
+                        profileFormController.currentUser!.username!,
                         style: TextStyles.style34,
                       ),
                     const SizedBox(height: 3),

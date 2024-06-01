@@ -70,7 +70,7 @@ class EditProfileFrom extends StatelessWidget {
                     child: SvgPicture.asset('assets/icons/edit2.svg')
                   )
                   : CustomElevatedButton(
-                    onPressed: () => formController.validateForm(),
+                    onPressed: () async => await formController.validateForm(),
                     padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 16), 
                     child: Text(
                       'Save Changes',

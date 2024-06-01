@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:kinema/commun/constents/movies_list.dart';
 import '../../../commun/models/movie.dart';
 
 enum SeatStatus {

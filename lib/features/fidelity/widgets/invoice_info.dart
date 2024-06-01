@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kinema/features/fidelity/controllers/fidelity.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
-import '../controllers/card.dart';
 
 class InvoiceInfo extends StatelessWidget {
   const InvoiceInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final cardConroller = Get.put(CardController());
+    final cardConroller = Get.put(FidelityController());
+
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,13 +49,11 @@ class InvoiceInfo extends StatelessWidget {
             cardConroller.cardItems.length,
             (index) {
               final item = cardConroller.cardItems[index];
-              final name = item['name'] as String;
-              final price = item['price'] as int;
               return Padding(
                 padding: const EdgeInsets.only(bottom: 5),
                 child: PaymentItem(
-                  price: price, 
-                  itemName: name
+                  price: item.pointsPrice!, 
+                  itemName: item.name!
                 ),
               );
             }

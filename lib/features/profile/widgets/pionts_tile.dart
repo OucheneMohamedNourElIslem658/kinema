@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
+import 'package:kinema/features/profile/controllers/profile_form.dart';
 
+import '../../../commun/widgets/custom_text_loader.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/features/fidelity/screens/fidelity_market.dart';
 import '../../../commun/constents/colors.dart';
@@ -13,6 +17,8 @@ class PointsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileFormController = Get.put(ProfileFormController());
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
       decoration: BoxDecoration(
@@ -33,19 +39,25 @@ class PointsTile extends StatelessWidget {
                     'Fidelty Points',
                     style: TextStyles.style35,
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        18000.toString(),
-                        style: TextStyles.style36,
-                      ),
-                      const SizedBox(width: 5),
-                      SvgPicture.asset(
-                        'assets/icons/cinema.svg',
-                        // ignore: deprecated_member_use
-                        color: CustomColors.primaryBej,
-                      )
-                    ],
+                  GetBuilder<ProfileFormController>(
+                    builder: (_) {
+                      return Row(
+                        children: [
+                          profileFormController.currentUser != null
+                          ? Text(
+                            profileFormController.currentUser!.fidelityPoints.toString(),
+                            style: TextStyles.style36,
+                          )
+                          :const CustomTextLoader(height: 15, width: 50),
+                          const SizedBox(width: 5),
+                          SvgPicture.asset(
+                            'assets/icons/cinema.svg',
+                            // ignore: deprecated_member_use
+                            color: CustomColors.primaryBej,
+                          )
+                        ],
+                      );
+                    }
                   ),
                 ],
               )

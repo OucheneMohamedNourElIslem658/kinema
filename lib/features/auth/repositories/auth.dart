@@ -11,7 +11,7 @@ import 'package:kinema/commun/utils/custom_snack_bar.dart';
 import '../../../commun/models/user.dart';
 
 class AuthRepository {
-  final _url = 'http://10.0.2.2:8000/cinephile/';
+  final _url = 'http://10.5.3.117:80/cinephile/';
 
   Future<void> registerUser(
     BuildContext context,
@@ -47,6 +47,7 @@ class AuthRepository {
       showSnackBar(e.toString(), context);
     }
   }
+  
 
   Future<void> loginUser(
     BuildContext context,
@@ -107,6 +108,36 @@ class AuthRepository {
       await signOut();
     }
     return null;
+  }
+
+
+  Future<UserModel?> updateUserDetails(UserModel userModel) async {
+    try {
+      
+      var url = Uri.parse('${_url}update/${userModel.id}');
+      final storage = GetStorage();
+      var jwt = storage.read('jwt') as String;
+      var response = await http.patch(url, headers: {
+        'Authorization': 'Bearer $jwt',
+      }, body: {
+        "Full_Name": userModel.fullName,
+        "email": userModel.email,
+        "Phone_Number": userModel.phoneNumber,
+        "Date_of_Birth": userModel.dateOfBirth
+      }
+      );
+      if (response.statusCode == 200) {
+        var userData = json.decode(response.body);
+        print(userData);
+        return UserModel.fromJson(userData);
+      } else {
+        await signOut();
+      }
+    } catch (e) {
+      print(e.toString());
+      await signOut();
+    }
+    return userModel;
   }
 
   Future<void> signOut() async {

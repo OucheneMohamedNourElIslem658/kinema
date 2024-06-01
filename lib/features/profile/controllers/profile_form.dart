@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:kinema/features/auth/controllers/auth.dart';
 import 'package:kinema/commun/models/user.dart';
 
+import '../../../commun/utils/date_formats.dart';
+
 class ProfileFormController extends GetxController {
   late TextEditingController nameController,emailController,phoneController,dateOfBirthController;
   late GlobalKey<FormState> formKey;
@@ -13,6 +15,19 @@ class ProfileFormController extends GetxController {
 
   Future<void> initialiseCurrentUser() async {
     currentUser = (await authController.getUserDetail())!;
+    initForm();
+    update();
+  }
+
+  Future<void> updateCurrentUser() async {
+    currentUser = UserModel(
+      id: currentUser!.id,
+      fullName: nameController.text,
+      email: emailController.text,
+      phoneNumber: phoneController.text,
+      dateOfBirth: dateOfBirthController.text
+    );
+    currentUser = (await authController.updateUserDetail(currentUser!))!;
     initForm();
     update();
   }
@@ -74,26 +89,21 @@ class ProfileFormController extends GetxController {
     return parsedDate;
   }
 
-  String formateDateToString(DateTime date){
-    String formattedDate =
-        "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
-    return formattedDate;
-  }
-
   void changeDateOfBirth(DateTime date){
     dateOfBirthController.text = formateDateToString(date);
     update();
   }
 
-  void editForm(){
+  void editForm() async {
     enableForm = true;
     update();
   }
 
-  bool validateForm(){
+  Future<bool> validateForm() async {
     final isValid = formKey.currentState!.validate();
     if(isValid){
       formKey.currentState!.save();
+      await updateCurrentUser();
       enableForm = false;
       update();
       return true;

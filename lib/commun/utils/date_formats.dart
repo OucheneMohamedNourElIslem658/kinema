@@ -110,6 +110,11 @@ String getMonthAbbreviation(int monthNumber) {
     "Nov",
     "Dec"
   ];
-
   return months[monthNumber - 1];
+}
+
+String formateDateToString(DateTime date) {
+  String formattedDate =
+      "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
+  return formattedDate;
 }

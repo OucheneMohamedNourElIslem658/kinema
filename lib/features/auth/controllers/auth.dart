@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kinema/features/auth/repositories/auth.dart';
 import 'package:kinema/commun/models/user.dart';
 
@@ -114,6 +113,10 @@ class AuthController extends GetxController {
 
   Future<UserModel?> getUserDetail(){
     return _authRepo.getUserDetails();
+  }
+
+  Future<UserModel?> updateUserDetail(UserModel user) {
+    return _authRepo.updateUserDetails(user);
   }
 
   Future<void> signOut() async {

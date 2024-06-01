@@ -9,7 +9,7 @@ import 'package:kinema/commun/models/movie.dart';
 import 'package:http/http.dart' as http;
 
 class ProgramRepo {
-  final _url = 'http://10.0.2.2:8000/movies/';
+  final _url = 'http://10.5.3.117:80/movies/';
   final _authController = Get.find<AuthController>();
   Future<List<Movie>?> getMovies() async {
     try {
