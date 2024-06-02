@@ -4,12 +4,13 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:kinema/commun/constents/localhost.dart';
 import 'package:kinema/features/auth/controllers/auth.dart';
 import 'package:kinema/commun/models/movie.dart';
 import 'package:http/http.dart' as http;
 
 class ProgramRepo {
-  final _url = 'http://10.5.3.117:80/movies/';
+  final _url = 'http://$localhost/movies/';
   final _authController = Get.find<AuthController>();
   Future<List<Movie>?> getMovies() async {
     try {

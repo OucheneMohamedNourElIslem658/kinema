@@ -32,7 +32,7 @@ class EventScreen extends StatelessWidget {
               color: CustomColors.primaryRed,
               backgroundColor: CustomColors.black,
               onRefresh: () async {
-                await eventsController.geEvents();
+                await eventsController.getEvents();
               },
               child: SingleChildScrollView(
                 child: Column(

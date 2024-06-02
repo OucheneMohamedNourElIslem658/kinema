@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kinema/features/profile/controllers/settings.dart';
 
 import '../../../commun/widgets/custom_text_loader.dart';
 import '/commun/widgets/custom_icon_button.dart';
@@ -19,6 +20,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formController = Get.put(ProfileFormController());
+    final settingsController = Get.put(SettingsController());
 
     return Scaffold(
       backgroundColor: CustomColors.black2,
@@ -56,11 +58,15 @@ class ProfileScreen extends StatelessWidget {
                           height: 100,
                           width: 120
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 80,
                           width: 80,
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage('assets/images/avatar3.png'),
+                          child: GetBuilder<SettingsController>(
+                            builder: (_) {
+                              return CircleAvatar(
+                                backgroundImage: AssetImage(settingsController.currentAvatarPath),
+                              );
+                            }
                           ),
                         ),
                         Positioned(

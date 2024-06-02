@@ -53,7 +53,6 @@ class _SeatChoiceScreenState extends State<SeatChoiceScreen> {
   Widget build(BuildContext context) {
     final reservationController = Get.put(ReservationsController());
 
-
     return Scaffold(
       backgroundColor: CustomColors.black2,
       appBar: customAppBar(
@@ -116,10 +115,11 @@ class _SeatChoiceScreenState extends State<SeatChoiceScreen> {
                         status: PaymentItemStatus.final_price,
                       )
                     ],
-                    onPaymentResult: (result) {
+                    onPaymentResult: (result) async {
                       if (kDebugMode) {
                         print(result);
                       }
+                      reservationController.incrementScore();
                       reservationController.addReserVation(widget.movie);
                       push(
                         context, 

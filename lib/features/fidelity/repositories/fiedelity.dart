@@ -2,12 +2,13 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:kinema/commun/constents/localhost.dart';
 import 'package:kinema/commun/models/fidelity_item.dart';
 import 'package:http/http.dart' as http;
 import 'package:kinema/features/auth/controllers/auth.dart';
 
 class FiedelityRepo {
-  final _url = "http://10.5.3.117:80/merch/";
+  final _url = "http://$localhost/merch/";
   final _authController = Get.find<AuthController>();
 
 

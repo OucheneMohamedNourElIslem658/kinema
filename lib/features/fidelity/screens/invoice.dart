@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
+import 'package:kinema/features/fidelity/controllers/fidelity.dart';
 
 import '/commun/utils/navigation_methods.dart';
 import '/commun/utils/custom_snack_bar.dart';
@@ -17,13 +17,17 @@ class InvoiceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final cardController = Get.put()
+    final cardController = Get.find<FidelityController>();
+
     return Scaffold(
       backgroundColor: CustomColors.black2,
       appBar: customAppBar(
         title: 'Invoice',
         showTitle: true,
-        onGoBack: () => pop(context),
+        onGoBack: () {
+          cardController.clearCard();
+          pop(context);
+        },
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

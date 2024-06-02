@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 import 'package:kinema/commun/models/fidelity_item.dart';
+import 'package:kinema/commun/utils/custom_snack_bar.dart';
 import 'package:kinema/features/fidelity/repositories/fiedelity.dart';
+import 'package:kinema/features/profile/controllers/profile_form.dart';
+
+import '../../../commun/utils/navigation_methods.dart';
+import '../screens/invoice.dart';
 
 class FidelityController extends GetxController {
   final List<FidelityItem> cardItems = [];
@@ -42,6 +47,21 @@ class FidelityController extends GetxController {
   void clearCard(){
     cardItems.clear();
     update();
+  }
+
+  void decrementScore(BuildContext context){
+    final profileController = Get.put(ProfileFormController());
+    int totalPrice = 0;
+    for (var i = 0; i < cardItems.length; i++) {
+      totalPrice = totalPrice + cardItems[i].pointsPrice!;
+    }
+    if (profileController.currentUser!.fidelityPoints! < totalPrice) {
+      showSnackBar("your score is not enough", context);
+      return;
+    }
+    profileController.currentUser!.fidelityPoints = profileController.currentUser!.fidelityPoints! - totalPrice; 
+    push(context, const InvoiceScreen());
+    profileController.update();
   }
 
   @override

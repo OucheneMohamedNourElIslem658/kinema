@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:kinema/features/fidelity/controllers/fidelity.dart';
 
 import '/commun/utils/navigation_methods.dart';
-import '/features/fidelity/screens/invoice.dart';
 import '/commun/constents/colors.dart';
 import '/commun/constents/text_styles.dart';
 import '/commun/widgets/custom_elevated_button.dart';
@@ -38,7 +37,9 @@ class CardScreen extends StatelessWidget {
                 ? Align(
                   alignment: const Alignment(0,0.6),
                   child: CustomElevatedButton(
-                    onPressed: () => push(context, const InvoiceScreen()), 
+                    onPressed: () async {
+                      fidelityController.decrementScore(context);
+                    }, 
                     padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 15),
                     child: Text(
                       'Get Items',

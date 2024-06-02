@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:get/get.dart';
 import '../../../commun/models/movie.dart';
+import '../../profile/controllers/profile_form.dart';
 
 enum SeatStatus {
   available,
@@ -44,12 +47,22 @@ class ReservationsController extends GetxController {
     update();
   }
 
+  void incrementScore() async {
+    print("started");
+    final profileController = Get.put(ProfileFormController());
+    profileController.currentUser!.fidelityPoints 
+      = profileController.currentUser!.fidelityPoints! + 2000;
+    profileController.update();
+    print("ended");
+  }
+
   void cancelReservation(int index){
     reservations.removeAt(index);
     update();
   }
 
   void addReserVation(Movie movie){
+    print("mohamed");
     reservations.add(
       movie
     );

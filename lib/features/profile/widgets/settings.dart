@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '/features/auth/controllers/auth.dart';
 import '/features/profile/screens/about_kinema.dart';
-import '/commun/utils/custom_snack_bar.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/features/auth/screens/forgot_password.dart';
 import '/features/reservations/screens/my_reservations.dart';
@@ -53,12 +52,6 @@ class Settings extends StatelessWidget {
                 title: 'Change Password', 
                 iconPath: 'assets/icons/lock.svg', 
                 onPressed: () => push(context, const ForgotPasswordScreen())
-              ),
-              devider(),
-              SettingsItem(
-                title: 'Feedback', 
-                iconPath: 'assets/icons/flag.svg', 
-                onPressed: () => showSnackBar('Not supported yet', context)
               ),
               devider(),
               SettingsItem(

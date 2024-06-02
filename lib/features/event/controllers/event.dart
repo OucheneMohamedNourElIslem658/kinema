@@ -12,12 +12,6 @@ class EventController extends GetxController{
     update();
   }
 
-  Future<void> geEvents() async {
-    events = (await _eventsRepo.getEvents()) ?? [];
-    events = events.sublist(1,1);
-    update();
-  }
-
   @override
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {

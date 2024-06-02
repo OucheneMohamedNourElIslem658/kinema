@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:kinema/features/fidelity/controllers/fidelity.dart';
+import 'package:kinema/features/profile/controllers/profile_form.dart';
 
 import '../../../commun/constents/colors.dart';
 import '../../../commun/constents/text_styles.dart';
@@ -12,6 +13,7 @@ class InvoiceInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cardConroller = Get.put(FidelityController());
+    final profileController = Get.put(ProfileFormController());
 
 
     return Column(
@@ -24,7 +26,9 @@ class InvoiceInfo extends StatelessWidget {
           ),
         ),
         Text(
-          'User: @lam.exe_failed',
+          profileController.currentUser == null 
+            ? '' 
+            : profileController.currentUser!.fullName ?? '',
           style: TextStyles.style6.copyWith(
             color: CustomColors.black
           ),

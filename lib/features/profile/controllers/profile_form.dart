@@ -25,7 +25,8 @@ class ProfileFormController extends GetxController {
       fullName: nameController.text,
       email: emailController.text,
       phoneNumber: phoneController.text,
-      dateOfBirth: dateOfBirthController.text
+      dateOfBirth: dateOfBirthController.text,
+      username: currentUser!.username
     );
     currentUser = (await authController.updateUserDetail(currentUser!))!;
     initForm();

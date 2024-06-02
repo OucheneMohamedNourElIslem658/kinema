@@ -36,6 +36,8 @@ class MoviesScreen extends StatelessWidget {
             return const WaitingWidget();
           }
           return RefreshIndicator(
+            backgroundColor: CustomColors.black,
+            color: CustomColors.primaryRed,
             onRefresh: () async {
               await programController.getProgram();
               await eventController.getEvents();

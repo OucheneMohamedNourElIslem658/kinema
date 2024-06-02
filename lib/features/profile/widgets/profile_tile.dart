@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:kinema/features/profile/controllers/profile_form.dart';
 
 import '../../../commun/widgets/custom_text_loader.dart';
+import '../controllers/settings.dart';
 import '/commun/utils/navigation_methods.dart';
 import '/features/profile/screens/profile.dart';
 import '../../../commun/constents/colors.dart';
@@ -17,6 +18,7 @@ class ProfileTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) { 
     final profileFormController = Get.put(ProfileFormController());
+    final settingsContoller = Get.put(SettingsController());
     return GetBuilder<ProfileFormController>(
       builder: (_) {
         return Container(
@@ -30,11 +32,15 @@ class ProfileTile extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(
+             SizedBox(
                 height: 54,
                 width: 54,
-                child: CircleAvatar(
-                  backgroundImage: AssetImage("assets/images/avatar3.png"),
+                child: GetBuilder<SettingsController>(
+                  builder: (_) {
+                    return CircleAvatar(
+                      backgroundImage: AssetImage(settingsContoller.currentAvatarPath),
+                    );
+                  }
                 ),
               ),
               const SizedBox(width: 10),

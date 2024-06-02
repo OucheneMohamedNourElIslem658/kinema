@@ -19,7 +19,7 @@ class FidelityItem {
     id: json["id"],
     description: json["description"],
     name: json["name"],
-    type: json["type"],
+    type: json["merch_type"],
     pointsPrice: json["points_price"],
     imgurl: json["imgurl"],
   );

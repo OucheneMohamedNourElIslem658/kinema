@@ -23,7 +23,9 @@ class MyApp extends StatelessWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           routerConfig: GoRouter(
-            initialLocation: authController.isLogedIn ? '/Movies' : '/Auth',
+            initialLocation: authController.isLogedIn 
+              ? '/Movies' 
+              : '/Auth',
             navigatorKey: CustomNavigation.rootNavigatorKey,
             routes: CustomNavigation.routes
           ),
@@ -33,6 +35,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// m_ouchene@estin.dz
-// 123mohamed
+// ouchene@gmail.com
+// ABCabc123
 // S2G9uz8j

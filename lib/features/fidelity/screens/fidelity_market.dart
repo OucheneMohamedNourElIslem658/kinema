@@ -45,6 +45,8 @@ class FidelityMarketScreen extends StatelessWidget {
             return const WaitingWidget();
           }
           return RefreshIndicator(
+            backgroundColor: CustomColors.black,
+            color: CustomColors.primaryRed,
             onRefresh: () async {
               await fidelityMarketController.getItems();
             },
@@ -54,18 +56,20 @@ class FidelityMarketScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 10),
                   MarketList(
-                    categorieName: 'Caps',
-                    items: fidelityMarketController.items
+                    categorieName: 'Hats',
+                    items: fidelityMarketController.items.where((element) => element.type == 'hat').toList()
                   ),
                   const SizedBox(height: 10),
                   MarketList(
-                    categorieName: 'Shirts',
-                    items: fidelityMarketController.items
+                    categorieName: 'Totes',
+                    items: fidelityMarketController.items.where((element) => element.type == 'tote').toList()
                   ),
                   const SizedBox(height: 10),
                   MarketList(
-                    categorieName: 'Shirts',
+                    categorieName: 'Cups',
                     items: fidelityMarketController.items
+                        .where((element) => element.type == 'cup')
+                        .toList()
                   ),
                   const SizedBox(height: 70)
                 ],
